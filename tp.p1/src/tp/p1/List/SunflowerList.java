@@ -1,6 +1,6 @@
 package tp.p1.List;
 
-import tp.p1.Plants.Sunflower;;
+import tp.p1.Plants.Sunflower;
 
 public class SunflowerList {
 
