@@ -51,4 +51,17 @@ public class SunflowerList {
 		}
 		this.listSf[pos] = null;
 	}
+	
+	public int getPlantHP(int x, int y)
+	{
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSf[i].getPosX() == x && this.listSf[i].getPosY() == y)
+			{
+				return this.listSf[i].getHealth();
+			}
+			
+		}
+		return 0;
+	}
 }

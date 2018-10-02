@@ -1,0 +1,54 @@
+package tp.p1.List;
+
+import tp.p1.Zombies.CommonZombie;
+
+public class ZombieList {
+
+	private CommonZombie[] listSZ;
+	private int numElem;
+	
+	public ZombieList()
+	{
+		this.listSZ = null;
+		this.numElem = 0;
+	}
+	
+	//Prototipo
+	public void insert(int posX, int posY)
+	{
+		//creo un nuevo objeto
+		this.listSZ[this.numElem] = new CommonZombie();
+		
+		//posicionamiento
+		this.listSZ[this.numElem].setPosX(posX);
+		this.listSZ[this.numElem].setPosX(posY);
+		
+		this.numElem++;
+	}
+	
+	public void eliminar(int posX, int posY)
+	{
+		int cont = 0;
+		boolean encontrado = false;
+		
+		for(; cont< this.numElem && !encontrado; cont++)
+		{
+			if (this.listSZ[cont].getPosX() == posX 
+					&& this.listSZ[cont].getPosY() == posY)
+			{
+				reordenar(cont);
+			}
+		}
+		
+	}
+	//reordena el array apartir de una posicion
+	public void reordenar(int pos)
+	{
+		while(pos < this.numElem-1)
+		{
+			this.listSZ[pos] = this.listSZ[pos+1];
+			pos++;
+		}
+		this.listSZ[pos] = null;
+	}
+}
