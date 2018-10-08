@@ -18,7 +18,7 @@ public class Tablero {
 		{
 			for (int j = 0; j < this.columnas;j++ )
 			{
-				this.tablero[i][j] = estado.VACIO;
+				this.tablero[i][j] = ContCasillas.VACIO;
 			}
 		}
 	}

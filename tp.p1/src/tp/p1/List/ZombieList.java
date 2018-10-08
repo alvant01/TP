@@ -51,4 +51,16 @@ public class ZombieList {
 		}
 		this.listSZ[pos] = null;
 	}
+
+	public int getZombieHP(int posX, int posY) {
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSZ[i].getPosX() == posX && this.listSZ[i].getPosY() == posY)
+			{
+				return this.listSZ[i].getHealth();
+			}
+			
+		}
+		return 0;
+	}
 }

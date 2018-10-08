@@ -51,5 +51,18 @@ public class PeaShooterList {
 		}
 		this.listSP[pos] = null;
 	}
+
+	public int getPlantHP(int x, int y)
+	{
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSP[i].getPosX() == x && this.listSP[i].getPosY() == y)
+			{
+				return this.listSP[i].getHealth();
+			}
+			
+		}
+		return 0;
+	}
 }
 

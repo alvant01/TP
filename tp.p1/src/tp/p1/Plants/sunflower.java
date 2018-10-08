@@ -1,8 +1,7 @@
 package tp.p1.Plants;
 
-import java.lang.*;
 
-public class sunflower 
+public class Sunflower 
 {
 	
 	private int health;
@@ -10,9 +9,10 @@ public class sunflower
 	private String behaviour;
 	private int damage;
 	private int frecuency;
+	private int posX;
+	private int posY;
 	
-	
-	public sunflower()
+	public Sunflower()
 	{
 		this.health= 1;
 		this.cost = 20;
@@ -69,6 +69,26 @@ public class sunflower
 
 	public void setFrecuency(int frecuency) {
 		this.frecuency = frecuency;
+	}
+
+
+	public int getPosX() {
+		return posX;
+	}
+
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+
+	public int getPosY() {
+		return posY;
+	}
+
+
+	public void setPosY(int posY) {
+		this.posY = posY;
 	}
 	
 }

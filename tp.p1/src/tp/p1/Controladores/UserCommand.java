@@ -5,7 +5,6 @@ import tp.p1.Plants.Sunflower;
 public class UserCommand {
 	
 
-	private enum commands{ADD, RESET, LIST, NONE, EXIT};
 	
 	private String userCommand;
 	
@@ -64,14 +63,13 @@ public class UserCommand {
 	}
 	
 	
-	public add()
+	public void add()
 	{
 		Sunflower f = new Sunflower();
 		if(this.plantAdd == f.toString() )
 		{
 			//pasa por parametros
 		}
-		
 	}
 	
 

@@ -63,26 +63,34 @@ public class Draw
 		System.out.print("|");
 		for(; posY< tablero.getColumnas(); posY++)
 		{
-			if(tablero.getEstadoCasilla(posX, posY) != est.VACIO)
+			est = tablero.getEstadoCasilla(posX, posY);
+		
+			if( est != ContCasillas.VACIO)
 			{
-				switch(tablero.getEstadoCasilla(posX, posY))
-				{
-				case  est.GIRASOL: System.out.print("P[" + this.SList.getPlantHP(posX, posY) + "]");
-				break;
-				
-				}
-				
+				drawFiguras(est,posX, posY);
 			}
+			else
+			{
+				System.out.print("    ");
+			}
+			System.out.print("|");
 		}
 	}
 	
 	
-	public void drawFiguras()
-	{}
-	
-	
-	
-	
-	
+	public void drawFiguras(ContCasillas est,int posX,int posY)
+	{
+		switch(est)
+		{
+		case  GIRASOL: System.out.print("S[" + this.SList.getPlantHP(posX, posY) + "]");
+			break;
+		case LANZAGUISANTE: System.out.print("P[" + this.PList.getPlantHP(posX, posY) + "]");
+			break;
+		case ZOMBIE: System.out.print("Z[" + this.ZList.getZombieHP(posX, posY) + "]");
+			break;
+		default:
+			break;
+		}
+	}
 	
 }
