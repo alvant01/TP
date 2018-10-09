@@ -49,10 +49,11 @@ public class Draw
 	
 	public void drawLineasH()
 	{
+		StringBuilder sb = new StringBuilder();
 		System.out.print(" ");
 		for(int i = 0; i < tablero.getColumnas()-1; i++)
 		{
-			System.out.print("-------");
+			System.out.println("-------");
 		}
 		System.out.println("-------");
 	}

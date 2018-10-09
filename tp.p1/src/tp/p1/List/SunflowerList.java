@@ -64,4 +64,13 @@ public class SunflowerList {
 		}
 		return 0;
 	}
+	public boolean contains(int posX, int posY)
+	{
+		for(int i = 0; i <this.numElem; i++)
+		{
+			if(this.listSf[i].getPosX()== posX && this.listSf[i].getPosY() == posY)
+				return true;
+		}
+		return false;
+	}
 }

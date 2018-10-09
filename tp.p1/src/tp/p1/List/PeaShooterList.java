@@ -64,5 +64,14 @@ public class PeaShooterList {
 		}
 		return 0;
 	}
+
+	public boolean contains(int posX, int posY) {
+		for(int i = 0; i <this.numElem; i++)
+		{
+			if(this.listSP[i].getPosX()== posX && this.listSP[i].getPosY() == posY)
+				return true;
+		}
+		return false;
+	}
 }
 

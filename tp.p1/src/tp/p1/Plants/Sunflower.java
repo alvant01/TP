@@ -12,7 +12,6 @@ public class Sunflower
 	private int posX;
 	private int posY;
 	
-	
 	public Sunflower()
 	{
 		this.health= 1;

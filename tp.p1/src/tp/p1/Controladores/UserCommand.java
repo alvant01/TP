@@ -1,76 +1,132 @@
 package tp.p1.Controladores;
 
+import java.util.Scanner;
+
+import tp.p1.List.PeaShooterList;
+import tp.p1.List.SunflowerList;
+import tp.p1.List.ZombieList;
+import tp.p1.Plants.PeaShooter;
 import tp.p1.Plants.Sunflower;
 
 public class UserCommand {
 	
 
 	
-	private String userCommand;
+
+	private SunflowerList sfList;
 	
-	private String plantAdd;
+	private PeaShooterList psList;
 	
-	private int x;
-   
-	private int y;
+	private ZombieList zList;
 	
-	//public UserCommand()
-	//{}
 	
-	public UserCommand(String com, String plant, int x, int y)
+	public UserCommand(SunflowerList sfList, PeaShooterList psList, ZombieList zList)
 	{
-		this.userCommand = com;
-		this.plantAdd = plant;
-		this.x = x;
-		this.y = y;
+		this.sfList = sfList;
+		this.psList = psList;
+		this.zList = zList;
 	}
 	
-	public UserCommand(String com)
+	
+	public boolean addS(int posX, int posY)
 	{
-		this.userCommand = com;
+		if (this.sfList.contains(posX, posY) && this.psList.contains(posX, posY) && this.zList.contains(posX, posY))
+			return false;
+		
+		this.sfList.insert(posX, posY);
+		return true;
 	}
-
-	public String getUserCommand() {
-		return userCommand;
-	}
-
-	public void setUserCommand(String userCommand) {
-		this.userCommand = userCommand;
-	}
-
-	public String getPlantAdd() {
-		return plantAdd;
-	}
-
-	public void setPlantAdd(String plantAdd) {
-		this.plantAdd = plantAdd;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-	
-	
-	public void add()
+	public boolean addP(int posX, int posY)
 	{
-		Sunflower f = new Sunflower();
-		if(this.plantAdd == f.toString() )
+		if (this.sfList.contains(posX, posY) && this.psList.contains(posX, posY) && this.zList.contains(posX, posY))
+			return false;
+		
+		psList.insert(posX, posY);
+		return true;
+	}
+	
+	public void list()
+	{
+		Sunflower sf = new Sunflower();
+		PeaShooter ps = new PeaShooter();
+		System.out.print("[S]unflower: ");
+		System.out.print(" Cost: " + sf.getCost() + " suncoins ");
+		System.out.println(" Harm: " + sf.getDamage());
+		
+		System.out.print("[P]eaShooter: ");
+		System.out.print(" Cost: " + ps.getCost() + " suncoins ");
+		System.out.println(" Harm: " + ps.getDamage());
+	}
+	
+	public void help()
+	{
+		System.out.println("Add <plant> <x> <y>: Adds a plant in position x, y.\r\n" + 
+				"List: Prints the list of available plants.\r\n" + 
+				"Reset: Starts a new game.\r\n" + 
+				"Help: Prints this help message.\r\n" + 
+				"Exit: Terminates the program.\r\n" + 
+				"[none]: Skips cycle.");
+	}
+	public boolean reconocedor(String Command)
+	{
+		Scanner sc = new Scanner(System.in);
+		String planta;
+		int posX;
+		int posY;
+		if (Command == Commands.ADD.toString())
 		{
-			//pasa por parametros
+			planta = sc.nextLine();
+			posX = sc.nextInt();
+			posY = sc.nextInt();
+			
+			//Comprobar monedas
+			if (!ReconocedorPlanta(planta, posX, posY))
+			{
+				return false;
+			}
 		}
+		else if(Command == Commands.LIST.toString())
+		{
+			this.list();
+		}
+		else if(Command == Commands.NONE.toString())
+		{
+			//Do nothing
+		}
+		else if(Command == Commands.HELP.toString())
+		{
+			this.help();
+		}
+		else
+		{
+			System.out.println("Comando no reconocido");
+			return false;
+		}
+		return true;
+		
+	}
+	public boolean ReconocedorPlanta(String Planta, int posX, int posY)
+	{
+		if (Planta.toLowerCase() == "sunflower" || Planta.toLowerCase() == "s")
+		{
+			if(!this.addS(posX, posY))
+				System.out.println("La posicion esta ocupada");
+			else
+				return true;
+		}
+		
+		else if(Planta.toLowerCase() == "peashooter" || Planta.toLowerCase() == "p")
+		{
+			if (!this.addP(posX, posY))
+				System.out.println("La posicion esta ocupada");
+			else
+				return true;
+		}
+		else 
+			System.out.println("No se reconoce la planta");
+		
+		
+		return false;
 	}
 	
-
 }
