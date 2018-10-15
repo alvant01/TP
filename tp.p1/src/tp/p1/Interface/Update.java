@@ -9,8 +9,14 @@ public class Update {
 	private Tablero tabl;
 	private int ciclo;
 	
-	public Update()
-	{}
+	private int cicloZ;
+	
+	private String RondasZ;
+	
+	public Update(Tablero t)
+	{
+		this.tabl = t;
+	}
 	
 	public void actualizarTablero(PlantsVsZombies pz)
 	{
@@ -33,6 +39,9 @@ public class Update {
 				//else if reservado para la actualizacion del zombie
 			}
 		}
+		
+		
+		
 		
 	}
 	

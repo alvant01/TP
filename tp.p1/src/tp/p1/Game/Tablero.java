@@ -14,6 +14,8 @@ public class Tablero {
 		this.filas = 4;
 		this.columnas = 8;
 		
+		tablero = new ContCasillas[this.filas][this.columnas];
+		
 		for(int i  = 0; i < this.filas ; i++)
 		{
 			for (int j = 0; j < this.columnas;j++ )

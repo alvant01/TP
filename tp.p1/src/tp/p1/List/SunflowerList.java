@@ -9,7 +9,7 @@ public class SunflowerList {
 	
 	public SunflowerList()
 	{
-		this.listSf = null;
+		this.listSf = new Sunflower[32];
 		this.numElem = 0;
 	}
 	
@@ -21,7 +21,7 @@ public class SunflowerList {
 		
 		//posicionamiento
 		this.listSf[this.numElem].setPosX(posX);
-		this.listSf[this.numElem].setPosX(posY);
+		this.listSf[this.numElem].setPosY(posY);
 		
 		this.numElem++;
 	}

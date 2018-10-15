@@ -2,6 +2,8 @@ package tp.p1.Controladores;
 
 import java.util.Scanner;
 
+import tp.p1.Game.ContCasillas;
+import tp.p1.Game.Tablero;
 import tp.p1.List.PeaShooterList;
 import tp.p1.List.SunflowerList;
 import tp.p1.List.ZombieList;
@@ -67,23 +69,27 @@ public class UserCommand {
 				"Exit: Terminates the program.\r\n" + 
 				"[none]: Skips cycle.");
 	}
-	public boolean reconocedor(String Command)
+	public boolean reconocedor(Tablero tabl, String Command, Scanner sc)
 	{
-		Scanner sc = new Scanner(System.in);
 		String planta;
 		int posX;
 		int posY;
-		if (Command == Commands.ADD.toString())
+		
+		
+		if (Command.toUpperCase().equals(Commands.ADD.toString()) || Command.toUpperCase().equals("A"))
 		{
-			planta = sc.nextLine();
+			planta = sc.next();
 			posX = sc.nextInt();
 			posY = sc.nextInt();
+			
+			planta = StringToPlanta(planta);
 			
 			//Comprobar monedas
 			if (!ReconocedorPlanta(planta, posX, posY))
 			{
 				return false;
 			}
+			tabl.change(ContCasillas.valueOf(planta), posX, posY);
 		}
 		else if(Command == Commands.LIST.toString())
 		{
@@ -99,6 +105,7 @@ public class UserCommand {
 		}
 		else
 		{
+			System.out.println(Command.toUpperCase());
 			System.out.println("Comando no reconocido");
 			return false;
 		}
@@ -107,7 +114,7 @@ public class UserCommand {
 	}
 	public boolean ReconocedorPlanta(String Planta, int posX, int posY)
 	{
-		if (Planta.toLowerCase() == "sunflower" || Planta.toLowerCase() == "s")
+		if (Planta.toLowerCase().equals("sunflower") || Planta.toLowerCase().equals("s"))
 		{
 			if(!this.addS(posX, posY))
 				System.out.println("La posicion esta ocupada");
@@ -115,7 +122,7 @@ public class UserCommand {
 				return true;
 		}
 		
-		else if(Planta.toLowerCase() == "peashooter" || Planta.toLowerCase() == "p")
+		else if(Planta.toLowerCase().equals("peashooter") || Planta.toLowerCase().equals("p"))
 		{
 			if (!this.addP(posX, posY))
 				System.out.println("La posicion esta ocupada");
@@ -128,5 +135,18 @@ public class UserCommand {
 		
 		return false;
 	}
-	
+	public String StringToPlanta(String Planta)
+	{
+		String p = null;
+		if(Planta.toLowerCase().equals("sunflower") || Planta.toLowerCase().equals("s"))
+		{
+			p = "SUNFLOWER";
+		}
+		else if(Planta.toLowerCase().equals("peashooter") || Planta.toLowerCase().equals("p"))
+		{
+			p = "PEASHOOTER";
+		}
+		return p;
+		
+	}
 }

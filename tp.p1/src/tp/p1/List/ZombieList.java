@@ -21,7 +21,7 @@ public class ZombieList {
 		
 		//posicionamiento
 		this.listSZ[this.numElem].setPosX(posX);
-		this.listSZ[this.numElem].setPosX(posY);
+		this.listSZ[this.numElem].setPosY(posY);
 		
 		this.numElem++;
 	}

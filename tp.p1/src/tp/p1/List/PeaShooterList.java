@@ -9,7 +9,7 @@ public class PeaShooterList {
 	
 	public PeaShooterList()
 	{
-		this.listSP = null;
+		this.listSP = new PeaShooter[32];
 		this.numElem = 0;
 	}
 	
@@ -21,7 +21,7 @@ public class PeaShooterList {
 		
 		//posicionamiento
 		this.listSP[this.numElem].setPosX(posX);
-		this.listSP[this.numElem].setPosX(posY);
+		this.listSP[this.numElem].setPosY(posY);
 		
 		this.numElem++;
 	}

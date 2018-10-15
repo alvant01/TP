@@ -28,16 +28,12 @@ public class Draw
 	{
 		
 		
-		for (int i = 0; i < tablero.getFilas(); i++)
+		for (int i = 0; i < tablero.getFilas()*2; i++)
 		{
 			if (i%2 != 0)
 			{
-			
-				for(int j = 0; j < tablero.getColumnas();j++)
-				{
-					drawLineasV(i,j);
-					
-				}
+
+				drawLineasV(i/2);
 			}
 			else
 			{
@@ -45,6 +41,7 @@ public class Draw
 			}
 			
 		}
+		drawLineasH();
 	}
 	
 	public void drawLineasH()
@@ -53,16 +50,16 @@ public class Draw
 		System.out.print(" ");
 		for(int i = 0; i < tablero.getColumnas()-1; i++)
 		{
-			System.out.println("-------");
+			System.out.print("-------");
 		}
 		System.out.println("-------");
 	}
 	
-	public void drawLineasV(int posX, int posY)
+	public void drawLineasV(int posX)
 	{
 		ContCasillas est = null;
 		System.out.print("|");
-		for(; posY< tablero.getColumnas(); posY++)
+		for(int posY = 0; posY< tablero.getColumnas(); posY++)
 		{
 			est = tablero.getEstadoCasilla(posX, posY);
 		
@@ -72,10 +69,11 @@ public class Draw
 			}
 			else
 			{
-				System.out.print("    ");
+				System.out.print("      ");
 			}
 			System.out.print("|");
 		}
+		System.out.println("");
 	}
 	
 	
@@ -83,9 +81,9 @@ public class Draw
 	{
 		switch(est)
 		{
-		case  GIRASOL: System.out.print("S[" + this.SList.getPlantHP(posX, posY) + "]");
+		case  SUNFLOWER: System.out.print("S[" + this.SList.getPlantHP(posX, posY) + "]");
 			break;
-		case LANZAGUISANTE: System.out.print("P[" + this.PList.getPlantHP(posX, posY) + "]");
+		case PEASHOOTER: System.out.print("P[" + this.PList.getPlantHP(posX, posY) + "]");
 			break;
 		case ZOMBIE: System.out.print("Z[" + this.ZList.getZombieHP(posX, posY) + "]");
 			break;
