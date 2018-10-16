@@ -72,4 +72,20 @@ public class ZombieList {
 		}
 		return false;
 	}
+
+	public CommonZombie[] getListSZ() {
+		return listSZ;
+	}
+
+	public void setListSZ(CommonZombie[] listSZ) {
+		this.listSZ = listSZ;
+	}
+
+	public int getNumElem() {
+		return numElem;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
+	}
 }

@@ -32,7 +32,7 @@ public class UserCommand {
 	
 	public boolean addS(int posX, int posY)
 	{
-		if (this.sfList.contains(posX, posY) && this.psList.contains(posX, posY) && this.zList.contains(posX, posY))
+		if (this.sfList.contains(posX, posY) || this.psList.contains(posX, posY) || this.zList.contains(posX, posY))
 			return false;
 		
 		this.sfList.insert(posX, posY);
@@ -40,7 +40,7 @@ public class UserCommand {
 	}
 	public boolean addP(int posX, int posY)
 	{
-		if (this.sfList.contains(posX, posY) && this.psList.contains(posX, posY) && this.zList.contains(posX, posY))
+		if (this.sfList.contains(posX, posY) || this.psList.contains(posX, posY) || this.zList.contains(posX, posY))
 			return false;
 		
 		psList.insert(posX, posY);
@@ -53,11 +53,11 @@ public class UserCommand {
 		PeaShooter ps = new PeaShooter();
 		System.out.print("[S]unflower: ");
 		System.out.print(" Cost: " + sf.getCost() + " suncoins ");
-		System.out.println(" Harm: " + sf.getDamage());
+		System.out.println(" Damage: " + sf.getDamage());
 		
 		System.out.print("[P]eaShooter: ");
 		System.out.print(" Cost: " + ps.getCost() + " suncoins ");
-		System.out.println(" Harm: " + ps.getDamage());
+		System.out.println(" Damage: " + ps.getDamage());
 	}
 	
 	public void help()
@@ -67,9 +67,9 @@ public class UserCommand {
 				"Reset: Starts a new game.\r\n" + 
 				"Help: Prints this help message.\r\n" + 
 				"Exit: Terminates the program.\r\n" + 
-				"[none]: Skips cycle.");
+				"none: Skips cycle.");
 	}
-	public boolean reconocedor(Tablero tabl, String Command, Scanner sc)
+	public boolean reconocedor(Tablero tabl, String Command, Scanner sc, SunCoinsManager scm)
 	{
 		String planta;
 		int posX;
@@ -85,49 +85,62 @@ public class UserCommand {
 			planta = StringToPlanta(planta);
 			
 			//Comprobar monedas
-			if (!ReconocedorPlanta(planta, posX, posY))
+			if (!ReconocedorPlanta(scm,planta, posX, posY))
 			{
 				return false;
 			}
 			tabl.change(ContCasillas.valueOf(planta), posX, posY);
 		}
-		else if(Command == Commands.LIST.toString())
+		else if(Command.toUpperCase().equals(Commands.LIST.toString()))
 		{
 			this.list();
 		}
-		else if(Command == Commands.NONE.toString())
+		else if(Command.toUpperCase().equals(Commands.NONE.toString()))
 		{
 			//Do nothing
 		}
-		else if(Command == Commands.HELP.toString())
+		else if(Command.toUpperCase().equals(Commands.HELP.toString()))
 		{
 			this.help();
 		}
 		else
 		{
-			System.out.println(Command.toUpperCase());
 			System.out.println("Comando no reconocido");
 			return false;
 		}
 		return true;
 		
 	}
-	public boolean ReconocedorPlanta(String Planta, int posX, int posY)
+	public boolean ReconocedorPlanta(SunCoinsManager scm, String Planta, int posX, int posY)
 	{
 		if (Planta.toLowerCase().equals("sunflower") || Planta.toLowerCase().equals("s"))
 		{
-			if(!this.addS(posX, posY))
-				System.out.println("La posicion esta ocupada");
+			if (scm.getSunCoins() < 20)
+			{
+				System.out.println("No tienes suficientes soles");
+			}
 			else
-				return true;
+			{
+				if(!this.addS(posX, posY))
+					System.out.println("La posicion esta ocupada");
+				else
+					return true;
+			}
 		}
 		
 		else if(Planta.toLowerCase().equals("peashooter") || Planta.toLowerCase().equals("p"))
 		{
-			if (!this.addP(posX, posY))
-				System.out.println("La posicion esta ocupada");
+			if (scm.getSunCoins() < 100)
+			{
+				System.out.println("No tienes suficientes soles");
+			}
 			else
-				return true;
+			{
+				if (!this.addP(posX, posY))
+					System.out.println("La posicion esta ocupada");
+				else
+					return true;
+			}
 		}
 		else 
 			System.out.println("No se reconoce la planta");

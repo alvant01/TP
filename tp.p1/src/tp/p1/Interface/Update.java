@@ -29,7 +29,8 @@ public class Update {
 				if(this.tabl.getEstadoCasilla(i, j).toString() == "GIRASOL" && this.ciclo%sf.getFrecuency() == 0)
 				{
 
-					pz.setSunCoins(pz.getSunCoins()+25);
+					//pz.setSunCoins(pz.getSunCoins()+25);
+					pz.getSunCoins().setSunCoins(pz.getSunCoins().getSunCoins() + 25);
 				}
 				else if(this.tabl.getEstadoCasilla(i, j).toString() == "LANZAGUISANTES" && this.ciclo%ps.getFrecuency() == 0)
 				{

@@ -1,8 +1,13 @@
 package tp.p1.PlantsVsZombies;
 
+import java.util.Arrays;
+
+
+
 import java.util.Scanner;
 
 import tp.p1.Controladores.Commands;
+import tp.p1.Controladores.SunCoinsManager;
 import tp.p1.Controladores.UserCommand;
 import tp.p1.Game.Tablero;
 import tp.p1.Interface.Draw;
@@ -17,8 +22,8 @@ public class PlantsVsZombies {
 	private PeaShooterList psList;
 	private SunflowerList sfList;
 	private ZombieList zList;
-	private int sunCoins;
-	
+	private SunCoinsManager sunCoins;
+		
 	private Draw draw;
 	
 	private Update update;
@@ -33,7 +38,7 @@ public class PlantsVsZombies {
 		
 		this.uCommand = new UserCommand(this.sfList, this.psList, this.zList);
 		
-		this.sunCoins = 0;
+		this.sunCoins = new SunCoinsManager();
 		this.tablero = new Tablero();
 		this.update = new Update(this.tablero);
 		
@@ -62,20 +67,56 @@ public class PlantsVsZombies {
 		System.out.print("Command > ");
 		comando = sc.next();
 		
-		if (comando.toLowerCase() == "exit")
+		while (!comando.toLowerCase().equals("exit") || !comando.toLowerCase().equals("e"))
 		{
-			return false;
-		}
-		else
-			while(!this.uCommand.reconocedor(tablero, comando, sc))
+			while(!this.uCommand.reconocedor(this.tablero, comando, sc, this.sunCoins))
 				comando = sc.next();
-		return true;
+			
+			if (this.win())
+			{
+				return true;
+			}
+			sc.reset();
+			this.updateGame();
+			this. pintarTablero();
+			System.out.print("Command > ");
+			comando = sc.next();
+			
+		}
+		sc.close();
+		return false;
+		
+	}
+	public boolean win()
+	{
+		int i[] = new int[5555];
+		int j = 0;
+		return false;
+	
+/*		if(this.ca.getZombiesRestantes == 0)
+		{
+			return true;
+		}
+		else return false;*/
 	}
 	
 	public void updateGame()
 	{
 		update.actualizarTablero(this);
 	}
+	public void pintarTablero()
+	{
+		System.out.println(this.sunCoins.getSunCoins());
+		this.draw.drawTablero();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public UserCommand getuCommand() {
 		return uCommand;
 	}
@@ -100,16 +141,28 @@ public class PlantsVsZombies {
 	public void setzList(ZombieList zList) {
 		this.zList = zList;
 	}
-	public int getSunCoins() {
-		return sunCoins;
-	}
-	public void setSunCoins(int sunCoins) {
-		this.sunCoins = sunCoins;
-	}
 	public Update getUpdate() {
 		return update;
 	}
 	public void setUpdate(Update update) {
 		this.update = update;
+	}
+	public SunCoinsManager getSunCoins() {
+		return sunCoins;
+	}
+	public void setSunCoins(SunCoinsManager sunCoins) {
+		this.sunCoins = sunCoins;
+	}
+	public Draw getDraw() {
+		return draw;
+	}
+	public void setDraw(Draw draw) {
+		this.draw = draw;
+	}
+	public Tablero getTablero() {
+		return tablero;
+	}
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 }
