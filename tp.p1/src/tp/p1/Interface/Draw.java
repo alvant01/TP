@@ -81,11 +81,11 @@ public class Draw
 	{
 		switch(est)
 		{
-		case  SUNFLOWER: System.out.print("S[" + this.SList.getPlantHP(posX, posY) + "]");
+		case  SUNFLOWER: System.out.print(" S[" + this.SList.getPlantHP(posX, posY) + "] ");
 			break;
-		case PEASHOOTER: System.out.print("P[" + this.PList.getPlantHP(posX, posY) + "]");
+		case PEASHOOTER: System.out.print(" P[" + this.PList.getPlantHP(posX, posY) + "] ");
 			break;
-		case ZOMBIE: System.out.print("Z[" + this.ZList.getZombieHP(posX, posY) + "]");
+		case ZOMBIE: System.out.print(" Z[" + this.ZList.getZombieHP(posX, posY) + "] ");
 			break;
 		default:
 			break;

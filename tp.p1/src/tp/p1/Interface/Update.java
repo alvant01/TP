@@ -26,13 +26,13 @@ public class Update {
 		{
 			for(int j = 0; j< this.tabl.getColumnas();j++)
 			{
-				if(this.tabl.getEstadoCasilla(i, j).toString() == "GIRASOL" && this.ciclo%sf.getFrecuency() == 0)
+				if(this.tabl.getEstadoCasilla(i, j).toString() == "SUNFLOWER" && this.ciclo%sf.getFrecuency() == 0)
 				{
 
 					//pz.setSunCoins(pz.getSunCoins()+25);
-					pz.getSunCoins().setSunCoins(pz.getSunCoins().getSunCoins() + 25);
+					pz.getSunCoins().setSunCoins(pz.getSunCoins().getSunCoins() + 10);
 				}
-				else if(this.tabl.getEstadoCasilla(i, j).toString() == "LANZAGUISANTES" && this.ciclo%ps.getFrecuency() == 0)
+				else if(this.tabl.getEstadoCasilla(i, j).toString() == "PEASHOOTER" && this.ciclo%ps.getFrecuency() == 0)
 				{
 					//Busca un zombie el la fila, si lo encuentra llamara a una funcion de ZombieList
 					//encargada de bajarle la vida o borrarlo si llega a 0

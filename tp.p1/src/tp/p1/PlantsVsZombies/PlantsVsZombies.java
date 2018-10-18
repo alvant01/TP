@@ -69,6 +69,13 @@ public class PlantsVsZombies {
 		
 		while (!comando.toLowerCase().equals("exit") || !comando.toLowerCase().equals("e"))
 		{
+			if (comando.toLowerCase().equals("reset") || comando.toLowerCase().equals("r"))
+			{
+				this.reiniciar();
+				this.pintarTablero();
+				System.out.print("Command > ");
+				comando = sc.next();
+			}
 			while(!this.uCommand.reconocedor(this.tablero, comando, sc, this.sunCoins))
 				comando = sc.next();
 			
@@ -85,6 +92,35 @@ public class PlantsVsZombies {
 		}
 		sc.close();
 		return false;
+		
+	}
+	
+	public void reiniciar()
+	{/*
+		//1º metodo
+		this.psList  = new PeaShooterList();
+		this.sfList = new SunflowerList();
+		this.zList = new ZombieList();
+		
+		this.uCommand = new UserCommand(this.sfList, this.psList, this.zList);
+		
+		this.sunCoins = new SunCoinsManager();
+		this.tablero = new Tablero();
+		this.update = new Update(this.tablero);
+		
+		
+		this.draw = new Draw(this.tablero,this.sfList, this.psList, this.zList);
+		*/
+		//2º metodo
+		
+		this.psList.setNumElem(0);
+		this.sfList.setNumElem(0);
+		//zombie
+		
+		this.sunCoins.setSunCoins(20);
+		this.tablero = new Tablero();
+		this.update = new Update(this.tablero);
+		this.draw = new Draw(this.tablero,this.sfList, this.psList, this.zList);
 		
 	}
 	public boolean win()

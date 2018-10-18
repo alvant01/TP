@@ -6,7 +6,7 @@ public class SunCoinsManager {
 	private int sunCoins;
 	public SunCoinsManager()
 	{
-		this.sunCoins = 0;
+		this.sunCoins = 20;
 	}
 	public int getSunCoins() {
 		return sunCoins;

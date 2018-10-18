@@ -73,4 +73,20 @@ public class SunflowerList {
 		}
 		return false;
 	}
+
+	public Sunflower[] getListSf() {
+		return listSf;
+	}
+
+	public void setListSf(Sunflower[] listSf) {
+		this.listSf = listSf;
+	}
+
+	public int getNumElem() {
+		return numElem;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
+	}
 }

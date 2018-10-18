@@ -73,5 +73,21 @@ public class PeaShooterList {
 		}
 		return false;
 	}
+
+	public PeaShooter[] getListSP() {
+		return listSP;
+	}
+
+	public void setListSP(PeaShooter[] listSP) {
+		this.listSP = listSP;
+	}
+
+	public int getNumElem() {
+		return numElem;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
+	}
 }
 

@@ -81,15 +81,22 @@ public class UserCommand {
 			planta = sc.next();
 			posX = sc.nextInt();
 			posY = sc.nextInt();
-			
-			planta = StringToPlanta(planta);
-			
-			//Comprobar monedas
-			if (!ReconocedorPlanta(scm,planta, posX, posY))
+			if (((posX >= 0) && (posX < tabl.getFilas())) && ((posY >= 0) && (posY < tabl.getColumnas())))
 			{
+				planta = StringToPlanta(planta);
+				
+				//Comprobar monedas
+				if (!ReconocedorPlanta(scm,planta, posX, posY))
+				{
+					return false;
+				}
+				tabl.change(ContCasillas.valueOf(planta), posX, posY);
+			}
+			else
+			{
+				System.out.println("Fuera del tablero");
 				return false;
 			}
-			tabl.change(ContCasillas.valueOf(planta), posX, posY);
 		}
 		else if(Command.toUpperCase().equals(Commands.LIST.toString()))
 		{
@@ -124,6 +131,7 @@ public class UserCommand {
 				if(!this.addS(posX, posY))
 					System.out.println("La posicion esta ocupada");
 				else
+					scm.setSunCoins(scm.getSunCoins() - 20);
 					return true;
 			}
 		}
@@ -139,6 +147,7 @@ public class UserCommand {
 				if (!this.addP(posX, posY))
 					System.out.println("La posicion esta ocupada");
 				else
+					scm.setSunCoins(scm.getSunCoins() - 100);
 					return true;
 			}
 		}
