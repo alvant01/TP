@@ -38,7 +38,11 @@ public class Update {
 					//encargada de bajarle la vida o borrarlo si llega a 0
 				}
 				//else if reservado para la actualizacion del zombie
+				
+				int ZombiesPorSalir;
 				pz.getComputerAction().Insertar(ciclo, tabl);
+				ZombiesPorSalir = pz.getComputerAction().Insertar(ciclo, tabl);
+
 			}
 		}
 		
