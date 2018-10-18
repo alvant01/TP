@@ -95,9 +95,38 @@ public class PlantsVsZombies {
 		
 	}
 	
+	/*
+	 * Parte que quiero modificar
+	 * 
+	 */
+	//Desde aqui
+public String PreguntaNivel(){
+		
+		String levelIntroducido;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introduce nivel a jugar: ");
+		levelIntroducido = sc.next();
+		
+		return levelIntroducido;
+	}
+	
+	public int PreguntaSemilla(){
+		
+		int semilla;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Intrudice semilla con la que deseas empezar: ");
+		semilla = sc.nextInt();
+		
+		return semilla;		
+		
+	}
+	// Hasta aqui
+	
 	public void reiniciar()
 	{/*
-		//1º metodo
+		//1ï¿½ metodo
 		this.psList  = new PeaShooterList();
 		this.sfList = new SunflowerList();
 		this.zList = new ZombieList();
@@ -111,7 +140,7 @@ public class PlantsVsZombies {
 		
 		this.draw = new Draw(this.tablero,this.sfList, this.psList, this.zList);
 		*/
-		//2º metodo
+		//2ï¿½ metodo
 		
 		this.psList.setNumElem(0);
 		this.sfList.setNumElem(0);
