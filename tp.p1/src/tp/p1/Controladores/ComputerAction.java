@@ -117,14 +117,15 @@ public class ComputerAction {
 				i++;
 				encontrado = true;
 				insertado = true;
+				this.ZombiesPorSalir--;
 				t.change(ContCasillas.ZOMBIE, posX, posY);
 
-				return insertado;
+				return this.ZombiesPorSalir;
 				
 			}
 		}
 		//t.change(ContCasillas.ZOMBIE, posX, posY);
-		return insertado = false;
+		return this.ZombiesPorSalir;
 		
 	}
 }
