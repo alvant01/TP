@@ -9,13 +9,14 @@ public class Update {
 	private Tablero tabl;
 	private int ciclo;
 	
-	private int cicloZ;
+	private int cicloZ[];
 	
 	private String RondasZ;
 	
 	public Update(Tablero t)
 	{
 		this.tabl = t;
+		cicloZ = new int [20];
 	}
 	
 	public void actualizarTablero(PlantsVsZombies pz)
