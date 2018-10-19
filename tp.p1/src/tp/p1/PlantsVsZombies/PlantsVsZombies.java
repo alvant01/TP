@@ -23,6 +23,8 @@ public class PlantsVsZombies {
 	private SunflowerList sfList;
 	private ZombieList zList;
 	private SunCoinsManager sunCoins;
+	
+	private ComputerAction ca;
 		
 	private Draw draw;
 	
