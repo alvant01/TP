@@ -178,9 +178,10 @@ public String PreguntaNivel(){
 	
 	
 	
-	
-	
-	
+	public ComputerAction getComputerAction()
+	{
+		return this.ca;
+	}
 	
 	public UserCommand getuCommand() {
 		return uCommand;
