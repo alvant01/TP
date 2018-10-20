@@ -9,14 +9,14 @@ public class Update {
 	private Tablero tabl;
 	private int ciclo;
 	
-	private int cicloZ[];
+	private int[] cicloZ;
 	
 	private String RondasZ;
 	
 	public Update(Tablero t)
 	{
 		this.tabl = t;
-		cicloZ = new int [20];
+		cicloZ = new int[20];
 	}
 	
 	public void actualizarTablero(PlantsVsZombies pz)
@@ -38,14 +38,15 @@ public class Update {
 					//Busca un zombie el la fila, si lo encuentra llamara a una funcion de ZombieList
 					//encargada de bajarle la vida o borrarlo si llega a 0
 				}
-				//else if reservado para la actualizacion del zombie
+				//else if reservado para la actualizacion del zombi
+				// tengo que crear lo mismo que las plantas, avanzar.
+					//int ZombiesPorSalir;
+					//ZombiesPorSalir = pz.getComputerAction().Insertar(ciclo, tabl);
 				
-				int ZombiesPorSalir;
-				pz.getComputerAction().Insertar(ciclo, tabl);
-				ZombiesPorSalir = pz.getComputerAction().Insertar(ciclo, tabl);
-
+				//pz.getPsList().eliminar(posX, posY);
+				}
 			}
-		}
+		pz.getComputerAction().Insertar(ciclo, tabl);
 		
 		
 		

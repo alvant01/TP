@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import tp.p1.Controladores.Commands;
+import tp.p1.Controladores.ComputerAction;
 import tp.p1.Controladores.SunCoinsManager;
 import tp.p1.Controladores.UserCommand;
 import tp.p1.Game.Tablero;
@@ -47,7 +48,7 @@ public class PlantsVsZombies {
 		
 		this.draw = new Draw(this.tablero,this.sfList, this.psList, this.zList);
 		
-		
+		this.ca = new ComputerAction(this.zList);
 		
 	}
 	public static void main(String args[])
@@ -64,6 +65,20 @@ public class PlantsVsZombies {
 	
 	public boolean menuCommands()
 	{
+		String levelIntroducido;
+		/*
+		Scanner sc1 = new Scanner(System.in);
+		System.out.print("Introduce nivel a jugar: ");
+		levelIntroducido = sc1.next();*/
+		//PreguntaNivel();
+		
+		int semilla;
+		
+		/*Scanner sc2 = new Scanner(System.in);
+		System.out.print("Intrudice semilla con la que deseas empezar: ");
+		semilla = sc2.nextInt();*/
+		PreguntaSemilla();
+		
 		String comando;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Command > ");
@@ -102,6 +117,7 @@ public class PlantsVsZombies {
 	 * 
 	 */
 	//Desde aqui
+	/*
 public String PreguntaNivel(){
 		
 		String levelIntroducido;
@@ -110,17 +126,25 @@ public String PreguntaNivel(){
 		System.out.print("Introduce nivel a jugar: ");
 		levelIntroducido = sc.next();
 		
+
+		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
 		return levelIntroducido;
-	}
+	}*/
 	
 	public int PreguntaSemilla(){
 		
 		int semilla;
-		
+		String levelIntroducido;
+
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Intrudice semilla con la que deseas empezar: ");
-		semilla = sc.nextInt();
+		System.out.print("Introduce nivel a jugar: ");
+		levelIntroducido = sc.next();
 		
+		Scanner sc2 = new Scanner(System.in);
+		System.out.print("Intrudice semilla con la que deseas empezar: ");
+		semilla = sc2.nextInt();
+		
+		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
 		return semilla;		
 		
 	}
@@ -180,10 +204,12 @@ public String PreguntaNivel(){
 	
 	
 	
+	
 	public ComputerAction getComputerAction()
 	{
 		return this.ca;
 	}
+	
 	
 	public UserCommand getuCommand() {
 		return uCommand;
