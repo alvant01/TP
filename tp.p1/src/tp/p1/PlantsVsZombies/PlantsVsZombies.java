@@ -66,18 +66,11 @@ public class PlantsVsZombies {
 	public boolean menuCommands()
 	{
 		String levelIntroducido;
-		/*
-		Scanner sc1 = new Scanner(System.in);
-		System.out.print("Introduce nivel a jugar: ");
-		levelIntroducido = sc1.next();*/
-		//PreguntaNivel();
+		
 		
 		int semilla;
 		
-		/*Scanner sc2 = new Scanner(System.in);
-		System.out.print("Intrudice semilla con la que deseas empezar: ");
-		semilla = sc2.nextInt();*/
-		PreguntaSemilla();
+		Preguntas();
 		
 		String comando;
 		Scanner sc = new Scanner(System.in);
@@ -112,26 +105,7 @@ public class PlantsVsZombies {
 		
 	}
 	
-	/*
-	 * Parte que quiero modificar
-	 * 
-	 */
-	//Desde aqui
-	/*
-public String PreguntaNivel(){
-		
-		String levelIntroducido;
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Introduce nivel a jugar: ");
-		levelIntroducido = sc.next();
-		
-
-		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
-		return levelIntroducido;
-	}*/
-	
-	public int PreguntaSemilla(){
+	public int Preguntas(){
 		
 		int semilla;
 		String levelIntroducido;
@@ -148,7 +122,6 @@ public String PreguntaNivel(){
 		return semilla;		
 		
 	}
-	// Hasta aqui
 	
 	public void reiniciar()
 	{/*

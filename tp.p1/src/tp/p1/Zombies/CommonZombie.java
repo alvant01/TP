@@ -7,6 +7,7 @@ public class CommonZombie {
 	private int velocity;
 	private int posX;
 	private int posY;
+	private int frecuency;
 	
 	
 	public CommonZombie()
@@ -15,6 +16,17 @@ public class CommonZombie {
 		this.behaviour = "Avanza y come plantas";
 		this.damage = 1;
 		this.velocity = 1;
+		frecuency = 2;
+	}
+
+
+	public int getFrecuency() {
+		return frecuency;
+	}
+
+
+	public void setFrecuency(int frecuency) {
+		this.frecuency = frecuency;
 	}
 
 

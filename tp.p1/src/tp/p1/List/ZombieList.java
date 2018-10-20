@@ -9,7 +9,7 @@ public class ZombieList {
 	
 	public ZombieList()
 	{
-		this.listSZ = null;
+		this.listSZ = new CommonZombie[36];
 		this.numElem = 0;
 	}
 	
