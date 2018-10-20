@@ -131,8 +131,10 @@ public class UserCommand {
 				if(!this.addS(posX, posY))
 					System.out.println("La posicion esta ocupada");
 				else
+				{
 					scm.setSunCoins(scm.getSunCoins() - 20);
 					return true;
+				}
 			}
 		}
 		
@@ -147,8 +149,10 @@ public class UserCommand {
 				if (!this.addP(posX, posY))
 					System.out.println("La posicion esta ocupada");
 				else
+				{
 					scm.setSunCoins(scm.getSunCoins() - 100);
 					return true;
+				}
 			}
 		}
 		else 

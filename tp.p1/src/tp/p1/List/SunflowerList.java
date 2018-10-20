@@ -36,10 +36,11 @@ public class SunflowerList {
 			if (this.listSf[cont].getPosX() == posX 
 					&& this.listSf[cont].getPosY() == posY)
 			{
-				reordenar(cont);
+				this.listSf[cont] = null;
+				this.numElem--;
 			}
 		}
-		
+		reordenar(cont);
 	}
 	//reordena el array apartir de una posicion
 	public void reordenar(int pos)
@@ -88,5 +89,17 @@ public class SunflowerList {
 
 	public void setNumElem(int numElem) {
 		this.numElem = numElem;
+	}
+
+	public void setPlantHP(int x, int y, int HP) {
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSf[i].getPosX() == x && this.listSf[i].getPosY() == y)
+			{
+				this.listSf[i].setHealth(HP);
+			}
+			
+		}
+		
 	}
 }

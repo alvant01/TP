@@ -9,7 +9,7 @@ public class ZombieList {
 	
 	public ZombieList()
 	{
-		this.listSZ = new CommonZombie[36];
+		this.listSZ = new CommonZombie[15];
 		this.numElem = 0;
 	}
 	
@@ -36,10 +36,12 @@ public class ZombieList {
 			if (this.listSZ[cont].getPosX() == posX 
 					&& this.listSZ[cont].getPosY() == posY)
 			{
-				reordenar(cont);
+				this.listSZ[cont] = null;
+				this.numElem--;
+				
 			}
 		}
-		
+		reordenar(cont);
 	}
 	//reordena el array apartir de una posicion
 	public void reordenar(int pos)
@@ -62,6 +64,29 @@ public class ZombieList {
 			
 		}
 		return 0;
+	}
+	public void avanzar(int posX, int posY)
+	{
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSZ[i].getPosX() == posX && this.listSZ[i].getPosY() == posY)
+			{
+				this.listSZ[i].setPosY(posY-1);
+			}
+			
+		}
+		
+	}
+	public void setZombieHP(int posX, int posY, int health)
+	{
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSZ[i].getPosX() == posX && this.listSZ[i].getPosY() == posY)
+			{
+				this.listSZ[i].setHealth(health);
+			}
+			
+		}
 	}
 
 	public boolean contains(int posX, int posY) {
@@ -87,5 +112,10 @@ public class ZombieList {
 
 	public void setNumElem(int numElem) {
 		this.numElem = numElem;
+	}
+
+	public int getFrecuency() {
+		CommonZombie z = new CommonZombie();
+		return z.getFrecuency();
 	}
 }

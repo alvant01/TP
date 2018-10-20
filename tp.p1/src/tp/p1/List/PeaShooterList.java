@@ -64,7 +64,18 @@ public class PeaShooterList {
 		}
 		return 0;
 	}
-
+	
+	public void setPlantHP(int x, int y, int HP)
+	{
+		for (int i = 0; i < this.numElem; i++)
+		{
+			if (this.listSP[i].getPosX() == x && this.listSP[i].getPosY() == y)
+			{
+				this.listSP[i].setHealth(HP);
+			}
+			
+		}
+	}
 	public boolean contains(int posX, int posY) {
 		for(int i = 0; i <this.numElem; i++)
 		{

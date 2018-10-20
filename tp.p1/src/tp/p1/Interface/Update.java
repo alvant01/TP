@@ -1,10 +1,10 @@
 package tp.p1.Interface;
 
+import tp.p1.Game.ContCasillas;
 import tp.p1.Game.Tablero;
 import tp.p1.Plants.PeaShooter;
 import tp.p1.Plants.Sunflower;
 import tp.p1.PlantsVsZombies.PlantsVsZombies;
-import tp.p1.Zombies.CommonZombie;
 
 public class Update {
 	private Tablero tabl;
@@ -23,9 +23,7 @@ public class Update {
 	public void actualizarTablero(PlantsVsZombies pz)
 	{
 		Sunflower sf = new Sunflower();
-		PeaShooter ps = new PeaShooter(); 
-		CommonZombie zo = new CommonZombie();
-		
+		PeaShooter ps = new PeaShooter();
 		for(int i = 0; i< this.tabl.getFilas(); i++)
 		{
 			for(int j = 0; j< this.tabl.getColumnas();j++)
@@ -40,39 +38,57 @@ public class Update {
 				{
 					//Busca un zombie el la fila, si lo encuentra llamara a una funcion de ZombieList
 					//encargada de bajarle la vida o borrarlo si llega a 0
-				}
-				else if(this.tabl.getEstadoCasilla(i, j).toString() == "ZOMBIE" && this.ciclo%zo.getFrecuency() == 0){
-					
-					//Revisa si tiene una SF por delante y la elimina, luego avanza
-					if (this.tabl.getEstadoCasilla(i, j - 1).toString() == "SUNFLOWER"){
-						pz.getSfList().eliminar(i, j - 1);
-						zo.setPosX(zo.getPosX()-1);
-						zo.setPosY(zo.getPosY()-1);
-					}
-					//Revisa si tiene un PS por delante, le baja vida, si su vida llega a 0 lo elimina
-					else if (this.tabl.getEstadoCasilla(i, j - 1).toString() == "PEASHOOTER"){
-						//ERROR
-						//pz.getPsList().setHealth(pz.getPsList().getPlantHP(i, j-1)-1);
-						if (pz.getPsList().getPlantHP(i, j - 1) == 0){
-							zo.setPosX(zo.getPosX()-1);
-							zo.setPosY(zo.getPosY()-1);
+					for(int x = 0; x < pz.getTablero().getColumnas(); x++)
+					{
+						if (pz.getTablero().getEstadoCasilla(i, x) == ContCasillas.ZOMBIE)
+						{
+							pz.getzList().setZombieHP(i, x, pz.getzList().getZombieHP(i, x)-1);
+							if (pz.getzList().getZombieHP(i, x) == 0)
+							{
+								pz.getzList().eliminar(i, x);
+								this.tabl.change(ContCasillas.VACIO, i, x);
+							}
 						}
 					}
-					//Si no tiene nada por delante, avanza
-					else if (this.tabl.getEstadoCasilla(i, j - 1).toString() == null){
-						zo.setPosX(zo.getPosX()-1);
-						zo.setPosY(zo.getPosY()-1);
+				}
+				if(this.tabl.getEstadoCasilla(i, j).toString() == "ZOMBIE" && this.ciclo%pz.getzList().getFrecuency() == 0)
+				{
+					if (this.tabl.getEstadoCasilla(i, j-1) == ContCasillas.PEASHOOTER)
+					{
+						pz.getPsList().setPlantHP(i, j-1, pz.getPsList().getPlantHP(i, j-1)-1);
+						if (pz.getPsList().getPlantHP(i, j-1) == 0)
+						{
+							pz.getPsList().eliminar(i, j-1);
+							this.tabl.change(ContCasillas.VACIO, i, j-1);
+						}
+					}
+					else if (this.tabl.getEstadoCasilla(i, j-1)== ContCasillas.SUNFLOWER)
+					{
+						pz.getSfList().setPlantHP(i, j-1, pz.getSfList().getPlantHP(i, j-1)-1);
+						if (pz.getSfList().getPlantHP(i, j-1) == 0)
+						{
+							pz.getSfList().eliminar(i, j-1);
+							this.tabl.change(ContCasillas.VACIO, i, j-1);
+						}
+					}
+					else
+					{
+						pz.getzList().avanzar(i, j);
+						this.tabl.change(ContCasillas.VACIO, i, j);
+						this.tabl.change(ContCasillas.ZOMBIE, i, j-1);
+						if (j == 1)
+						{
+							pz.setFin(true);
+						}
 					}
 				}
 			}
 		}
-		
 		pz.getComputerAction().Insertar(ciclo, tabl);
-		int zombiesPorSalir;
-		zombiesPorSalir = pz.getComputerAction().Insertar(ciclo, tabl);
-		System.out.print("Faltan por salir: " + zombiesPorSalir + " Zombies " + "...Soles: ");
 		
-		ciclo++;
 		
+		
+		this.ciclo++;
 	}
+	
 }

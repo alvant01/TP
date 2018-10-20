@@ -24,6 +24,7 @@ public class PlantsVsZombies {
 	private SunflowerList sfList;
 	private ZombieList zList;
 	private SunCoinsManager sunCoins;
+	private boolean fin;
 	
 	private ComputerAction ca;
 		
@@ -35,6 +36,7 @@ public class PlantsVsZombies {
 	
 	public PlantsVsZombies()
 	{
+		this.fin = false;
 		this.psList  = new PeaShooterList();
 		this.sfList = new SunflowerList();
 		this.zList = new ZombieList();
@@ -64,22 +66,17 @@ public class PlantsVsZombies {
 	}
 	
 	public boolean menuCommands()
-	{
-		String levelIntroducido;
-		
-		
-		int semilla;
-		
-		Preguntas();
+	{	
+		PreguntaSemilla();
 		
 		String comando;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Command > ");
 		comando = sc.next();
 		
-		while (!comando.toLowerCase().equals("exit") || !comando.toLowerCase().equals("e"))
+		while (!(comando.toLowerCase().equals("exit")) && !(comando.toUpperCase().equals("E")))
 		{
-			if (comando.toLowerCase().equals("reset") || comando.toLowerCase().equals("r"))
+			if (comando.toLowerCase().equals("reset") || comando.toUpperCase().equals("R"))
 			{
 				this.reiniciar();
 				this.pintarTablero();
@@ -91,6 +88,12 @@ public class PlantsVsZombies {
 			
 			if (this.win())
 			{
+				System.out.println("Victoria");
+				return true;
+			}
+			else if (this.fin)
+			{
+				System.out.println("Has Perdido");
 				return true;
 			}
 			sc.reset();
@@ -105,7 +108,26 @@ public class PlantsVsZombies {
 		
 	}
 	
-	public int Preguntas(){
+	/*
+	 * Parte que quiero modificar
+	 * 
+	 */
+	//Desde aqui
+	/*
+public String PreguntaNivel(){
+		
+		String levelIntroducido;
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Introduce nivel a jugar: ");
+		levelIntroducido = sc.next();
+		
+
+		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
+		return levelIntroducido;
+	}*/
+	
+	public int PreguntaSemilla(){
 		
 		int semilla;
 		String levelIntroducido;
@@ -122,28 +144,13 @@ public class PlantsVsZombies {
 		return semilla;		
 		
 	}
+	// Hasta aqui
 	
 	public void reiniciar()
-	{/*
-		//1� metodo
-		this.psList  = new PeaShooterList();
-		this.sfList = new SunflowerList();
-		this.zList = new ZombieList();
-		
-		this.uCommand = new UserCommand(this.sfList, this.psList, this.zList);
-		
-		this.sunCoins = new SunCoinsManager();
-		this.tablero = new Tablero();
-		this.update = new Update(this.tablero);
-		
-		
-		this.draw = new Draw(this.tablero,this.sfList, this.psList, this.zList);
-		*/
-		//2� metodo
-		
+	{
 		this.psList.setNumElem(0);
 		this.sfList.setNumElem(0);
-		//zombie
+		this.zList.setNumElem(0);
 		
 		this.sunCoins.setSunCoins(20);
 		this.tablero = new Tablero();
@@ -231,5 +238,17 @@ public class PlantsVsZombies {
 	}
 	public void setTablero(Tablero tablero) {
 		this.tablero = tablero;
+	}
+	public boolean isFin() {
+		return fin;
+	}
+	public void setFin(boolean fin) {
+		this.fin = fin;
+	}
+	public ComputerAction getCa() {
+		return ca;
+	}
+	public void setCa(ComputerAction ca) {
+		this.ca = ca;
 	}
 }

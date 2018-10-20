@@ -123,8 +123,6 @@ public class ComputerAction {
 		
 		while (encontrado == false && i < this.numZomGen ){
 			// recorro el arreglo, si el ciclo en el que esta corresponde
-			this.ZombiesPorSalir = this.numZomGen;
-			
 			if (this.ciclos[i] == ciclo){
 				this.ListaZombie.insert(posX, posY);
 				i++;
