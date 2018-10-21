@@ -71,8 +71,12 @@ public class Update {
 							this.tabl.change(ContCasillas.VACIO, i, j-1);
 						}
 					}
-					else
+					else if (this.tabl.getEstadoCasilla(i, j-1)== ContCasillas.ZOMBIE)
 					{
+						//do nothing
+					}	
+					else
+					{		
 						pz.getzList().avanzar(i, j);
 						this.tabl.change(ContCasillas.VACIO, i, j);
 						this.tabl.change(ContCasillas.ZOMBIE, i, j-1);
