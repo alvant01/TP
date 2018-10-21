@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 
 
+import java.util.Random;
 import java.util.Scanner;
 
 import tp.p1.Controladores.Commands;
@@ -108,43 +109,35 @@ public class PlantsVsZombies {
 		
 	}
 	
-	/*
-	 * Parte que quiero modificar
-	 * 
-	 */
-	//Desde aqui
-	/*
-public String PreguntaNivel(){
-		
-		String levelIntroducido;
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Introduce nivel a jugar: ");
-		levelIntroducido = sc.next();
-		
-
-		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
-		return levelIntroducido;
-	}*/
 	
 	public int PreguntaSemilla(){
 		
-		int semilla;
+		int semilla = 0;
 		String levelIntroducido;
-
-		Scanner sc = new Scanner(System.in);
+		String deseo;
+		Scanner sc1 = new Scanner(System.in);
 		System.out.print("Introduce nivel a jugar: ");
-		levelIntroducido = sc.next();
+		levelIntroducido = sc1.next();
 		
 		Scanner sc2 = new Scanner(System.in);
-		System.out.print("Intrudice semilla con la que deseas empezar: ");
-		semilla = sc2.nextInt();
+		System.out.print("Deseas introducir semilla? S o N ");
+		deseo = sc2.next();
+		
+		if (deseo.toUpperCase().equals("SI") || deseo.toUpperCase().equals("S")){
+			Scanner sc3 = new Scanner(System.in);
+			System.out.print("Introduce Semilla: ");
+			semilla = sc3.nextInt();
+		}
+		else if (deseo.toUpperCase().equals("NO") || deseo.toUpperCase().equals("N")){
+			Random rd = new Random();
+			semilla = rd.nextInt();
+	
+		}
 		
 		this.ca.Generador(ca.getNumZomGen(), semilla, levelIntroducido);
 		return semilla;		
 		
 	}
-	// Hasta aqui
 	
 	public void reiniciar()
 	{
