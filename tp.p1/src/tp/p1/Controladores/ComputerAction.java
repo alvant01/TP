@@ -21,7 +21,7 @@ public class ComputerAction {
 	private int ZombiesPorSalir;
 	private int semilla;
 	private String nivelI;
-	private int fila;
+	private int[] fila;
 	private String levelIntroducido;
 		
 	public ComputerAction(ZombieList zl) {
@@ -57,7 +57,7 @@ public class ComputerAction {
 	public void Generador(int numZomGen, int semilla, String levelIntroducido){
 		
 		Random rd = new Random(semilla);
-		this.ciclos = new int [3];
+		this.ciclos = new int [10];
 		int PosA = 0;
 		int numZombiesAcum = 0;
 		int contCiclos = 0;
@@ -99,15 +99,23 @@ public class ComputerAction {
 		}
 		//return this.ciclos;
 }
-
-	public int GenerarFila(int semilla){
+/*
+	public void GenerarFila(int semilla){
+		int acum = 0;
+		int f = 0;
 		Random rd = new Random(semilla);
+		int PosFila;
+		this.fila = new int [10];
 		
-		this.fila = rd.nextInt();
-		return this.fila;
-	}
-
-	
+		while (acum < this.numZomGen){
+			PosFila = rd.nextInt(3);
+			
+			this.fila[i] = PosFila;
+			acum++;
+			i++;
+			
+		}
+	}*/
 
 	public int Insertar(int ciclo, Tablero t){
 		
@@ -116,18 +124,20 @@ public class ComputerAction {
 		boolean encontrado = false;
 		int i = 0;
 		int posY = 7;
-		int posX = this.fila;
+		int posX;
 		boolean insertado;
 		
-		
-		
+		Random rd = new Random(semilla);
+	
 		while (encontrado == false && i < this.numZomGen ){
+			posX = rd.nextInt(4);
 			// recorro el arreglo, si el ciclo en el que esta corresponde
 			if (this.ciclos[i] == ciclo){
+				posX = rd.nextInt(4);
 				this.ListaZombie.insert(posX, posY);
 				i++;
 				encontrado = true;
-				//insertado = true;
+				
 				this.ZombiesPorSalir--;
 				t.change(ContCasillas.ZOMBIE, posX, posY);
 
@@ -224,12 +234,12 @@ public class ComputerAction {
 	}
 
 
-	public int getFila() {
+	public int[] getFila() {
 		return fila;
 	}
 
 
-	public void setFila(int fila) {
+	public void setFila(int[] fila) {
 		this.fila = fila;
 	}
 }
