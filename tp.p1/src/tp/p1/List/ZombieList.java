@@ -1,5 +1,6 @@
 package tp.p1.List;
 
+import tp.p1.PlantsVsZombies.Game;
 import tp.p1.Zombies.CommonZombie;
 
 public class ZombieList {
@@ -14,7 +15,39 @@ public class ZombieList {
 	}
 	
 	//Prototipo
-	public void insert(int posX, int posY)
+	
+	public void ActualizarZombies(Game gm){
+		for (int i = 0; i < this.numElem; i++){
+			if (cicloZom%2 == 0){
+				
+			}
+				
+				
+			if (gm.HayPlanta){
+				// do nothing
+			}
+			else{
+				this.listSZ[i].setPosY(this.listSZ[i].getPosY()-1);
+				if (this.listSZ[i].getPosY() == 0){
+					gm.setFin(true);
+				}
+			}
+		}
+	}
+	
+	
+	public void getHurt(int damage, int PosX){
+		int i =0;
+		for (; i != PosX; i++);
+			
+		this.listSZ[i].setHealth(this.listSZ[i].getHealth()- damage);
+		
+		if (this.listSZ[i].getHealth() <= 0 ){
+			this.eliminar(this.listSZ[i].getPosX(), i);
+		}
+	}
+	
+	public void insert(int posX, int posY, int cicloZom)
 	{
 		//creo un nuevo objeto
 		this.listSZ[this.numElem] = new CommonZombie();
@@ -22,6 +55,7 @@ public class ZombieList {
 		//posicionamiento
 		this.listSZ[this.numElem].setPosX(posX);
 		this.listSZ[this.numElem].setPosY(posY);
+		this.listSZ[this.numElem].setCicloZom(cicloZom);
 		
 		this.numElem++;
 	}

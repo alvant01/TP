@@ -8,6 +8,7 @@ public class CommonZombie {
 	private int posX;
 	private int posY;
 	private int frecuency;
+	private int cicloZom;
 	
 	
 	public CommonZombie()
@@ -18,6 +19,16 @@ public class CommonZombie {
 		this.velocity = 1;
 		this.frecuency = 2;
 		
+	}
+
+
+	public int getCicloZom() {
+		return CicloZom;
+	}
+
+
+	public void setCicloZom(int cicloZom) {
+		CicloZom = cicloZom;
 	}
 
 
