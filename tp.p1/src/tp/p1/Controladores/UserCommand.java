@@ -140,7 +140,7 @@ public class UserCommand {
 		
 		else if(Planta.toLowerCase().equals("peashooter") || Planta.toLowerCase().equals("p"))
 		{
-			if (scm.getSunCoins() < 100)
+			if (scm.getSunCoins() < 50)
 			{
 				System.out.println("No tienes suficientes soles");
 			}
