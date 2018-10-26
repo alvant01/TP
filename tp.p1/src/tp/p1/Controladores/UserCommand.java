@@ -1,32 +1,17 @@
 package tp.p1.Controladores;
 
-import java.util.Scanner;
-
-import tp.p1.Game.ContCasillas;
-import tp.p1.Game.Tablero;
-import tp.p1.List.PeaShooterList;
-import tp.p1.List.SunflowerList;
-import tp.p1.List.ZombieList;
-import tp.p1.Plants.PeaShooter;
-import tp.p1.Plants.Sunflower;
+import tp.p1.PlantsVsZombies.Game;
 
 public class UserCommand {
 	
 
 	
-
-	private SunflowerList sfList;
-	
-	private PeaShooterList psList;
-	
-	private ZombieList zList;
+	private Game game;
 	
 	
-	public UserCommand(SunflowerList sfList, PeaShooterList psList, ZombieList zList)
+	public UserCommand(Game g)
 	{
-		this.sfList = sfList;
-		this.psList = psList;
-		this.zList = zList;
+		this.game = g;
 	}
 	
 	
@@ -69,16 +54,25 @@ public class UserCommand {
 				"Exit: Terminates the program.\r\n" + 
 				"none: Skips cycle.");
 	}
-	public boolean reconocedor(Tablero tabl, String Command, Scanner sc, SunCoinsManager scm)
+	public boolean reconocedor(String command)
 	{
 		String planta;
-		int posX;
-		int posY;
+		String comUser[] = command.split(" ");
+		int posX = Integer.parseInt(comUser[2]);
+		int posY = Integer.parseInt(comUser[3]);
 		
 		
-		if (Command.toUpperCase().equals(Commands.ADD.toString()) || Command.toUpperCase().equals("A"))
+		
+		if (comUser[0].toUpperCase().equals(Commands.ADD.toString()) || comUser[0].toUpperCase().equals("A"))
 		{
-			planta = sc.next();
+			if (((posX >= 0) && (posX < this.game.getDraw().getNumFilas())) && ((posY >= 0) && (posY <this.game.getDraw().getNumColum())))
+			{
+				if (!ReconocedorPlanta(comUser[1], posX, posY))
+				{
+					return false;
+				}
+			}
+			/*planta = sc.next();
 			posX = sc.nextInt();
 			posY = sc.nextInt();
 			if (((posX >= 0) && (posX < tabl.getFilas())) && ((posY >= 0) && (posY < tabl.getColumnas())))
@@ -96,17 +90,17 @@ public class UserCommand {
 			{
 				System.out.println("Fuera del tablero");
 				return false;
-			}
+			}*/
 		}
-		else if(Command.toUpperCase().equals(Commands.LIST.toString()))
+		else if(comUser[1].toUpperCase().equals(Commands.LIST.toString()))
 		{
 			this.list();
 		}
-		else if(Command.toUpperCase().equals(Commands.NONE.toString()))
+		else if(comUser[1].toUpperCase().equals(Commands.NONE.toString()))
 		{
 			//Do nothing
 		}
-		else if(Command.toUpperCase().equals(Commands.HELP.toString()))
+		else if(comUser[1].toUpperCase().equals(Commands.HELP.toString()))
 		{
 			this.help();
 		}
@@ -118,23 +112,13 @@ public class UserCommand {
 		return true;
 		
 	}
-	public boolean ReconocedorPlanta(SunCoinsManager scm, String Planta, int posX, int posY)
+	public boolean ReconocedorPlanta(String Planta, int posX, int posY)
 	{
 		if (Planta.toLowerCase().equals("sunflower") || Planta.toLowerCase().equals("s"))
 		{
-			if (scm.getSunCoins() < 20)
+			if(this.game.addSunflower(posX, posY))
 			{
-				System.out.println("No tienes suficientes soles");
-			}
-			else
-			{
-				if(!this.addS(posX, posY))
-					System.out.println("La posicion esta ocupada");
-				else
-				{
-					scm.setSunCoins(scm.getSunCoins() - 20);
-					return true;
-				}
+				return true;
 			}
 		}
 		

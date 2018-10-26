@@ -1,6 +1,48 @@
 package tp.p1.PlantsVsZombies;
 
-import java.util.Arrays;
+import tp.p1.Controladores.Controller;
+
+public class PlantsVsZombies
+{
+	private Game gameMaster;
+	private Controller controllerMaster; 
+	public PlantsVsZombies()
+	{
+		this.gameMaster = new Game();
+		this.controllerMaster = new Controller();
+	}
+
+	public static void main(String args[])
+	{
+		
+		
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import java.util.Arrays;
 
 
 
@@ -161,7 +203,7 @@ public class PlantsVsZombies {
 		{
 			return true;
 		}
-		else return false;*/
+		else return false;
 	}
 	
 	public void updateGame()
@@ -244,4 +286,4 @@ public class PlantsVsZombies {
 	public void setCa(ComputerAction ca) {
 		this.ca = ca;
 	}
-}
+}*/

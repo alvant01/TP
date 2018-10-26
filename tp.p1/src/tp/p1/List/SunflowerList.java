@@ -5,11 +5,13 @@ import tp.p1.Plants.Sunflower;
 public class SunflowerList {
 
 	private Sunflower[] listSf;
+	private Sunflower sfAux;
 	private int numElem;
 	
 	public SunflowerList()
 	{
 		this.listSf = new Sunflower[32];
+		this.sfAux = new Sunflower();
 		this.numElem = 0;
 	}
 	
@@ -101,5 +103,13 @@ public class SunflowerList {
 			
 		}
 		
+	}
+
+	public Sunflower getSfAux() {
+		return sfAux;
+	}
+
+	public void setSfAux(Sunflower sfAux) {
+		this.sfAux = sfAux;
 	}
 }
