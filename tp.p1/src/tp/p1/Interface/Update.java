@@ -1,4 +1,4 @@
-package tp.p1.Interface;
+/*package tp.p1.Interface;
 
 import tp.p1.Game.ContCasillas;
 import tp.p1.Game.Tablero;
@@ -95,4 +95,4 @@ public class Update {
 		this.ciclo++;
 	}
 	
-}
+}*/

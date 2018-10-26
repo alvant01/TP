@@ -1,39 +1,36 @@
 package tp.p1.List;
 
-import tp.p1.PlantsVsZombies.Game;
 import tp.p1.Zombies.CommonZombie;
 
 public class ZombieList {
 
 	private CommonZombie[] listSZ;
+	private CommonZombie zAux;
 	private int numElem;
 	
 	public ZombieList()
 	{
 		this.listSZ = new CommonZombie[15];
+		this.zAux = new CommonZombie();
 		this.numElem = 0;
 	}
 	
 	//Prototipo
-	
-	public void ActualizarZombies(Game gm){
-		for (int i = 0; i < this.numElem; i++){
-			if (cicloZom%2 == 0){
-				
+	public boolean update(int ciclos, int pos){
+			if ((this.listSZ[pos].getCicloZom()%this.zAux.getFrecuency() - ciclos%this.zAux.getFrecuency()) == 0)
+			{
+			 return true;	
 			}
-				
-				
-			if (gm.HayPlanta){
-				// do nothing
-			}
-			else{
+		return false;
+		}
+		/*	else{
 				this.listSZ[i].setPosY(this.listSZ[i].getPosY()-1);
 				if (this.listSZ[i].getPosY() == 0){
 					gm.setFin(true);
 				}
 			}
 		}
-	}
+	}*/
 	
 	
 	public void getHurt(int damage, int PosX){
@@ -151,5 +148,9 @@ public class ZombieList {
 	public int getFrecuency() {
 		CommonZombie z = new CommonZombie();
 		return z.getFrecuency();
+	}
+
+	public CommonZombie getZAux() {
+		return this.zAux;
 	}
 }

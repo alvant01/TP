@@ -5,16 +5,18 @@ import tp.p1.Plants.PeaShooter;
 public class PeaShooterList {
 
 	private PeaShooter[] listSP;
+	private PeaShooter psAux;
 	private int numElem;
 	
 	public PeaShooterList()
 	{
 		this.listSP = new PeaShooter[32];
+		this.psAux = new PeaShooter();
 		this.numElem = 0;
 	}
 	
 	//Prototipo
-	public void insert(int posX, int posY)
+	public void insert(int posX, int posY,int ciclo)
 	{
 		//creo un nuevo objeto
 		this.listSP[this.numElem] = new PeaShooter();
@@ -22,6 +24,7 @@ public class PeaShooterList {
 		//posicionamiento
 		this.listSP[this.numElem].setPosX(posX);
 		this.listSP[this.numElem].setPosY(posY);
+		this.listSP[this.numElem].setCicloI(ciclo);
 		
 		this.numElem++;
 	}
@@ -84,6 +87,13 @@ public class PeaShooterList {
 		}
 		return false;
 	}
+	public boolean update(int ciclos, int pos) {
+		if((this.listSP[pos].getCicloI()%this.psAux.getFrecuency() - ciclos%this.psAux.getFrecuency()) == 0)
+		{
+			return true;
+		}
+		return false;
+	}
 
 	public PeaShooter[] getListSP() {
 		return listSP;
@@ -99,6 +109,19 @@ public class PeaShooterList {
 
 	public void setNumElem(int numElem) {
 		this.numElem = numElem;
+	}
+
+	public PeaShooter getPsAux() {
+		return psAux;
+	}
+
+	public void setPsAux(PeaShooter psAux) {
+		this.psAux = psAux;
+	}
+
+	public void damagePeaShooter(int damage, int posX, int i) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

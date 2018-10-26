@@ -23,12 +23,12 @@ public class CommonZombie {
 
 
 	public int getCicloZom() {
-		return CicloZom;
+		return this.cicloZom;
 	}
 
 
-	public void setCicloZom(int cicloZom) {
-		CicloZom = cicloZom;
+	public void setCicloZom(int ciclo) {
+		this.cicloZom = ciclo;
 	}
 
 

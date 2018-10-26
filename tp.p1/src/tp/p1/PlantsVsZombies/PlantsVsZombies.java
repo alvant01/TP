@@ -1,7 +1,10 @@
 package tp.p1.PlantsVsZombies;
 
 import tp.p1.Controladores.Controller;
-
+//Pintar tablero --Completos
+//Comandos --Completos
+//update	--Completo
+//Zombies
 public class PlantsVsZombies
 {
 	private Game gameMaster;
@@ -9,7 +12,7 @@ public class PlantsVsZombies
 	public PlantsVsZombies()
 	{
 		this.gameMaster = new Game();
-		this.controllerMaster = new Controller();
+		this.controllerMaster = new Controller(gameMaster);
 	}
 
 	public static void main(String args[])

@@ -63,9 +63,7 @@ public class Controller {
 		return false;
 		
 	}
-
-
-
+	
 	public Scanner getIn() {
 		return in;
 	}

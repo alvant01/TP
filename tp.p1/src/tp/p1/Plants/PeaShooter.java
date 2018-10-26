@@ -10,6 +10,7 @@ public class PeaShooter {
 	private int frecuency;
 	private int posX;
 	private int posY;
+	private int cicloI;
 	
 	
 	public PeaShooter()
@@ -89,6 +90,16 @@ public class PeaShooter {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+
+
+	public int getCicloI() {
+		return cicloI;
+	}
+
+
+	public void setCicloI(int cicloI) {
+		this.cicloI = cicloI;
 	}
 	
 }

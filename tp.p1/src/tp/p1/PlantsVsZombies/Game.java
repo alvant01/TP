@@ -17,6 +17,7 @@ public class Game {
 	
 	private SunCoinsManager scm;
 	
+	
 	private int ciclos;
 	
 	public Game(){
@@ -49,8 +50,38 @@ public class Game {
 	}
 
 	public void updateGame() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < this.sfList.getNumElem();i++)
+		{
+			if (this.sfList.update(this.ciclos, i))
+			{
+				this.scm.addSunCoins(this.sfList.getSfAux().getSunGenerator());
+			}
+		}
+		for(int i = 0; i < this.psList.getNumElem();i++)
+		{
+			if (this.psList.update(this.ciclos, i))
+			{
+				this.zList.getHurt(this.sfList.getSfAux().getDamage(), this.psList.getListSP()[i].getPosX());
+			}
+		}
+		for(int i =0; i < this.zList.getNumElem();i++)
+		{
+			if(this.zList.update(this.ciclos, i))
+			{
+				if(this.sfList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
+				{
+					this.sfList.damageSunflower(this.zList.getZAux().getDamage(),this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1);
+				}
+				else if(this.psList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
+				{
+					this.psList.damagePeaShooter(this.zList.getZAux().getDamage(),this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1);
+				}
+				else
+				{
+					this.zList.avanzar(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY());
+				}
+			}
+		}
 	}
 
 	public String obtenerPieza(int posX, int posY) {
@@ -80,11 +111,90 @@ public class Game {
 	public boolean addSunflower(int posX, int posY) {
 		if (this.scm.getSunCoins() >= this.sfList.getSfAux().getCost())
 		{
-			this.sfList.insert(posX, posY);
+			this.sfList.insert(posX, posY, this.ciclos);
 			this.scm.setSunCoins(this.scm.getSunCoins() - this.sfList.getSfAux().getCost());
 			return true;
 		}
+		else
+		{
+			System.out.println("No tienes suficientes soles");
+		}
 		return false;
+	}
+	public boolean addPeaShooter(int posX, int posY) {
+		if (this.scm.getSunCoins() >= this.psList.getPsAux().getCost())
+		{
+			this.psList.insert(posX, posY, this.ciclos);
+			this.scm.setSunCoins(this.scm.getSunCoins() - this.psList.getPsAux().getCost());
+			return true;
+		}
+		else
+		{
+			System.out.println("No tienes suficientes soles");
+		}
+		return false;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public PeaShooterList getPsList() {
+		return psList;
+	}
+
+	public void setPsList(PeaShooterList psList) {
+		this.psList = psList;
+	}
+
+	public SunflowerList getSfList() {
+		return sfList;
+	}
+
+	public void setSfList(SunflowerList sfList) {
+		this.sfList = sfList;
+	}
+
+	public ZombieList getzList() {
+		return zList;
+	}
+
+	public void setzList(ZombieList zList) {
+		this.zList = zList;
+	}
+
+	public UserCommand getuCommand() {
+		return uCommand;
+	}
+
+	public void setuCommand(UserCommand uCommand) {
+		this.uCommand = uCommand;
+	}
+
+	public SunCoinsManager getScm() {
+		return scm;
+	}
+
+	public void setScm(SunCoinsManager scm) {
+		this.scm = scm;
+	}
+
+	public int getCiclos() {
+		return ciclos;
+	}
+
+	public void setCiclos(int ciclos) {
+		this.ciclos = ciclos;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class SunflowerList {
 	}
 	
 	//Prototipo
-	public void insert(int posX, int posY)
+	public void insert(int posX, int posY, int ciclo)
 	{
 		//creo un nuevo objeto
 		this.listSf[this.numElem] = new Sunflower();
@@ -24,6 +24,7 @@ public class SunflowerList {
 		//posicionamiento
 		this.listSf[this.numElem].setPosX(posX);
 		this.listSf[this.numElem].setPosY(posY);
+		this.listSf[this.numElem].setCicloI(ciclo);
 		
 		this.numElem++;
 	}
@@ -111,5 +112,18 @@ public class SunflowerList {
 
 	public void setSfAux(Sunflower sfAux) {
 		this.sfAux = sfAux;
+	}
+
+	public boolean update(int ciclos, int pos) {
+		if((this.listSf[pos].getCicloI()%this.sfAux.getFrecuency() - ciclos%this.sfAux.getFrecuency()) == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void damageSunflower(int damage, int posX, int i) {
+		// TODO Auto-generated method stub
+		
 	}
 }

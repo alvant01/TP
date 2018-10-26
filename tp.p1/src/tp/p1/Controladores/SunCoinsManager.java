@@ -14,5 +14,9 @@ public class SunCoinsManager {
 	public void setSunCoins(int sunCoins) {
 		this.sunCoins = sunCoins;
 	}
+	public void addSunCoins(int coins)
+	{
+		this.sunCoins = this.sunCoins + coins;
+	}
 	
 }

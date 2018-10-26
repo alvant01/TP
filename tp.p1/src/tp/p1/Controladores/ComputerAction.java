@@ -134,7 +134,7 @@ public class ComputerAction {
 			// recorro el arreglo, si el ciclo en el que esta corresponde
 			if (this.ciclos[i] == ciclo){
 				posX = rd.nextInt(4);
-				this.ListaZombie.insert(posX, posY);
+				this.ListaZombie.insert(posX, posY, this.ciclos);
 				i++;
 				encontrado = true;
 				
