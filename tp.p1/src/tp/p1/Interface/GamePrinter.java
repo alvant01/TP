@@ -72,7 +72,7 @@ public class GamePrinter
 		String pieza;
 		pieza = this.game.obtenerPieza(posX, posY);
 		
-		System.out.print("[ " + pieza + " ]");
+		System.out.print(" " + pieza + " ");
 	}
 
 

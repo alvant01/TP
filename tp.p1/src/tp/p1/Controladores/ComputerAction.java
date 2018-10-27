@@ -1,27 +1,20 @@
 package tp.p1.Controladores;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Random;
 import java.lang.String;
 
-import tp.p1.Game.ContCasillas;
-import tp.p1.Game.Tablero;
 import tp.p1.List.ZombieList;
-import tp.p1.PlantsVsZombies.*;
 
 public class ComputerAction {
 	
 	private ZombieList ListaZombie;
 	private int[] ciclos;
-	//private int nivel;
 	private int numZomGen;
 	private int ZombiesRestantes;
 	private int ZombiesPorSalir;
 	private int semilla;
 	private String nivelI;
 	private int[] fila;
-	private String levelIntroducido;
 		
 	public ComputerAction() {
 	}
@@ -47,7 +40,7 @@ public class ComputerAction {
 	
 
 
-	public void Generador(int numZomGen, int semilla, String levelIntroducido){
+	public void Generador(int semilla, String levelIntroducido){
 		
 		Random rd = new Random(semilla);
 		this.ciclos = new int [10];

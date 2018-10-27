@@ -4,7 +4,8 @@ import tp.p1.Controladores.Controller;
 //Pintar tablero --Completos
 //Comandos --Completos
 //update	--Completo
-//Zombies
+//Zombies	-Completo
+//Flujo		-
 public class PlantsVsZombies
 {
 	private Game gameMaster;
@@ -17,8 +18,21 @@ public class PlantsVsZombies
 
 	public static void main(String args[])
 	{
-		
-		
+		PlantsVsZombies pvz = new PlantsVsZombies();
+		if(args.length == 1)
+		{
+			pvz.gameMaster.setLevel(args[0]);
+		}
+		else if(args.length == 2)
+		{
+			pvz.gameMaster.setLevel(args[0]);
+			pvz.gameMaster.setSemilla(Integer.parseInt(args[1]));
+		}
+		else
+		{
+			pvz.controllerMaster.menuSemLevel();
+		}
+		pvz.controllerMaster.run();
 	}
 
 }

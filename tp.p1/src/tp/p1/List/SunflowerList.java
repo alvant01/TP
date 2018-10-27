@@ -60,8 +60,11 @@ public class SunflowerList {
 	public boolean contains(int posX, int posY)
 	{
 		int pos = localizarPlanta(posX,posY);
-		if(this.listSf[pos].getPosX()== posX && this.listSf[pos].getPosY() == posY)
-			return true;
+		if(pos != -1)
+		{
+			if(this.listSf[pos].getPosX()== posX && this.listSf[pos].getPosY() == posY)
+				return true;
+		}
 		return false;
 	}
 

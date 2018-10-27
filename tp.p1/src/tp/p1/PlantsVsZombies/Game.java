@@ -18,8 +18,10 @@ public class Game {
 	private SunCoinsManager scm;
 	
 	private ComputerAction cAction;
+
+	private String level;
 	
-	private int level;
+	private int semilla;
 	
 	
 	private int ciclos;
@@ -50,8 +52,7 @@ public class Game {
 	}
 
 	public boolean reconocedorComandos(String comando) {
-		this.uCommand.reconocedor(comando);
-		return false;
+		return this.uCommand.reconocedor(comando);
 	}
 
 	public void updateGame() {
@@ -207,15 +208,51 @@ public class Game {
 		this.ciclos = ciclos;
 	}
 
-	public int getLevel() {
-		return level;
+
+	public ComputerAction getcAction() {
+		return cAction;
 	}
 
-	public void setLevel(int level) {
+	public void setcAction(ComputerAction cAction) {
+		this.cAction = cAction;
+	}
+
+	public int getSemilla() {
+		return semilla;
+	}
+
+	public void setSemilla(int semilla) {
+		this.semilla = semilla;
+	}
+
+	public void setLevel(String level) {
 		this.level = level;
 	}
 	
+	public void InicializarZombies()
+	{
+		this.cAction.Generador(this.semilla, this.level);
+	}
 	
+	public boolean win()
+	{
+		if(this.cAction.getZombiesRestantes() == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+	public boolean lose()
+	{
+		for(int i = 0; i < this.zList.getNumElem();i++)
+		{
+			if(this.zList.contains(i, 0))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	 

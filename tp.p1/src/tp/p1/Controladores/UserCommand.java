@@ -31,10 +31,10 @@ public class UserCommand {
 				{
 					return false;
 				}
-				else
-				{
-					System.out.println("Fuera del tablero");
-				}
+			}
+			else
+			{
+				System.out.println("Fuera del tablero");
 			}
 		}
 		else if(comUser[1].toUpperCase().equals(Commands.LIST.toString()))
