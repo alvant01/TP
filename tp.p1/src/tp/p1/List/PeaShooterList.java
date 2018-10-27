@@ -80,7 +80,7 @@ public class PeaShooterList {
 		return false;
 	}
 	public boolean update(int ciclos, int pos) {
-		if((this.listSP[pos].getCicloI()%this.psAux.getFrecuency() - ciclos%this.psAux.getFrecuency()) == 0)
+		if((this.listSP[pos].getCicloI()%this.psAux.getFrecuency() - ciclos%this.psAux.getFrecuency()) == 0 && this.listSP[pos].getCicloI() != ciclos)
 		{
 			return true;
 		}

@@ -16,7 +16,8 @@ public class ComputerAction {
 	private String nivelI;
 	private int[] fila;
 		
-	public ComputerAction() {
+	public ComputerAction(ZombieList zl) {
+		this.ListaZombie = zl;
 	}
 	
 	
@@ -50,7 +51,8 @@ public class ComputerAction {
 		double frecuencia = 0;
 		float aleatorio;
 		this.numZomGen = Reconocedor(levelIntroducido);
-				
+		this.ZombiesPorSalir = this.numZomGen;
+		this.ZombiesRestantes = this.numZomGen;
 		if (this.numZomGen == 3)
 		{
 			frecuencia = 0.1;
@@ -140,8 +142,8 @@ public class ComputerAction {
 	}
 
 
-	public void setZombiesRestantes(int ZombiesRestantes) {
-		this.ZombiesRestantes = ZombiesRestantes;
+	public void setZombiesRestantes(int zombiesRestantes) {
+		this.ZombiesRestantes = zombiesRestantes;
 	}
 
 
@@ -151,7 +153,7 @@ public class ComputerAction {
 
 
 	public void setZombiesPorSalir(int zombiesPorSalir) {
-		ZombiesPorSalir = zombiesPorSalir;
+		this.ZombiesPorSalir = zombiesPorSalir;
 	}
 
 
@@ -182,5 +184,12 @@ public class ComputerAction {
 
 	public void setFila(int[] fila) {
 		this.fila = fila;
+	}
+
+
+	public int semillaRandom() {
+		Random rd = new Random(System.currentTimeMillis());
+		this.semilla = rd.nextInt(100);
+		return this.semilla;
 	}
 }

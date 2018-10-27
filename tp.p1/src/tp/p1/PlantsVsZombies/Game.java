@@ -22,7 +22,6 @@ public class Game {
 	private String level;
 	
 	private int semilla;
-	private boolean ZombieIntroducido;
 	
 	
 	private int ciclos;
@@ -34,7 +33,7 @@ public class Game {
 		this.draw     = new GamePrinter(this);
 		this.uCommand = new UserCommand(this);
 		this.scm      = new SunCoinsManager();
-		this.cAction  = new ComputerAction();
+		this.cAction  = new ComputerAction(this.zList);
 		
 		this.ciclos= 0;
 	}
@@ -49,7 +48,8 @@ public class Game {
 	}
 
 	public void pintarTablero() {
-		this.draw.drawTablero();
+		
+		this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
 	}
 
 	public boolean reconocedorComandos(String comando) {
@@ -68,7 +68,12 @@ public class Game {
 		{
 			if (this.psList.update(this.ciclos, i))
 			{
-				this.zList.getHurt(this.sfList.getSfAux().getDamage(), this.psList.getListSP()[i].getPosX());
+				int numZomAux = this.zList.getNumElem();//Salvo el num zombies
+				this.zList.getHurt(this.psList.getPsAux().getDamage(), this.psList.getListSP()[i].getPosX());
+				if (this.zList.getNumElem() != numZomAux)
+				{
+					this.cAction.setZombiesRestantes(this.cAction.getZombiesRestantes()-1);
+				}
 			}
 		}
 		for(int i =0; i < this.zList.getNumElem();i++)
@@ -83,6 +88,10 @@ public class Game {
 				{
 					this.psList.damagePeaShooter(this.zList.getZAux().getDamage(),this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1);
 				}
+				else if(this.zList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
+				{
+					//do nothing
+				}
 				else
 				{
 					this.zList.avanzar(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY());
@@ -90,15 +99,7 @@ public class Game {
 			}
 		}
 		this.cAction.Insertar(this.ciclos);
-		ZombieIntroducido = this.cAction.Insertar(this.ciclos);
-		if (ZombieIntroducido == true){
-		this.cAction.setZombiesRestantes(this.cAction.getZombiesRestantes()-1);
-		System.out.print("Quedan por salir: " + this.cAction.getZombiesRestantes() + " Zombies");
-		}
-		else{
-			System.out.print("Quedan por salir: " + this.cAction.getZombiesRestantes() + " Zombies");
-		}
-
+		this.ciclos++;
 	}
 
 	public String obtenerPieza(int posX, int posY) {
@@ -262,6 +263,11 @@ public class Game {
 			}
 		}
 		return false;
+	}
+
+	public void genSemRandom() {
+		this.semilla=this.cAction.semillaRandom();
+		
 	}
 	
 	

@@ -33,14 +33,21 @@ public class ZombieList {
 	}*/
 	
 	
-	public void getHurt(int damage, int PosX){
-		int i =0;
-		for (; i != PosX; i++);
-			
-		this.listSZ[i].setHealth(this.listSZ[i].getHealth()- damage);
+	public void getHurt(int damage, int posX){
 		
-		if (this.listSZ[i].getHealth() <= 0 ){
-			this.eliminar(this.listSZ[i].getPosX(), i);
+		boolean encontrado = false;
+		for (int i =0; i < this.numElem && !encontrado; i++)
+		{
+			if (this.listSZ[i].getPosX() == posX)
+			{
+				encontrado = true;
+				this.listSZ[i].setHealth(this.listSZ[i].getHealth()- damage);
+		
+				if (this.listSZ[i].getHealth() <= 0 )
+				{
+					this.eliminar(this.listSZ[i].getPosX(), this.listSZ[i].getPosY());
+				}
+			}
 		}
 	}
 	

@@ -20,12 +20,13 @@ public class Controller {
 	
 	public void run()
 	{
+		boolean end = false;
 		this.game.InicializarZombies();
 		this.game.pintarTablero();
 		String comando = menuCommands();
 		String com[] = comando.split(" ");
 		
-		while (!(com[0].toLowerCase().equals("exit")) && !(com[0].toUpperCase().equals("E")))
+		while (!(com[0].toLowerCase().equals("exit")) && !(com[0].toUpperCase().equals("E")) && !end)
 		{
 			if (com[0].toLowerCase().equals("reset") || com[0].toUpperCase().equals("R"))
 			{
@@ -35,22 +36,28 @@ public class Controller {
 				comando = this.in.next();
 			}
 			while(!this.game.reconocedorComandos(comando))
-				comando = this.in.next();
+			{
+				this.in.reset();
+				comando = this.in.nextLine();
+			}  
+			this.game.updateGame();
+			this.game.pintarTablero();
 			if (this.game.win())
 			{
 				System.out.println("Victoria");
+				end = true;
 			}
 			else if (this.game.lose())
 			{
 				System.out.println("Has Perdido");
+				end = true;
 			}
 			else
 			{
-				this.in.reset();
-				this.game.updateGame();
-				this.game.pintarTablero();
 				System.out.print("Command > ");
-				comando = this.in.next();
+				this.in.reset();
+				comando = this.in.nextLine();
+				com = comando.split(" ");
 			}	
 		}
 	}
@@ -84,13 +91,16 @@ public class Controller {
 		level = this.in.nextLine();
 		this.game.setLevel(level);
 		System.out.print("Semilla?(y/n):");
-		//String response = this.in.
-		if(this.in.nextLine().toLowerCase() == "y")
+		String response = this.in.nextLine().toLowerCase();
+		System.out.println(response);
+		if(response.equals("y"))
 		{
-			System.out.println();
 			System.out.print("Semilla: ");
 			this.game.setSemilla(this.in.nextInt());
-			System.out.println();
+		}
+		else
+		{
+			this.game.genSemRandom();
 		}
 		//this.in.reset();
 	}

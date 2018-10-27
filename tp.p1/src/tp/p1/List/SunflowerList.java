@@ -105,7 +105,7 @@ public class SunflowerList {
 	}
 
 	public boolean update(int ciclos, int pos) {
-		if((this.listSf[pos].getCicloI()%this.sfAux.getFrecuency() - ciclos%this.sfAux.getFrecuency()) == 0)
+		if((this.listSf[pos].getCicloI()%this.sfAux.getFrecuency() - ciclos%this.sfAux.getFrecuency()) == 0 && this.listSf[pos].getCicloI() != ciclos)
 		{
 			return true;
 		}

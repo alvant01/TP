@@ -18,13 +18,14 @@ public class UserCommand {
 	public boolean reconocedor(String command)
 	{
 		String comUser[] = command.split(" ");
-		int posX = Integer.parseInt(comUser[2]);
-		int posY = Integer.parseInt(comUser[3]);
+
 		
 		
 		
-		if (comUser[0].toUpperCase().equals(Commands.ADD.toString()) || comUser[0].toUpperCase().equals("A"))
+		if (comUser[0].toUpperCase().equals(Commands.ADD.toString()) || comUser[0].toUpperCase().equals("A") )
 		{
+			int posX = Integer.parseInt(comUser[2]);
+			int posY = Integer.parseInt(comUser[3]);
 			if (((posX >= 0) && (posX < this.game.getDraw().getNumFilas())) && ((posY >= 0) && (posY <this.game.getDraw().getNumColum())))
 			{
 				if (!ReconocedorPlanta(comUser[1], posX, posY))
@@ -37,15 +38,15 @@ public class UserCommand {
 				System.out.println("Fuera del tablero");
 			}
 		}
-		else if(comUser[1].toUpperCase().equals(Commands.LIST.toString()))
+		else if(comUser[0].toUpperCase().equals(Commands.LIST.toString()))
 		{
 			this.list();
 		}
-		else if(comUser[1].toUpperCase().equals(Commands.NONE.toString()))
+		else if(comUser[0].toUpperCase().equals(Commands.NONE.toString()) || command.isEmpty())
 		{
 			//Do nothing
 		}
-		else if(comUser[1].toUpperCase().equals(Commands.HELP.toString()))
+		else if(comUser[0].toUpperCase().equals(Commands.HELP.toString()))
 		{
 			this.help();
 		}

@@ -24,10 +24,13 @@ public class GamePrinter
 	
 	
 	
-	public void drawTablero()
+	public void drawTablero(int semilla, int ciclos, int sunCoins, int zombies)
 	{
 		
-		
+		System.out.println("Random seed used: " + semilla);
+		System.out.println("Number of cycles: " + ciclos);
+		System.out.println("Sun coins: " + sunCoins);
+		System.out.println("Remaning zombies: " + zombies);
 		for (int i = 0; i < this.numFilas*2; i++)
 		{
 			if (i%2 != 0)
