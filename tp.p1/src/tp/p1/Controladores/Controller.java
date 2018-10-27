@@ -20,19 +20,12 @@ public class Controller {
 	
 	public void run()
 	{
+		String comando = menuCommands();
+		String com[] = comando.split(" ");
 		
-		
-	}
-	
-	public boolean menuCommands()
-	{
-		String comando;
-		System.out.print("Command > ");
-		comando = this.in.next();
-		
-		while (!(comando.toLowerCase().equals("exit")) && !(comando.toUpperCase().equals("E")))
+		while (!(com[0].toLowerCase().equals("exit")) && !(com[0].toUpperCase().equals("E")))
 		{
-			if (comando.toLowerCase().equals("reset") || comando.toUpperCase().equals("R"))
+			if (com[0].toLowerCase().equals("reset") || com[0].toUpperCase().equals("R"))
 			{
 				this.game.reiniciar();
 				this.game.pintarTablero();
@@ -59,8 +52,16 @@ public class Controller {
 			comando = this.in.next();
 			
 		}
+		
+	}
+	
+	public String menuCommands()
+	{
+		String comando;
+		System.out.print("Command > ");
+		comando = this.in.next();
 		this.in.close();
-		return false;
+		return comando;
 		
 	}
 	

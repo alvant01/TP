@@ -29,21 +29,12 @@ public class SunflowerList {
 		this.numElem++;
 	}
 	
-	public void eliminar(int posX, int posY)
+	public void eliminar(int pos)
 	{
-		int cont = 0;
-		boolean encontrado = false;
 		
-		for(; cont< this.numElem && !encontrado; cont++)
-		{
-			if (this.listSf[cont].getPosX() == posX 
-					&& this.listSf[cont].getPosY() == posY)
-			{
-				this.listSf[cont] = null;
-				this.numElem--;
-			}
-		}
-		reordenar(cont);
+		this.listSf[pos] = null;
+		this.numElem--;
+		reordenar(pos);
 	}
 	//reordena el array apartir de una posicion
 	public void reordenar(int pos)
@@ -58,23 +49,19 @@ public class SunflowerList {
 	
 	public int getPlantHP(int x, int y)
 	{
-		for (int i = 0; i < this.numElem; i++)
+		int pos = localizarPlanta(x,y);
+		if (this.listSf[pos].getPosX() == x && this.listSf[pos].getPosY() == y)
 		{
-			if (this.listSf[i].getPosX() == x && this.listSf[i].getPosY() == y)
-			{
-				return this.listSf[i].getHealth();
-			}
-			
+			return this.listSf[pos].getHealth();
 		}
+			
 		return 0;
 	}
 	public boolean contains(int posX, int posY)
 	{
-		for(int i = 0; i <this.numElem; i++)
-		{
-			if(this.listSf[i].getPosX()== posX && this.listSf[i].getPosY() == posY)
-				return true;
-		}
+		int pos = localizarPlanta(posX,posY);
+		if(this.listSf[pos].getPosX()== posX && this.listSf[pos].getPosY() == posY)
+			return true;
 		return false;
 	}
 
@@ -122,8 +109,23 @@ public class SunflowerList {
 		return false;
 	}
 
-	public void damageSunflower(int damage, int posX, int i) {
-		// TODO Auto-generated method stub
+	public void damageSunflower(int damage, int posX, int posY) {
+		int pos = localizarPlanta(posX, posY);
 		
+		this.listSf[pos].setHealth(this.listSf[pos].getHealth() - damage);
+		
+		if (this.listSf[pos].getHealth() <= 0)
+			eliminar(pos);
+		
+	}
+	public int localizarPlanta(int posX, int posY)
+	{
+		for(int i = 0; i <this.numElem; i++)
+		{
+			if(this.listSf[i].getPosX()== posX && this.listSf[i].getPosY() == posY)
+				return i;
+		}
+		return -1;
+
 	}
 }

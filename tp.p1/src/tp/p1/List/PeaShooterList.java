@@ -29,20 +29,12 @@ public class PeaShooterList {
 		this.numElem++;
 	}
 	
-	public void eliminar(int posX, int posY)
+	public void eliminar(int pos)
 	{
-		int cont = 0;
-		boolean encontrado = false;
 		
-		for(; cont< this.numElem && !encontrado; cont++)
-		{
-			if (this.listSP[cont].getPosX() == posX 
-					&& this.listSP[cont].getPosY() == posY)
-			{
-				reordenar(cont);
-			}
-		}
-		
+		this.listSP[pos] = null;
+		this.numElem--;
+		reordenar(pos);
 	}
 	//reordena el array apartir de una posicion
 	public void reordenar(int pos)
@@ -119,9 +111,25 @@ public class PeaShooterList {
 		this.psAux = psAux;
 	}
 
-	public void damagePeaShooter(int damage, int posX, int i) {
-		// TODO Auto-generated method stub
+	public void damagePeaShooter(int damage, int posX, int posY) {
+int pos = localizarPlanta(posX, posY);
+		
+		this.listSP[pos].setHealth(this.listSP[pos].getHealth() - damage);
+		
+		if (this.listSP[pos].getHealth() <= 0)
+			eliminar(pos);
 		
 	}
+	public int localizarPlanta(int posX, int posY)
+	{
+		for(int i = 0; i <this.numElem; i++)
+		{
+			if(this.listSP[i].getPosX()== posX && this.listSP[i].getPosY() == posY)
+				return i;
+		}
+		return -1;
+
+	}
+		
 }
 

@@ -17,6 +17,10 @@ public class Game {
 	
 	private SunCoinsManager scm;
 	
+	private ComputerAction cAction;
+	
+	private int level;
+	
 	
 	private int ciclos;
 	
@@ -27,6 +31,7 @@ public class Game {
 		this.draw     = new GamePrinter(this);
 		this.uCommand = new UserCommand(this);
 		this.scm      = new SunCoinsManager();
+		this.cAction  = new ComputerAction();
 		
 		this.ciclos= 0;
 	}
@@ -82,6 +87,7 @@ public class Game {
 				}
 			}
 		}
+		this.cAction.Insertar(this.ciclos);
 	}
 
 	public String obtenerPieza(int posX, int posY) {
@@ -134,6 +140,10 @@ public class Game {
 		}
 		return false;
 	}
+	/*public void addZombie(int posX, int posY)
+	{
+		this.zList.insert(posX, posY, this.ciclos);
+	}*/
 
 	
 	
@@ -195,6 +205,14 @@ public class Game {
 
 	public void setCiclos(int ciclos) {
 		this.ciclos = ciclos;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	
