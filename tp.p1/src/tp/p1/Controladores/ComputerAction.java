@@ -140,8 +140,8 @@ public class ComputerAction {
 	}
 
 
-	public void setZombiesRestantes(int zombiesRestantes) {
-		ZombiesRestantes = zombiesRestantes;
+	public void setZombiesRestantes(int ZombiesRestantes) {
+		this.ZombiesRestantes = ZombiesRestantes;
 	}
 
 

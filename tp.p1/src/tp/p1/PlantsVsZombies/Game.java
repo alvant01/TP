@@ -22,6 +22,7 @@ public class Game {
 	private String level;
 	
 	private int semilla;
+	private boolean ZombieIntroducido;
 	
 	
 	private int ciclos;
@@ -89,6 +90,15 @@ public class Game {
 			}
 		}
 		this.cAction.Insertar(this.ciclos);
+		ZombieIntroducido = this.cAction.Insertar(this.ciclos);
+		if (ZombieIntroducido == true){
+		this.cAction.setZombiesRestantes(this.cAction.getZombiesRestantes()-1);
+		System.out.print("Quedan por salir: " + this.cAction.getZombiesRestantes() + " Zombies");
+		}
+		else{
+			System.out.print("Quedan por salir: " + this.cAction.getZombiesRestantes() + " Zombies");
+		}
+
 	}
 
 	public String obtenerPieza(int posX, int posY) {
