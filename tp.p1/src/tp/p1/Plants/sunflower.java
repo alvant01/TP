@@ -11,6 +11,8 @@ public class Sunflower
 	private int frecuency;
 	private int posX;
 	private int posY;
+	private int cicloI;
+	private int sunGenerator;
 	
 	public Sunflower()
 	{
@@ -19,6 +21,7 @@ public class Sunflower
 		this.behaviour = "Genera soles";
 		this.damage = 0;
 		this.frecuency = 2;
+		this.sunGenerator = 10;
 	}
 
 
@@ -89,6 +92,26 @@ public class Sunflower
 
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+
+
+	public int getCicloI() {
+		return cicloI;
+	}
+
+
+	public void setCicloI(int cicloI) {
+		this.cicloI = cicloI;
+	}
+
+
+	public int getSunGenerator() {
+		return sunGenerator;
+	}
+
+
+	public void setSunGenerator(int sunGenerator) {
+		this.sunGenerator = sunGenerator;
 	}
 	
 }

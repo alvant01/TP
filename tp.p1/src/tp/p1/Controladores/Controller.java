@@ -92,7 +92,6 @@ public class Controller {
 		this.game.setLevel(level);
 		System.out.print("Semilla?(y/n):");
 		String response = this.in.nextLine().toLowerCase();
-		System.out.println(response);
 		if(response.equals("y"))
 		{
 			System.out.print("Semilla: ");

@@ -76,15 +76,15 @@ public class ZombieList {
 			{
 				this.listSZ[cont] = null;
 				this.numElem--;
-				
+				encontrado = true;
 			}
 		}
-		reordenar(cont);
+		reordenar(cont-1);
 	}
 	//reordena el array apartir de una posicion
 	public void reordenar(int pos)
 	{
-		while(pos < this.numElem-1)
+		while(pos < this.numElem)
 		{
 			this.listSZ[pos] = this.listSZ[pos+1];
 			pos++;
