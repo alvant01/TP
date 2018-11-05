@@ -1,6 +1,5 @@
 package tp.p2.Plants;
 
-
 public class Sunflower extends Plant
 {
 	
@@ -112,6 +111,16 @@ public class Sunflower extends Plant
 
 	public void setSunGenerator(int sunGenerator) {
 		this.sunGenerator = sunGenerator;
+	}
+
+
+	@Override
+	public Plant parse(String planta) {
+		if(planta.toLowerCase().equals("s") ||planta.toLowerCase().equals("sunflower"))
+		{
+			return this;
+		}
+		return null;
 	}
 	
 }

@@ -1,6 +1,8 @@
 package tp.p2.Zombies;
 
-public class CommonZombie {
+import tp.p2.Plants.GameObject;
+
+public class CommonZombie extends GameObject {
 	private int health;
 	private String behaviour;
 	private int damage;

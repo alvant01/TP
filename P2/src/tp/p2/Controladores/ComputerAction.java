@@ -2,13 +2,13 @@ package tp.p2.Controladores;
 
 import java.util.Random;
 
-import tp.p2.List.ZombieList;
+//import tp.p2.List.ZombieList;
 
 import java.lang.String;
 
 public class ComputerAction {
 	
-	private ZombieList ListaZombie;
+	//private ZombieList ListaZombie;
 	private int[] ciclos;
 	private int numZomGen;
 	private int ZombiesRestantes;
@@ -17,10 +17,10 @@ public class ComputerAction {
 	private String nivelI;
 	private int[] fila;
 		
-	public ComputerAction(ZombieList zl) {
+	/*public ComputerAction(ZombieList zl) {
 		this.ListaZombie = zl;
 	}
-	
+	*/
 	
 	public int Reconocedor(String levelIntroducido){
 		
@@ -53,7 +53,7 @@ public class ComputerAction {
 		float aleatorio;
 		this.numZomGen = Reconocedor(levelIntroducido);
 		this.ZombiesPorSalir = this.numZomGen;
-		this.ZombiesRestantes = this.numZomGen;
+		this.ZombiesRestantes = 4;//this.numZomGen;
 		if (this.numZomGen == 3)
 		{
 			frecuencia = 0.1;
@@ -100,7 +100,7 @@ public class ComputerAction {
 			// recorro el arreglo, si el ciclo en el que esta corresponde
 			if (this.ciclos[i] == ciclo){
 				
-				this.ListaZombie.insert(posX, posY, ciclo);
+				//this.ListaZombie.insert(posX, posY, ciclo);
 				this.ZombiesPorSalir--;	
 				return true;
 			}
@@ -108,7 +108,7 @@ public class ComputerAction {
 		return false;
 	}
 
-
+/*
 	public ZombieList getListaZombie() {
 		return ListaZombie;
 	}
@@ -118,7 +118,7 @@ public class ComputerAction {
 		ListaZombie = listaZombie;
 	}
 
-
+*/
 
 	public int[] getCiclos() {
 		return ciclos;

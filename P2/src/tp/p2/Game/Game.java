@@ -3,21 +3,25 @@ package tp.p2.Game;
 import tp.p2.Controladores.*;
 import tp.p2.Interface.*;
 import tp.p2.List.*;
+import tp.p2.Plants.GameObject;
 
 
 public class Game {
 	
-	private PeaShooterList psList;
+	/*private PeaShooterList psList;
 	private SunflowerList sfList;
-	private ZombieList zList;
+	private ZombieList zList;*/
+	private List list;
 	
 	private GamePrinter draw;
 	
-	private UserCommand uCommand;
+	//private UserCommand uCommand;
 	
 	private SunCoinsManager scm;
 	
 	private ComputerAction cAction;
+	
+	private GameObject gObject;
 
 	private String level;
 	
@@ -27,21 +31,23 @@ public class Game {
 	private int ciclos;
 	
 	public Game(){
-		this.psList   = new PeaShooterList();
-		this.sfList   = new SunflowerList();
-		this.zList    = new ZombieList();
+	//	this.psList   = new PeaShooterList();
+	//	this.sfList   = new SunflowerList();
+	//	this.zList    = new ZombieList();
+		this.list	  = new List();
 		this.draw     = new GamePrinter(this);
-		this.uCommand = new UserCommand(this);
+	//	this.uCommand = new UserCommand(this);
 		this.scm      = new SunCoinsManager();
-		this.cAction  = new ComputerAction(this.zList);
+		this.gObject = new GameObject();
+		//this.cAction  = new ComputerAction(this.zList);
 		
 		this.ciclos= 0;
 	}
 
 	public void reiniciar() {
-		this.psList.setNumElem(0);
-		this.sfList.setNumElem(0);
-		this.zList.setNumElem(0);
+	//	this.psList.setNumElem(0);
+	//	this.sfList.setNumElem(0);
+	//	this.zList.setNumElem(0);
 		
 		
 		
@@ -52,12 +58,17 @@ public class Game {
 		this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
 	}
 
-	public boolean reconocedorComandos(String comando) {
+	/*public boolean reconocedorComandos(String comando) {
 		return this.uCommand.reconocedor(comando);
+	}*/
+	public boolean reconocedorPlantas(String Planta, int posX, int posY) {
+		//return this.uCommand.ReconocedorPlanta(Planta, posX, posY);
+		return this.addPlant(Planta, posX, posY);
 	}
 
+
 	public void updateGame() {
-		for(int i = 0; i < this.sfList.getNumElem();i++)
+	/*	for(int i = 0; i < this.sfList.getNumElem();i++)
 		{
 			if (this.sfList.update(this.ciclos, i))
 			{
@@ -99,11 +110,11 @@ public class Game {
 			}
 		}
 		this.cAction.Insertar(this.ciclos);
-		this.ciclos++;
+		this.ciclos++;*/
 	}
 
 	public String obtenerPieza(int posX, int posY) {
-		if (this.sfList.contains(posX, posY))
+		/*if (this.sfList.contains(posX, posY))
 		{
 			return "S["+ this.sfList.getPlantHP(posX, posY) + "]"; 
 		}
@@ -114,7 +125,7 @@ public class Game {
 		else if (this.zList.contains(posX, posY))
 		{
 			return "Z["+ this.zList.getZombieHP(posX, posY) + "]"; 
-		}
+		}*/
 		return "    ";//vacio
 	}
 
@@ -125,7 +136,16 @@ public class Game {
 	public void setDraw(GamePrinter draw) {
 		this.draw = draw;
 	}
-
+	public boolean addPlant(String planta, int posX, int posY)
+	{
+		GameObject o = this.gObject.parsePlant(planta);
+		if(o != null)
+		{
+			this.list.insert(posX, posY, this.ciclos, o);
+			return true;
+		}
+		return false;
+	}/*
 	public boolean addSunflower(int posX, int posY) {
 		if (this.scm.getSunCoins() >= this.sfList.getSfAux().getCost())
 		{
@@ -152,10 +172,10 @@ public class Game {
 		}
 		return false;
 	}
-	/*public void addZombie(int posX, int posY)
+	public void addZombie(int posX, int posY)
 	{
 		this.zList.insert(posX, posY, this.ciclos);
-	}*/
+	}
 
 	
 	
@@ -201,7 +221,7 @@ public class Game {
 
 	public void setuCommand(UserCommand uCommand) {
 		this.uCommand = uCommand;
-	}
+	}*/
 
 	public SunCoinsManager getScm() {
 		return scm;
@@ -253,28 +273,24 @@ public class Game {
 		}
 		return false;
 	}
-	public boolean lose()
-	{
-		for(int i = 0; i < this.zList.getNumElem();i++)
-		{
-			if(this.zList.contains(this.zList.getListSZ()[i].getPosX(), 0))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
 
 	public void genSemRandom() {
-		this.semilla=this.cAction.semillaRandom();
+//		this.semilla=this.cAction.semillaRandom();
+		this.semilla = 4;
 		
 	}
 
 	public boolean isFinished() {
-		// TODO Auto-generated method stub
+		/*if(this.cAction.getZombiesRestantes()==0)
+		{
+			return true;
+		}
+		else if(this.zList.lose())
+		{
+			return true;
+		}*/
 		return false;
 	}
-	
 	
 	 
 }

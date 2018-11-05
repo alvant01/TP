@@ -24,92 +24,55 @@ public class Controller {
 	{
 		boolean noPrint;
 		boolean exit = false;
+		//game.getcAction().setZombiesRestantes(4);
 		while (!game.isFinished() && !exit) {
-			printGame();
+		//	printGame();
 			noPrint = false;
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);
 			if (command != null) {
-			command.execute(game, this);
+				command.execute(game, this);
 			}
 			else {
 			System.err.println("Comando no reconocido");
 			setNoPrintGameState();
 			}
 		}
-
-		/*
-		boolean end = false;
-		this.game.InicializarZombies();
-		this.game.pintarTablero();
-		String comando = menuCommands();
-		String com[] = comando.split(" ");
-		
-		while (!(com[0].toLowerCase().equals("exit")) && !(com[0].toUpperCase().equals("E")) && !end)
-		{
-			if (com[0].toLowerCase().equals("reset") || com[0].toUpperCase().equals("R"))
-			{
-				this.game.reiniciar();
-				this.game.pintarTablero();
-				System.out.print("Command > ");
-				comando = this.in.next();
-			}
-			while(!this.game.reconocedorComandos(comando))
-			{
-				this.in.reset();
-				comando = this.in.nextLine();
-			}  
-			this.game.updateGame();
-			this.game.pintarTablero();
-			if (this.game.win())
-			{
-				System.out.println("Player wins");
-				end = true;
-			}
-			else if (this.game.lose())
-			{
-				System.out.println("Zombies win");
-				end = true;
-			}
-			else
-			{
-				System.out.print("Command > ");
-				this.in.reset();
-				comando = this.in.nextLine();
-				com = comando.split(" ");
-			}	
-		}*/
 	}
 	
-	private void setNoPrintGameState() {
+	public void setNoPrintGameState() {
 		// TODO Auto-generated method stub
 		
 	}
 
-
+	/*public String obtenerPlanta()
+	{
+	}*/
 
 	public void printGame()
-	{}
+	{
+		this.game.pintarTablero();
+	}
 	
 	public String menuCommands()
 	{
 		String comando;
 		System.out.print("Command > ");
-		comando = this.in.nextLine();
+		comando = this.scanner.nextLine();
 		//this.in.reset();
 		return comando;
 		
 	}
 	
-	public Scanner getIn() {
-		return in;
+	public Scanner getScanner() {
+		return this.scanner;
 	}
 
 
 
-	public void setIn(Scanner in) {
-		this.in = in;
+	public void setScanner(Scanner in) {
+		this.scanner = in;
 	}
 
 
@@ -118,14 +81,14 @@ public class Controller {
 		String level;
 		
 		System.out.print("Nivel: ");
-		level = this.in.nextLine();
+		level = this.scanner.nextLine();
 		this.game.setLevel(level);
 		System.out.print("Semilla?(y/n):");
-		String response = this.in.nextLine().toLowerCase();
+		String response = this.scanner.nextLine().toLowerCase();
 		if(response.equals("y"))
 		{
 			System.out.print("Semilla: ");
-			this.game.setSemilla(this.in.nextInt());
+			this.game.setSemilla(this.scanner.nextInt());
 		}
 		else
 		{

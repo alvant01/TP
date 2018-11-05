@@ -101,5 +101,15 @@ public class PeaShooter extends Plant {
 	public void setCicloI(int cicloI) {
 		this.cicloI = cicloI;
 	}
+
+
+	@Override
+	public Plant parse(String planta) {
+		if(planta.toLowerCase().equals("p") ||planta.toLowerCase().equals("peashooter"))
+		{
+			return this;
+		}
+		return null;
+	}
 	
 }

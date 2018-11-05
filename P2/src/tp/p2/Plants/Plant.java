@@ -1,6 +1,6 @@
 package tp.p2.Plants;
 
-public abstract class Plant {
+public abstract class Plant extends GameObject {
 
 	
 	private int health;
@@ -16,5 +16,7 @@ public abstract class Plant {
 	public Plant() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public abstract Plant parse(String planta);
 
 }

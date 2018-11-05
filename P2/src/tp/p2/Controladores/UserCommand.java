@@ -1,4 +1,4 @@
-package tp.p2.Controladores;
+/*package tp.p2.Controladores;
 
 import tp.p2.Game.Game;
 
@@ -15,7 +15,7 @@ public class UserCommand {
 	}
 	
 	
-	public boolean reconocedor(String command)
+	/*public boolean reconocedor(String command)
 	{
 		String comUser[] = command.split(" ");
 
@@ -118,4 +118,4 @@ public class UserCommand {
 		return p;
 		
 	}
-}
+}*/

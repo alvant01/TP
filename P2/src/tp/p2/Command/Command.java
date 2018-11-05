@@ -24,4 +24,25 @@ public abstract class Command {
 	{
 		return " " + commandText + ": " + helpText;
 	}
+	
+	
+	
+	
+	
+	
+	public String getHelpText() {
+		return helpText;
+	}
+	public void setHelpText(String helpText) {
+		this.helpText = helpText;
+	}
+	public String getCommandText() {
+		return commandText;
+	}
+	public void setCommandText(String commandText) {
+		this.commandText = commandText;
+	}
+	public String getCommandName() {
+		return commandName;
+	}
 }
