@@ -3,6 +3,11 @@ package tp.p2.Game;
 import tp.p2.Controladores.*;
 import tp.p2.Interface.*;
 import tp.p2.List.*;
+import tp.p2.Plants.GameObject;
+import tp.p2.Plants.Plant;
+import tp.p2.Plants.TipoPlanta;
+import tp.p2.Factory.*;
+import tp.p2.Plants.*;
 
 
 public class Game {
@@ -13,6 +18,8 @@ public class Game {
 	private List list;
 	
 	private GamePrinter draw;
+	
+	private PlantFactory fabricarPlanta;
 	
 	//private UserCommand uCommand;
 	
@@ -38,6 +45,8 @@ public class Game {
 	//	this.uCommand = new UserCommand(this);
 		this.scm      = new SunCoinsManager();
 		this.gObject = new GameObject();
+		this.fabricarPlanta = new PlantFactory();
+
 		//this.cAction  = new ComputerAction(this.zList);
 		
 		this.ciclos= 0;
@@ -135,16 +144,26 @@ public class Game {
 	public void setDraw(GamePrinter draw) {
 		this.draw = draw;
 	}
+
 	public boolean addPlant(String planta, int posX, int posY)
 	{
 		//Llamar factory 
+		if (!this.list.contains()){
+			Plant o  = this.fabricarPlanta.creaPlanta(planta);
+			this.list.insert(posX, posY, this.ciclos, o);
+			return true;
+		}
+		return false;
+		
+		
+		/*
 		GameObject o = this.gObject.parsePlant(planta);
 		if(o != null)
 		{
 			this.list.insert(posX, posY, this.ciclos, o);
 			return true;
 		}
-		return false;
+		return false;*/
 	}/*
 	public boolean addSunflower(int posX, int posY) {
 		if (this.scm.getSunCoins() >= this.sfList.getSfAux().getCost())

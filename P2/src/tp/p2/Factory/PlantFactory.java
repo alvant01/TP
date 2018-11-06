@@ -1,21 +1,30 @@
 package tp.p2.Factory;
 
-import tp.p2.Plants.Plant;
+import tp.p2.Plants.*;
 
 public class PlantFactory {
-
 	
+	//modificar
+	public Plant creaPlanta(TipoPlantas planta){
+		
+		if (planta == TipoPlantas.Nuez){
+			return new Nuez();
+		}
+		
+		else if (planta == TipoPlantas.PeaShooter){
+			return new PeaShooter();
+		}
+		
+		else if (planta == TipoPlantas.Petacereza){
+			return new Petacereza();
+		}
+		
+		else if (planta == TipoPlantas.Sunflower){
+			return new Sunflower();
+		}
+		
+		return null;
+		
+	}
 	
-	public PlantFactory() {
-		// TODO Auto-generated constructor stub
-	}
-	private static Plant[] availablePlants = {
-	};
-	public static Plant getPlant(String plantName){
-		return null;
-
-	}
-	public static String listOfAvilablePlants() {
-		return null;
-	}
 }
