@@ -3,7 +3,6 @@ package tp.p2.Game;
 import tp.p2.Controladores.*;
 import tp.p2.Interface.*;
 import tp.p2.List.*;
-import tp.p2.Plants.GameObject;
 
 
 public class Game {
@@ -55,7 +54,7 @@ public class Game {
 
 	public void pintarTablero() {
 		
-		this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
+	//	this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
 	}
 
 	/*public boolean reconocedorComandos(String comando) {
@@ -138,6 +137,7 @@ public class Game {
 	}
 	public boolean addPlant(String planta, int posX, int posY)
 	{
+		//Llamar factory 
 		GameObject o = this.gObject.parsePlant(planta);
 		if(o != null)
 		{
@@ -281,14 +281,14 @@ public class Game {
 	}
 
 	public boolean isFinished() {
-		/*if(this.cAction.getZombiesRestantes()==0)
+		if(this.cAction.getZombiesRestantes()==0)
 		{
 			return true;
 		}
-		else if(this.zList.lose())
+		else if(this.list.lose())
 		{
 			return true;
-		}*/
+		}
 		return false;
 	}
 	

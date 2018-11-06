@@ -15,7 +15,7 @@ public class CommandParser {
 
 	public CommandParser() 
 	{
-		this.availableCommands = new Command[6];
+		CommandParser.availableCommands = new Command[6];
 	}
 	public static Command parseCommand(String[ ] commandWords, Controller controller) 
 	{

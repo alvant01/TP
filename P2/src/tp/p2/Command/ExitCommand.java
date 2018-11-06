@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		// TODO Auto-generated method stub
+		//game.get
 
 	}
 

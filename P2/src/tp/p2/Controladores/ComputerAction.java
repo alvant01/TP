@@ -94,7 +94,6 @@ public class ComputerAction {
 		
 		Random rd = new Random(semilla);
 		posX = rd.nextInt(4);//Esta siempre es 2
-	//4,8,18
 		for (int i=0; i < this.numZomGen;i++ ){
 			posX = rd.nextInt(4);
 			// recorro el arreglo, si el ciclo en el que esta corresponde

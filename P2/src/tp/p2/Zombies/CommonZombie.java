@@ -1,8 +1,7 @@
 package tp.p2.Zombies;
 
-import tp.p2.Plants.GameObject;
 
-public class CommonZombie extends GameObject {
+public class CommonZombie extends Zombie {
 	private int health;
 	private String behaviour;
 	private int damage;
@@ -101,5 +100,13 @@ public class CommonZombie extends GameObject {
 
 	public void setFrecuency(int frecuency) {
 		this.frecuency = frecuency;
+	}
+
+
+	@Override
+	public Zombie parse(int zombie) {
+		if(zombie == 1)
+			return this;
+		return null;
 	}
 }

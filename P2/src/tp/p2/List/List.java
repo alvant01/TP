@@ -2,9 +2,6 @@ package tp.p2.List;
 
 import java.util.Arrays;
 
-import tp.p2.Plants.GameObject;
-import tp.p2.Plants.Sunflower;
-
 public class List {
 
 	private GameObject[] list;
@@ -23,7 +20,8 @@ public class List {
 	//String [] array = (String []) arrayOrigen.clone()
 	public void redimensionar()
 	{
-		this.list = Arrays.copyOf(this.list, this.tamInicio*2);//redimesionar
+		this.list = Arrays.copyOf(this.list, this.numElem + (this.tamInicio*2));//redimesionar
+		this.numElem = this.numElem + (this.tamInicio*2);
 	}
 	
 	public void insert(int posX, int posY,int ciclo, GameObject o)
@@ -40,7 +38,6 @@ public class List {
 
 	public GameObject getObjectAux() {
 		return objectAux;
-		
 	}
 
 	public GameObject[] getList() {
@@ -69,5 +66,14 @@ public class List {
 
 	public void setObjectAux(GameObject objectAux) {
 		this.objectAux = objectAux;
+	}
+
+	public boolean lose() {
+		for(int i = 0; i < this.numElem; i++)
+		{
+			if(this.list[i].getPosX() == 0)
+			{return true;}
+		}
+		return false;
 	}
 }

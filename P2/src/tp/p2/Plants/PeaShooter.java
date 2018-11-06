@@ -111,5 +111,18 @@ public class PeaShooter extends Plant {
 		}
 		return null;
 	}
+
+
+	@Override
+	public int getSunGenerator() {
+		// Do nothing herency fault
+		return 0;
+	}
+
+
+	@Override
+	public void setSunGenerator(int sunGenerator) {
+		// Do nothing herency fault
+	}
 	
 }

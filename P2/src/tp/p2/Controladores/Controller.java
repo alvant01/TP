@@ -22,11 +22,11 @@ public class Controller {
 	
 	public void run()
 	{
-		boolean noPrint;
+		boolean noPrint = true;
 		boolean exit = false;
 		//game.getcAction().setZombiesRestantes(4);
 		while (!game.isFinished() && !exit) {
-		//	printGame();
+			printGame();
 			noPrint = false;
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
