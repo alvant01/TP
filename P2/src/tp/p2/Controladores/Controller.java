@@ -5,6 +5,7 @@ import java.util.Scanner;
 import tp.p2.Command.Command;
 import tp.p2.Command.CommandParser;
 import tp.p2.Game.Game;
+import tp.p2.Printers.*;
 
 public class Controller {
 
@@ -12,10 +13,13 @@ public class Controller {
 	
 	private Scanner scanner;
 	
+	private GamePrinter gPrinter;
+	
 	public Controller(Game g)
 	{
 		this.game = g;
 		this.scanner = new Scanner(System.in);
+		this.gPrinter = new GamePrinter(this.game);
 	}
 	
 	
@@ -52,7 +56,7 @@ public class Controller {
 
 	public void printGame()
 	{
-		this.game.pintarTablero();
+		this.gPrinter.printGame(this.game.getSemilla(), this.game.getCiclos(), this.game.getScm().getSunCoins(), 0);
 	}
 	
 	public String menuCommands()

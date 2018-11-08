@@ -11,13 +11,14 @@ public class ResetCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		// TODO Auto-generated method stub
+		game.reiniciar();
 
 	}
 
 	@Override
 	public Command parse(String[] commandWords, Controller controller) {
-		// TODO Auto-generated method stub
+		if(commandWords[0].toLowerCase().equals("reset") || commandWords[0].toLowerCase().equals("r"))
+			return this;
 		return null;
 	}
 

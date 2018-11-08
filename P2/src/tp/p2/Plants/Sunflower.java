@@ -13,6 +13,17 @@ public class Sunflower extends Plant
 	private int cicloI;
 	private int sunGenerator;
 	
+	public Sunflower(int posX, int posY)
+	{
+		this.health= 1;
+		this.cost = 20;
+		this.behaviour = "Genera soles";
+		this.damage = 0;
+		this.frecuency = 2;
+		this.sunGenerator = 10;
+		this.posX = posX;
+		this.posY = posY;
+	}
 	public Sunflower()
 	{
 		this.health= 1;

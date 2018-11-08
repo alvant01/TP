@@ -6,8 +6,8 @@ import tp.p2.Zombies.*;
 public class GameObject {
 	
 	public static Plant[] plantas = {
-			new PeaShooter(),
 			new Sunflower(),
+			new PeaShooter(),
 			new Nuez(),
 			new Petacereza(),
 	};
@@ -38,7 +38,12 @@ public class GameObject {
 	}
 	public GameObject parseZombie(int zombie)
 	{
-		if(zombies[0].parse(zombie))
+		if(zombies[0].parse(zombie) != null)
+		{
+			this.zombie = zombies[0];
+			return zombies[0];
+		}
+		return null;
 	}
 	
 	public GameObject parsePlant(String planta) {
@@ -59,5 +64,11 @@ public class GameObject {
 	}
 	public static void setPlantas(Plant[] plantas) {
 		GameObject.plantas = plantas;
+	}
+	public int getPosY() {
+		if(planta != null)
+			return planta.getPosY();
+		else
+			return zombie.getPosY();
 	}
 }

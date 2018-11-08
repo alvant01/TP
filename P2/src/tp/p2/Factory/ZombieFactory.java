@@ -6,18 +6,18 @@ import tp.p2.Zombies.*;
 public class ZombieFactory {
 	
 	//Modificar
-	public Zombie creaZombie(TipoZombies zombie, int posx, int posy){
+	public Zombie creaZombie(int zombie, int posX, int posY){
 		
-		if (zombie == TipoZombies.CommonZombie){
-			return new CommonZombie();
+		if (zombie == 1){
+			return new CommonZombie(posX, posY);
 		}
 		
-		else if (zombie == TipoZombies.Caracubo){
-			return new Caracubo();
+		else if (zombie == 2){
+			return new BucketZombie(posX, posY);
 		}
 		
-		else if (zombie == TipoZombies.Deportista){
-			return new Deportista();
+		else if (zombie == 3){
+			return new FastZombie(posX, posY);
 		}
 		
 		return null;

@@ -11,6 +11,15 @@ public class Petacereza extends Plant {
 	private int posY;
 	private int cicloI;
 	
+	public Petacereza(int posX, int posY) {
+		this.health = 2;
+		this.cost = 50;
+		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daño en area";
+		this.damage = 10;
+		this.frecuency = 2;
+		this.posX = posX;
+		this.posY = posY;
+	}
 	public Petacereza() {
 		this.health = 2;
 		this.cost = 50;

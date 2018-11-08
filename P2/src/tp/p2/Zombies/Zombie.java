@@ -4,7 +4,8 @@ import tp.p2.List.GameObject;
 
 public abstract class Zombie extends GameObject {
 
-	public Zombie() {}
+	public Zombie() {
+	}
 	
 		public abstract Zombie parse(int zombie);
 

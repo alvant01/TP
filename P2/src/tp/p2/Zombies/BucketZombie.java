@@ -11,13 +11,22 @@ public class BucketZombie extends Zombie {
 	private int frecuency;
 	private int cicloZom;
 	
+	public BucketZombie(int posX, int posY) {
+		this.health    	= 8;
+		this.behaviour 	= "Un zombie armado. Lento pero resistente";
+		this.damage 	= 1;
+		this.velocity 	= 1;
+		this.frecuency 	= 4;
+		this.posX = posX;
+		this.posY = posY;
+	}
 	public BucketZombie() {
 		this.health    	= 8;
 		this.behaviour 	= "Un zombie armado. Lento pero resistente";
 		this.damage 	= 1;
 		this.velocity 	= 1;
 		this.frecuency 	= 4;
-	}
+		}
 
 	@Override
 	public Zombie parse(int zombie) {

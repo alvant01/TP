@@ -12,14 +12,25 @@ public class CommonZombie extends Zombie {
 	private int cicloZom;
 	
 	
-	public CommonZombie()
+	public CommonZombie(int posX, int posY)
 	{
 		this.health= 5;
 		this.behaviour = "Avanza y come plantas";
 		this.damage = 1;
 		this.velocity = 1;
 		this.frecuency = 2;
+		this.posX = posX;
+		this.posY = posY;
 		
+	}
+
+
+	public CommonZombie() {
+		this.health= 5;
+		this.behaviour = "Avanza y come plantas";
+		this.damage = 1;
+		this.velocity = 1;
+		this.frecuency = 2;
 	}
 
 

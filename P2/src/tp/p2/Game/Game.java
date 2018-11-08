@@ -1,31 +1,27 @@
 package tp.p2.Game;
 
 import tp.p2.Controladores.*;
-import tp.p2.Interface.*;
 import tp.p2.List.*;
-import tp.p2.Plants.GameObject;
 import tp.p2.Plants.Plant;
-import tp.p2.Plants.TipoPlanta;
+import tp.p2.Printers.GamePrinter;
+import tp.p2.Zombies.Zombie;
 import tp.p2.Factory.*;
-import tp.p2.Plants.*;
 
 
 public class Game {
-	
-	/*private PeaShooterList psList;
-	private SunflowerList sfList;
-	private ZombieList zList;*/
 	private List list;
 	
 	private GamePrinter draw;
 	
 	private PlantFactory fabricarPlanta;
 	
+	private ZombieFactory fabricarZombie;
+	
 	//private UserCommand uCommand;
 	
 	private SunCoinsManager scm;
 	
-	private ComputerAction cAction;
+	private ZombieManager zManager;
 	
 	private GameObject gObject;
 
@@ -37,17 +33,13 @@ public class Game {
 	private int ciclos;
 	
 	public Game(){
-	//	this.psList   = new PeaShooterList();
-	//	this.sfList   = new SunflowerList();
-	//	this.zList    = new ZombieList();
-		this.list	  = new List();
-		this.draw     = new GamePrinter(this);
-	//	this.uCommand = new UserCommand(this);
-		this.scm      = new SunCoinsManager();
-		this.gObject = new GameObject();
+		this.list	  		= new List();
+		this.draw    		= new GamePrinter(this);
+		this.scm      		= new SunCoinsManager();
+		this.gObject 		= new GameObject();
 		this.fabricarPlanta = new PlantFactory();
-
-		//this.cAction  = new ComputerAction(this.zList);
+		this.fabricarZombie = new ZombieFactory();
+		this.zManager		= new ZombieManager();
 		
 		this.ciclos= 0;
 	}
@@ -65,15 +57,6 @@ public class Game {
 		
 	//	this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
 	}
-
-	/*public boolean reconocedorComandos(String comando) {
-		return this.uCommand.reconocedor(comando);
-	}*/
-	public boolean reconocedorPlantas(String Planta, int posX, int posY) {
-		//return this.uCommand.ReconocedorPlanta(Planta, posX, posY);
-		return this.addPlant(Planta, posX, posY);
-	}
-
 
 	public void updateGame() {
 	/*	for(int i = 0; i < this.sfList.getNumElem();i++)
@@ -137,6 +120,73 @@ public class Game {
 		return "    ";//vacio
 	}
 
+	public void InicializarZombies()
+	{
+		this.zManager.Generador(this.semilla, this.level);
+	}
+	
+	public boolean win()
+	{
+		if(this.zManager.getZombiesRestantes() == 0)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void genSemRandom() {
+//		this.semilla=this.cAction.semillaRandom();
+		this.semilla = 4;
+		
+	}
+
+	public boolean isFinished() {
+		if(this.zManager.getZombiesRestantes()==0)
+		{
+			return true;
+		}
+		else if(this.list.lose())
+		{
+			return true;
+		}
+		return false;
+	}
+	public boolean addPlant(String planta, int posX, int posY)
+	{
+		//Llamar factory 
+		if (!this.list.contains(posX, posY)){
+			Plant o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
+			this.list.insert(this.ciclos, o);
+			return true;
+		}
+		return false;
+	}
+	public boolean addZombie(int posX, int posY)
+	{
+		int zombie;
+		if (!this.list.contains(posX, posY)){
+			
+			Zombie o  = this.fabricarZombie.creaZombie(this.zManager.zombieType(), posX, posY);
+			this.list.insert(this.ciclos, o);
+			return true;
+		}
+		return false;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters y Setters
+	
+
 	public GamePrinter getDraw() {
 		return draw;
 	}
@@ -144,103 +194,6 @@ public class Game {
 	public void setDraw(GamePrinter draw) {
 		this.draw = draw;
 	}
-
-	public boolean addPlant(String planta, int posX, int posY)
-	{
-		//Llamar factory 
-		if (!this.list.contains()){
-			Plant o  = this.fabricarPlanta.creaPlanta(planta);
-			this.list.insert(posX, posY, this.ciclos, o);
-			return true;
-		}
-		return false;
-		
-		
-		/*
-		GameObject o = this.gObject.parsePlant(planta);
-		if(o != null)
-		{
-			this.list.insert(posX, posY, this.ciclos, o);
-			return true;
-		}
-		return false;*/
-	}/*
-	public boolean addSunflower(int posX, int posY) {
-		if (this.scm.getSunCoins() >= this.sfList.getSfAux().getCost())
-		{
-			this.sfList.insert(posX, posY, this.ciclos);
-			this.scm.setSunCoins(this.scm.getSunCoins() - this.sfList.getSfAux().getCost());
-			return true;
-		}
-		else
-		{
-			System.out.println("No tienes suficientes soles");
-		}
-		return false;
-	}
-	public boolean addPeaShooter(int posX, int posY) {
-		if (this.scm.getSunCoins() >= this.psList.getPsAux().getCost())
-		{
-			this.psList.insert(posX, posY, this.ciclos);
-			this.scm.setSunCoins(this.scm.getSunCoins() - this.psList.getPsAux().getCost());
-			return true;
-		}
-		else
-		{
-			System.out.println("No tienes suficientes soles");
-		}
-		return false;
-	}
-	public void addZombie(int posX, int posY)
-	{
-		this.zList.insert(posX, posY, this.ciclos);
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public PeaShooterList getPsList() {
-		return psList;
-	}
-
-	public void setPsList(PeaShooterList psList) {
-		this.psList = psList;
-	}
-
-	public SunflowerList getSfList() {
-		return sfList;
-	}
-
-	public void setSfList(SunflowerList sfList) {
-		this.sfList = sfList;
-	}
-
-	public ZombieList getzList() {
-		return zList;
-	}
-
-	public void setzList(ZombieList zList) {
-		this.zList = zList;
-	}
-
-	public UserCommand getuCommand() {
-		return uCommand;
-	}
-
-	public void setuCommand(UserCommand uCommand) {
-		this.uCommand = uCommand;
-	}*/
 
 	public SunCoinsManager getScm() {
 		return scm;
@@ -258,15 +211,6 @@ public class Game {
 		this.ciclos = ciclos;
 	}
 
-
-	public ComputerAction getcAction() {
-		return cAction;
-	}
-
-	public void setcAction(ComputerAction cAction) {
-		this.cAction = cAction;
-	}
-
 	public int getSemilla() {
 		return semilla;
 	}
@@ -278,38 +222,5 @@ public class Game {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	
-	public void InicializarZombies()
-	{
-		this.cAction.Generador(this.semilla, this.level);
-	}
-	
-	public boolean win()
-	{
-		if(this.cAction.getZombiesRestantes() == 0)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public void genSemRandom() {
-//		this.semilla=this.cAction.semillaRandom();
-		this.semilla = 4;
-		
-	}
-
-	public boolean isFinished() {
-		if(this.cAction.getZombiesRestantes()==0)
-		{
-			return true;
-		}
-		else if(this.list.lose())
-		{
-			return true;
-		}
-		return false;
-	}
-	
 	 
 }

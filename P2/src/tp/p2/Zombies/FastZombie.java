@@ -12,6 +12,15 @@ public class FastZombie extends Zombie {
 	private int cicloZom;
 	
 
+	public FastZombie(int posX, int posY) {
+		this.health 	= 2;
+		this.behaviour 	= "Zombie mas rapido pero mas debil";
+		this.damage 	= 1;
+		this.velocity 	= 1;
+		this.frecuency 	= 1;
+		this.posX = posX;
+		this.posY = posY;
+	}
 	public FastZombie() {
 		this.health 	= 2;
 		this.behaviour 	= "Zombie mas rapido pero mas debil";
@@ -19,7 +28,6 @@ public class FastZombie extends Zombie {
 		this.velocity 	= 1;
 		this.frecuency 	= 1;
 	}
-
 	@Override
 	public Zombie parse(int zombie) {
 		// TODO Auto-generated method stub

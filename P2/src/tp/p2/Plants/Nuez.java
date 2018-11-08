@@ -11,6 +11,17 @@ public class Nuez extends Plant {
 	private int posY;
 	private int cicloI;
 	
+	public Nuez(int posX, int posY) {
+		this.health = 10;
+		this.cost = 50;
+		this.behaviour = "Planta resistente ideal para proteger";
+		this.damage = 0;
+		this.frecuency = 0;
+		this.posX = posX;
+		this.posY = posY;
+	}
+
+	
 	public Nuez() {
 		this.health = 10;
 		this.cost = 50;
@@ -18,7 +29,6 @@ public class Nuez extends Plant {
 		this.damage = 0;
 		this.frecuency = 0;
 	}
-
 	@Override
 	public Plant parse(String planta) {
 		if(planta.toLowerCase().equals("n")|| planta.toLowerCase().equals("nuez"))

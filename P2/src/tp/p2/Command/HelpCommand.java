@@ -12,13 +12,18 @@ public class HelpCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Add <plant> <x> <y>: Adds a plant in position x, y.\r\n" + 
+				"List: Prints the list of available plants.\r\n" + 
+				"Reset: Starts a new game.\r\n" + 
+				"Help: Prints this help message.\r\n" + 
+				"Exit: Terminates the program.\r\n" + 
+				"none: Skips cycle.");
 	}
 
 	@Override
 	public Command parse(String[] commandWords, Controller controller) {
-		// TODO Auto-generated method stub
+		if(commandWords[0].toLowerCase().equals("help") || commandWords[0].toLowerCase().equals("h"))
+			return this;
 		return null;
 	}
 

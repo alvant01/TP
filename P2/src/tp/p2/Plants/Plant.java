@@ -9,7 +9,7 @@ public abstract class Plant extends GameObject {
 	
 	public abstract Plant parse(String planta);
 
-	
+	 
 	public abstract void setPosX(int posX);
 	
 	public abstract int getPosX();

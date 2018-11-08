@@ -24,14 +24,12 @@ public class List {
 		this.numElem = this.numElem + (this.tamInicio*2);
 	}
 	
-	public void insert(int posX, int posY,int ciclo, GameObject o)
+	public void insert(int ciclo, GameObject o)
 	{
 		//creo un nuevo objeto
 		this.list[this.numElem] = o;
 		
 		//posicionamiento
-		this.list[this.numElem].setPosX(posX);
-		this.list[this.numElem].setPosX(posY);
 		this.list[this.numElem].setCicloI(ciclo);
 		this.numElem++;
 	}
@@ -75,5 +73,19 @@ public class List {
 			{return true;}
 		}
 		return false;
+	}
+
+	public boolean contains(int posX, int posY) {
+		for(int i  = 0; i < this.numElem; i++)
+		{
+			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
+				return true;
+		}
+		return false;
+	}
+
+	public String getPieza(int posX, int posY) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

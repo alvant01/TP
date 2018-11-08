@@ -13,6 +13,16 @@ public class PeaShooter extends Plant {
 	private int cicloI;
 	
 	
+	public PeaShooter(int posX, int posY)
+	{
+		this.health= 3;
+		this.cost = 50;
+		this.behaviour = "Dispara  proyectiles";
+		this.damage = 1;
+		this.frecuency = 1;
+		this.posX = posX;
+		this.posY = posY;
+	}
 	public PeaShooter()
 	{
 		this.health= 3;

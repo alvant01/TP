@@ -1,9 +1,11 @@
 package tp.p2.Printers;
 
-public class BoardPrinter {
+public abstract class BoardPrinter {
 
 	public BoardPrinter() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public abstract void encodeGame();
 
 }

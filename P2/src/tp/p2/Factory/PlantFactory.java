@@ -5,22 +5,22 @@ import tp.p2.Plants.*;
 public class PlantFactory {
 	
 	//modificar
-	public Plant creaPlanta(TipoPlantas planta){
+	public Plant creaPlanta(String planta, int posX, int posY){
 		
-		if (planta == TipoPlantas.Nuez){
-			return new Nuez();
+		if (planta.toLowerCase().equals("n")){
+			return new Nuez(posX, posY);
 		}
 		
-		else if (planta == TipoPlantas.PeaShooter){
-			return new PeaShooter();
+		else if (planta.toLowerCase().equals("p")){
+			return new PeaShooter(posX, posY);
 		}
 		
-		else if (planta == TipoPlantas.Petacereza){
-			return new Petacereza();
+		else if (planta.toLowerCase().equals("c")){
+			return new Petacereza(posX, posY);
 		}
 		
-		else if (planta == TipoPlantas.Sunflower){
-			return new Sunflower();
+		else if (planta.toLowerCase().equals("s")){
+			return new Sunflower(posX, posY);
 		}
 		
 		return null;
