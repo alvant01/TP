@@ -2,10 +2,11 @@ package tp.p2.List;
 
 import java.util.Arrays;
 
+import tp.p2.Controladores.SunCoinsManager;
+
 public class List {
 
 	private GameObject[] list;
-	private GameObject objectAux;
 	private int numElem;
 	private int tamInicio;
 	
@@ -13,7 +14,6 @@ public class List {
 	public List() {
 		this.tamInicio = 10;
 		this.list = new GameObject[this.tamInicio];
-		this.objectAux = new GameObject();
 		this.numElem =0;
 	}
 	
@@ -32,10 +32,6 @@ public class List {
 		//posicionamiento
 		this.list[this.numElem].setCicloI(ciclo);
 		this.numElem++;
-	}
-
-	public GameObject getObjectAux() {
-		return objectAux;
 	}
 
 	public GameObject[] getList() {
@@ -62,10 +58,6 @@ public class List {
 		this.tamInicio = tamInicio;
 	}
 
-	public void setObjectAux(GameObject objectAux) {
-		this.objectAux = objectAux;
-	}
-
 	public boolean lose() {
 		for(int i = 0; i < this.numElem; i++)
 		{
@@ -83,9 +75,111 @@ public class List {
 		}
 		return false;
 	}
+	public int containsPosition(int posX, int posY) {
+		for(int i  = 0; i < this.numElem; i++)
+		{
+			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
+				return i;
+		}
+		return -1;
+	}
 
 	public String getPieza(int posX, int posY) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void update(SunCoinsManager scm, int ciclos) {
+		for(int i = 0; i< this.getNumElem();i++)
+		{
+			
+			GameObject obj = this.list[i];
+			if(obj.isPlant())
+			{
+				if(obj.getPlantas()[0] == obj.getPlanta())//sunflower
+				{
+					obj.updateSunflower(scm, ciclos);
+				}
+				else if(obj.getPlantas()[1] == obj.getPlanta())
+				{
+					damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage());
+				}
+				else if(obj.getPlantas()[2] == obj.getPlanta())
+				{
+					//Nothing
+				}
+				else if(obj.getPlantas()[3] == obj.getPlanta())
+				{
+					cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage());
+				}
+			}
+			else
+			{
+				if(contains(obj.getPosX(), obj.getPosY()-1))
+				{
+					if(obj.updateZombie(ciclos))
+						damagePlant(obj.getPosX(),obj.getPosY(), obj.getDamage());
+				}
+				else
+					obj.setPosY(obj.getPosY()-1);
+			}
+		}
+		
+	}
+
+	private void damagePlant(int posX, int posY, int damage) {
+		for(int i = 0 + posY; i < this.numElem; i++)
+		{
+			if(this.list[i].isPlant())
+			{
+				this.list[i].damage(damage);
+				if(this.list[i].getHealth() == 0)
+					eliminar(i);
+			}
+		}
+		
+	}
+
+	private void eliminar(int i) {
+		this.list[i] = null;
+		this.numElem--;
+		for(; i < this.numElem; i++)
+		{
+			this.list[i] = this.list[i+1];
+		}
+		
+	}
+
+	private void cherryExplosion(int posX, int posY, int damage) {
+	int pos;
+	int adjX = -1;
+	int adjY = -1;
+		for(int i = 0; i < 9; i++ )
+		{
+			pos = containsPosition(posX+adjX,posY+adjY);
+			if(pos != -1 && this.list[pos].isZombie())
+			{
+				this.list[pos].damage(damage);
+			}
+			if(adjY == 1)
+			{
+				adjY = -1;
+				adjX++;
+			}
+			else
+				adjY++;
+		}
+	}
+
+	private void damageZombie(int posX, int posY, int damage) {
+		for(int i = 0 + posY; i < this.numElem; i++)
+		{
+			if(this.list[i].isZombie())
+			{
+				this.list[i].damage(damage);
+				if(this.list[i].getHealth() == 0)
+					eliminar(i);
+			}
+		}
 	}
 }

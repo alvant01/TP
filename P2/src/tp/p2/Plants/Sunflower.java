@@ -33,6 +33,22 @@ public class Sunflower extends Plant
 		this.frecuency = 2;
 		this.sunGenerator = 10;
 	}
+	
+	public Plant parse(String planta) {
+		if(planta.toLowerCase().equals("s") ||planta.toLowerCase().equals("sunflower"))
+		{
+			return this;
+		}
+		return null;
+	}
+	
+	public boolean update(int ciclo)
+	{
+		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
+			return true;
+		return false;
+	}
+	
 
 
 	public int getHealth() {
@@ -123,15 +139,4 @@ public class Sunflower extends Plant
 	public void setSunGenerator(int sunGenerator) {
 		this.sunGenerator = sunGenerator;
 	}
-
-
-	@Override
-	public Plant parse(String planta) {
-		if(planta.toLowerCase().equals("s") ||planta.toLowerCase().equals("sunflower"))
-		{
-			return this;
-		}
-		return null;
-	}
-	
 }

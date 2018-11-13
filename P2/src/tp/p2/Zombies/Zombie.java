@@ -8,6 +8,8 @@ public abstract class Zombie extends GameObject {
 	}
 	
 		public abstract Zombie parse(int zombie);
+		
+		public abstract boolean updateZombie(int ciclo);
 
 		
 		public abstract void setPosX(int posX);

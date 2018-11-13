@@ -26,6 +26,7 @@ public class Controller {
 	
 	public void run()
 	{
+		/*
 		boolean noPrint = true;
 		boolean exit = false;
 		//game.getcAction().setZombiesRestantes(4);
@@ -42,7 +43,10 @@ public class Controller {
 			System.err.println("Comando no reconocido");
 			setNoPrintGameState();
 			}
-		}
+		}*/
+		
+		this.game.addPlant("s", 0, 0);
+		this.game.updateGame();
 	}
 	
 	public void setNoPrintGameState() {

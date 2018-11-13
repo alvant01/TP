@@ -28,10 +28,16 @@ public class FastZombie extends Zombie {
 		this.velocity 	= 1;
 		this.frecuency 	= 1;
 	}
-	@Override
 	public Zombie parse(int zombie) {
-		// TODO Auto-generated method stub
+		if(zombie == 2)
+			return this;
 		return null;
+	}
+	public boolean updateZombie(int ciclo)
+	{
+		if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
+			return true;
+		return false;
 	}
 
 	public int getHealth() {

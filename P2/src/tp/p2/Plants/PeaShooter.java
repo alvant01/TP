@@ -31,7 +31,14 @@ public class PeaShooter extends Plant {
 		this.damage = 1;
 		this.frecuency = 1;
 	}
-
+	
+	public Plant parse(String planta) {
+		if(planta.toLowerCase().equals("p") ||planta.toLowerCase().equals("peashooter"))
+		{
+			return this;
+		}
+		return null;
+	}
 
 	public int getHealth() {
 		return health;
@@ -110,16 +117,6 @@ public class PeaShooter extends Plant {
 
 	public void setCicloI(int cicloI) {
 		this.cicloI = cicloI;
-	}
-
-
-	@Override
-	public Plant parse(String planta) {
-		if(planta.toLowerCase().equals("p") ||planta.toLowerCase().equals("peashooter"))
-		{
-			return this;
-		}
-		return null;
 	}
 
 

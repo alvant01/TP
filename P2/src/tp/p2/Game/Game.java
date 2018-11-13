@@ -17,8 +17,6 @@ public class Game {
 	
 	private ZombieFactory fabricarZombie;
 	
-	//private UserCommand uCommand;
-	
 	private SunCoinsManager scm;
 	
 	private ZombieManager zManager;
@@ -37,7 +35,7 @@ public class Game {
 		this.draw    		= new GamePrinter(this);
 		this.scm      		= new SunCoinsManager();
 		this.gObject 		= new GameObject();
-		this.fabricarPlanta = new PlantFactory();
+		this.fabricarPlanta = new PlantFactory(gObject);
 		this.fabricarZombie = new ZombieFactory();
 		this.zManager		= new ZombieManager();
 		
@@ -59,49 +57,8 @@ public class Game {
 	}
 
 	public void updateGame() {
-	/*	for(int i = 0; i < this.sfList.getNumElem();i++)
-		{
-			if (this.sfList.update(this.ciclos, i))
-			{
-				this.scm.addSunCoins(this.sfList.getSfAux().getSunGenerator());
-			}
-		}
-		for(int i = 0; i < this.psList.getNumElem();i++)
-		{
-			if (this.psList.update(this.ciclos, i))
-			{
-				int numZomAux = this.zList.getNumElem();//Salvo el num zombies
-				this.zList.getHurt(this.psList.getPsAux().getDamage(), this.psList.getListSP()[i].getPosX());
-				if (this.zList.getNumElem() != numZomAux)
-				{
-					this.cAction.setZombiesRestantes(this.cAction.getZombiesRestantes()-1);
-				}
-			}
-		}
-		for(int i =0; i < this.zList.getNumElem();i++)
-		{
-			if(this.zList.update(this.ciclos, i))
-			{
-				if(this.sfList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
-				{
-					this.sfList.damageSunflower(this.zList.getZAux().getDamage(),this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1);
-				}
-				else if(this.psList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
-				{
-					this.psList.damagePeaShooter(this.zList.getZAux().getDamage(),this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1);
-				}
-				else if(this.zList.contains(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY()-1))
-				{
-					//do nothing
-				}
-				else
-				{
-					this.zList.avanzar(this.zList.getListSZ()[i].getPosX(),this.zList.getListSZ()[i].getPosY());
-				}
-			}
-		}
-		this.cAction.Insertar(this.ciclos);
-		this.ciclos++;*/
+		
+		this.list.update(this.scm, this.ciclos);
 	}
 
 	public String obtenerPieza(int posX, int posY) {
@@ -155,9 +112,12 @@ public class Game {
 	{
 		//Llamar factory 
 		if (!this.list.contains(posX, posY)){
-			Plant o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
-			this.list.insert(this.ciclos, o);
-			return true;
+			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
+			if(o != null)
+			{
+				this.list.insert(this.ciclos, o);
+				return true;
+			}
 		}
 		return false;
 	}

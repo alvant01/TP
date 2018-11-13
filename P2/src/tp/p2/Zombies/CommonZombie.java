@@ -32,8 +32,17 @@ public class CommonZombie extends Zombie {
 		this.velocity = 1;
 		this.frecuency = 2;
 	}
-
-
+	public Zombie parse(int zombie) {
+		if(zombie == 1)
+			return this;
+		return null;
+	}
+	public boolean updateZombie(int ciclo)
+	{
+		if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
+			return true;
+		return false;
+	}
 	public int getCicloZom() {
 		return this.cicloZom;
 	}
@@ -113,11 +122,5 @@ public class CommonZombie extends Zombie {
 		this.frecuency = frecuency;
 	}
 
-
-	@Override
-	public Zombie parse(int zombie) {
-		if(zombie == 1)
-			return this;
-		return null;
-	}
+	
 }
