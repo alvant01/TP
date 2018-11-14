@@ -13,6 +13,7 @@ public abstract class Plant extends GameObject {
 	private int posY;
 	private int cicloI;
 	private int sunGenerator;
+	private String TipoPlanta;
 
 	public Plant() {
 		// TODO Auto-generated constructor stub
@@ -32,7 +33,10 @@ public abstract class Plant extends GameObject {
 	public abstract int getPosX();
 	
 	public abstract int getHealth();
-
+	
+	public abstract String getTipoPlanta();
+	
+	public abstract void setTipoPlanta(String tipoPlanta);
 
 	public abstract void setHealth(int health);
 

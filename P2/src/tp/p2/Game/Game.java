@@ -61,7 +61,16 @@ public class Game {
 		this.list.update(this.scm, this.ciclos);
 	}
 
+	//Este metodo lo que hace es que imprime el objeto de la posicion x,y
 	public String obtenerPieza(int posX, int posY) {
+		
+		int posList;
+		posList = this.list.containsPosition(posX, posY);
+		
+		if (posList != -1){
+			return this.list.getList()[posList].getString();
+		}
+	
 		/*if (this.sfList.contains(posX, posY))
 		{
 			return "S["+ this.sfList.getPlantHP(posX, posY) + "]"; 

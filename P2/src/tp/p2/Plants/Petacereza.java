@@ -10,20 +10,24 @@ public class Petacereza extends Plant {
 	private int posX;
 	private int posY;
 	private int cicloI;
+	private String TipoPlanta;
 	
 	public Petacereza(int posX, int posY) {
 		this.health = 2;
 		this.cost = 50;
-		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daño en area";
+		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daï¿½o en area";
 		this.damage = 10;
 		this.frecuency = 2;
 		this.posX = posX;
 		this.posY = posY;
+		this.TipoPlanta = "c";
 	}
+	
+	
 	public Petacereza() {
 		this.health = 2;
 		this.cost = 50;
-		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daño en area";
+		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daï¿½o en area";
 		this.damage = 10;
 		this.frecuency = 2;
 	}
@@ -98,11 +102,18 @@ public class Petacereza extends Plant {
 	public void setCicloI(int cicloI) {
 		this.cicloI = cicloI;
 	}
+	
+	public String getTipoPlanta() {
+		return TipoPlanta;
+	}
+	public void setTipoPlanta(String tipoPlanta) {
+		this.TipoPlanta = tipoPlanta;
+	}
 
 	@Override
 	public int getSunGenerator() {
 		//Do nothing
-		//this function shoudn´t be called
+		//this function shoudnï¿½t be called
 		return 0;
 	}
 

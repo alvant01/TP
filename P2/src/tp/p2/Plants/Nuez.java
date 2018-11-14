@@ -10,6 +10,7 @@ public class Nuez extends Plant {
 	private int posX;
 	private int posY;
 	private int cicloI;
+	private String TipoPlanta;
 	
 	public Nuez(int posX, int posY) {
 		this.health = 10;
@@ -19,9 +20,20 @@ public class Nuez extends Plant {
 		this.frecuency = 0;
 		this.posX = posX;
 		this.posY = posY;
+		this.TipoPlanta = "N";
 	}
 
 	
+	public String getTipoPlanta() {
+		return TipoPlanta;
+	}
+
+
+	public void setTipoPlanta(String tipoPlanta) {
+		this.TipoPlanta = tipoPlanta;
+	}
+
+
 	public Nuez() {
 		this.health = 10;
 		this.cost = 50;

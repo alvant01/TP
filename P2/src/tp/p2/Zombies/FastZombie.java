@@ -10,6 +10,7 @@ public class FastZombie extends Zombie {
 	private int posY;
 	private int frecuency;
 	private int cicloZom;
+	private String TipoZombie;
 	
 
 	public FastZombie(int posX, int posY) {
@@ -102,6 +103,16 @@ public class FastZombie extends Zombie {
 
 	public void setCicloZom(int cicloZom) {
 		this.cicloZom = cicloZom;
+	}
+	
+	@Override
+	public String getTipoZombie() {
+		return TipoZombie;
+	}
+	
+	@Override
+	public void setTipoZombie(String tipoZombie) {
+		this.TipoZombie = tipoZombie;
 	}
 
 }

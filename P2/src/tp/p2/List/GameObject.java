@@ -153,4 +153,14 @@ public class GameObject {
 	public boolean isZombie() {
 		return this.zombie != null;
 	}
+	public String getString() {
+		if (this.isPlant()){
+			return this.planta.getTipoPlanta() + "[" + this.planta.getHealth() + "]";
+		}
+		else{
+			return this.zombie.getTipoZombie() + "[" + this.zombie.getHealth() + "]";
+		}
+
+		
+	}
 }
