@@ -3,22 +3,23 @@ package tp.p2.Command;
 import tp.p2.Controladores.Controller;
 import tp.p2.Game.Game;
 
-public class ExitCommand extends Command {
+public class PrintModeCommand extends Command {
 
-	public ExitCommand(String commandText, String commandInfo, String helpInfo) {
+	public PrintModeCommand(String commandText, String commandInfo, String helpInfo) {
 		super(commandText, commandInfo, helpInfo);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean execute(Game game, Controller controller) {
-		controller.setExit(true);
+		game.printMode();
 		return false;
 	}
 
 	@Override
 	public Command parse(String[] commandWords, Controller controller) {
-		// TODO Auto-generated method stub
+		if(commandWords[0].toLowerCase().equals("pm") ||commandWords[0].toLowerCase().equals("printMode") )
+			return this;
 		return null;
 	}
 

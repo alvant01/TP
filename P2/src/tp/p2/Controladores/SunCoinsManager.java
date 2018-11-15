@@ -18,5 +18,8 @@ public class SunCoinsManager {
 	{
 		this.sunCoins = this.sunCoins + coins;
 	}
+	public void removeSuncoins(int cost) {
+		this.sunCoins = this.sunCoins - cost;
+	}
 	
 }

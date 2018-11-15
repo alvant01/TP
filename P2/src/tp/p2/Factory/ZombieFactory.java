@@ -25,8 +25,7 @@ private GameObject gObject;
 	
 	//Modificar
 	public GameObject creaZombie(int zombie, int posX, int posY){
-		//this.gObject = new GameObject();
-		
+
 		return parseZombie(zombie, posX, posY);
 	}
 	
@@ -35,23 +34,17 @@ private GameObject gObject;
 		GameObject obj = new GameObject();
 		if(zombies[0].parse(zombie) != null)
 		{
-			obj.setZombie(zombies[0]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setZombie(new CommonZombie(posX, posY));
 			return obj;
 		}
 		else if(zombies[1].parse(zombie) != null)
 		{
-			obj.setZombie(zombies[2]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setZombie(new BucketZombie(posX, posY));
 			return obj;
 		}
 		else if(zombies[2].parse(zombie) != null)
 		{
-			obj.setZombie(zombies[3]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setZombie(new FastZombie(posX, posY));
 			return obj;
 		}
 		return null;

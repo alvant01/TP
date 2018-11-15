@@ -17,7 +17,6 @@ public class List {
 		this.numElem =0;
 	}
 	
-	//String [] array = (String []) arrayOrigen.clone()
 	public void redimensionar()
 	{
 		this.list = Arrays.copyOf(this.list, this.numElem + (this.tamInicio*2));//redimesionar

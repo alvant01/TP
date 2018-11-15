@@ -10,6 +10,7 @@ public class Petacereza extends Plant {
 	private int posX;
 	private int posY;
 	private int cicloI;
+	private String tipoPlanta;
 	
 	public Petacereza(int posX, int posY) {
 		this.health = 2;
@@ -19,6 +20,7 @@ public class Petacereza extends Plant {
 		this.frecuency = 2;
 		this.posX = posX;
 		this.posY = posY;
+		this.tipoPlanta = "C";
 	}
 	public Petacereza() {
 		this.health = 2;
@@ -26,6 +28,7 @@ public class Petacereza extends Plant {
 		this.behaviour = "Tras 2 ciclos de ser plantada explota haciendo daño en area";
 		this.damage = 10;
 		this.frecuency = 2;
+		this.tipoPlanta = "C";
 	}
 
 	@Override
@@ -116,5 +119,8 @@ public class Petacereza extends Plant {
 		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
 			return true;
 		return false;
+	}
+	public String getTipoPlanta() {
+		return tipoPlanta;
 	}
 }

@@ -14,12 +14,18 @@ public class Controller {
 	private Scanner scanner;
 	
 	private ReleasePrinter gPrinter;
+
+	private DebugPrinter gPrinterDebug;
+	
+	private boolean exit;
 	
 	public Controller(Game g)
 	{
 		this.game = g;
 		this.scanner = new Scanner(System.in);
 		this.gPrinter = new ReleasePrinter(this.game);
+		this.gPrinterDebug = new DebugPrinter(this.game);
+		this.exit = false;
 	}
 	
 	
@@ -27,18 +33,17 @@ public class Controller {
 	public void run()
 	{
 		boolean noPrint = true;
-		boolean exit = false;
 
 		while(!game.InicializarZombies())
 		{
 			System.out.println("Nivel erroneo");
 			menuSemLevel();
 			
-		}
-			
-			
+		}			
+	
 		printGame();
-		while (!game.isFinished() && !exit) 
+		
+		while (!game.isFinished() && !this.exit) 
 		{
 			noPrint = false;
 			System.out.print("Comando> ");
@@ -47,12 +52,12 @@ public class Controller {
 			if (command != null) {
 				if(command.execute(game, this))
 				{
-					update();
+					update(words);
 				}
 			}
 			else if(words[0].isEmpty())
 			{
-				update();
+				update(words);
 			}
 			else {
 				System.err.println("Comando no reconocido");
@@ -62,8 +67,8 @@ public class Controller {
 		}
 	}
 	
-	private void update() {
-		String words[0] = "update";
+	private void update(String[] words) {
+		words[0] = "update";
 		Command command = CommandParser.parseCommand(words, this);
 		command.execute(game, this);
 		
@@ -78,6 +83,10 @@ public class Controller {
 
 	public void printGame()
 	{
+		
+		if(this.game.getPrintDebug())
+			this.gPrinterDebug.DebugPrinter();
+			
 		this.gPrinter.ReleasePrinter();
 	}
 	
@@ -121,5 +130,11 @@ public class Controller {
 			this.game.genSemRandom();
 		}
 		//this.in.reset();
+	}
+
+
+
+	public void setExit(boolean exit) {
+		this.exit = exit;
 	}
 }

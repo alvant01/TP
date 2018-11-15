@@ -27,6 +27,7 @@ public class Game {
 	
 	private int semilla;
 	
+	private boolean printDebug;
 	
 	private int ciclos;
 	
@@ -38,6 +39,7 @@ public class Game {
 		this.fabricarZombie = new ZombieFactory(this.gObject);
 		this.zManager		= new ZombieManager();
 		
+		this.printDebug = false;
 		this.ciclos= 0;
 	}
 
@@ -77,6 +79,11 @@ public class Game {
 		return "     ";//vacio
 	}
 
+	public String obtenerPiezaDebug(int i) { 
+		return this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:" + (this.list.getList()[i].getCicloI()%this.list.getList()[i].getFrecuency());
+				
+		//|S[l:2,x:0,y:0,t:2]
+	}
 	public boolean InicializarZombies()
 	{
 		return this.zManager.Generador(this.semilla, this.level);
@@ -92,18 +99,18 @@ public class Game {
 	}
 
 	public void genSemRandom() {
-//		this.semilla=this.cAction.semillaRandom();
-		this.semilla = 4;
-		
+		this.semilla=this.zManager.semillaRandom();
 	}
 
 	public boolean isFinished() {
 		if(this.zManager.getZombiesRestantes()==0)
 		{
+			System.out.println("Player Wins");
 			return true;
 		}
 		else if(this.list.lose())
 		{
+			System.out.println("Zombies Wins");
 			return true;
 		}
 		return false;
@@ -202,5 +209,72 @@ public class Game {
 		// TODO Auto-generated method stub
 		return this.zManager.getZombiesPorSalir();
 	}
+
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
+	}
+
+	public PlantFactory getFabricarPlanta() {
+		return fabricarPlanta;
+	}
+
+	public void setFabricarPlanta(PlantFactory fabricarPlanta) {
+		this.fabricarPlanta = fabricarPlanta;
+	}
+
+	public ZombieFactory getFabricarZombie() {
+		return fabricarZombie;
+	}
+
+	public void setFabricarZombie(ZombieFactory fabricarZombie) {
+		this.fabricarZombie = fabricarZombie;
+	}
+
+	public ZombieManager getzManager() {
+		return zManager;
+	}
+
+	public void setzManager(ZombieManager zManager) {
+		this.zManager = zManager;
+	}
+
+	public GameObject getgObject() {
+		return gObject;
+	}
+
+	public void setgObject(GameObject gObject) {
+		this.gObject = gObject;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void printMode() {
+		if(this.printDebug)
+			this.printDebug = false;
+		else
+			this.printDebug = true;
+		
+	}
+
+	public boolean getPrintDebug() {
+		return printDebug;
+	}
+
+	public void setPrintDebug(boolean printDebug) {
+		this.printDebug = printDebug;
+	}
+
+	public void exit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	 
 }

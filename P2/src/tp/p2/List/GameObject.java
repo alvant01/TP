@@ -37,6 +37,12 @@ public class GameObject {
 		else
 			this.zombie.setCicloZom(ciclo);
 	}
+	public int getCicloI() {
+		if(this.planta != null)
+			return this.planta.getCicloI();
+		else
+			return this.zombie.getCicloZom();
+	}
 	
 	
 
@@ -117,5 +123,14 @@ public class GameObject {
 	}
 	public int getCost() {
 		return this.planta.getCost();
+	}
+	/*public String getCiclosRestantes() {
+		if(this.planta != null)
+			return planta.get
+	}*/
+	public int getFrecuency() {
+		if(this.planta != null)
+			return this.planta.getFrecuency();
+		return this.zombie.getFrecuency();
 	}
 }

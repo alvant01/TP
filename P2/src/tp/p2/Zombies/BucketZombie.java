@@ -33,7 +33,7 @@ public class BucketZombie extends Zombie {
 
 	@Override
 	public Zombie parse(int zombie) {
-		if(zombie == 2)
+		if(zombie == 1)
 			return this;
 		return null;
 	}

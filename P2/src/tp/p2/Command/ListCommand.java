@@ -12,7 +12,7 @@ public class ListCommand extends Command {
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game, Controller controller) {
 		System.out.print("[S]unflower: ");
 		System.out.print("   ");
 		System.out.print(" Cost: " + game.getPlantaCost(0) + " suncoins ");
@@ -48,6 +48,7 @@ public class ListCommand extends Command {
 		System.out.print("   ");
 		System.out.println(" Damage: " + game.getPlantaDamage(3));
 		System.out.println("Descripcion: " + game.getPlantaBehaviour(3));
+		return false;
 	}
 
 	@Override

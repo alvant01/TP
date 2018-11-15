@@ -22,24 +22,11 @@ public class ReleasePrinter extends BoardPrinter {
 		this.numColum = 8;
 	}
 	
-	public void ReleasePrinter(int semilla, int ciclos, int sunCoins, int zombies) {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void encodeGame() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	public void printGame(int semilla, int ciclos, int sunCoins, int zombies)
-	{
-		
-		System.out.println("Random seed used: " + semilla);
-		System.out.println("Number of cycles: " + ciclos);
-		System.out.println("Sun coins: " + sunCoins);
-		System.out.println("Remaning zombies: " + zombies);
+	public void ReleasePrinter() {
+		System.out.println("Random seed used: " + game.getSemilla());
+		System.out.println("Number of cycles: " + game.getCiclos());
+		System.out.println("Sun coins: " + game.getScm().getSunCoins());
+		System.out.println("Remaning zombies: " + game.getRemainingZombies());
 		for (int i = 0; i < this.numFilas*2; i++)
 		{
 			if (i%2 != 0)
@@ -55,6 +42,13 @@ public class ReleasePrinter extends BoardPrinter {
 		}
 		drawLineasH();
 	}
+
+	@Override
+	public void encodeGame() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	public void drawLineasH()
 	{

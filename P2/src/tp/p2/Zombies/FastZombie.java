@@ -106,5 +106,8 @@ public class FastZombie extends Zombie {
 	public void setCicloZom(int cicloZom) {
 		this.cicloZom = cicloZom;
 	}
+	public String getTipoZombie() {
+		return tipoZombie;
+	}
 
 }

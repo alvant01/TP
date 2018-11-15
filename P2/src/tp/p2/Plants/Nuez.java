@@ -10,6 +10,7 @@ public class Nuez extends Plant {
 	private int posX;
 	private int posY;
 	private int cicloI;
+	private String tipoPlanta;
 	
 	public Nuez(int posX, int posY) {
 		this.health = 10;
@@ -19,6 +20,7 @@ public class Nuez extends Plant {
 		this.frecuency = 0;
 		this.posX = posX;
 		this.posY = posY;
+		this.tipoPlanta = "N";
 	}
 
 	
@@ -28,6 +30,7 @@ public class Nuez extends Plant {
 		this.behaviour = "Planta resistente ideal para proteger";
 		this.damage = 0;
 		this.frecuency = 0;
+		this.tipoPlanta = "N";
 	}
 	@Override
 	public Plant parse(String planta) {
@@ -119,5 +122,11 @@ public class Nuez extends Plant {
 		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
 			return true;
 		return false;
+	}
+
+
+	@Override
+	public String getTipoPlanta() {
+		return this.tipoPlanta;
 	}
 }

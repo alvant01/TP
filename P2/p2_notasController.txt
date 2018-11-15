@@ -1,0 +1,32 @@
+Por hacer:
+	Limpieza
+
+Hecho:
+	DebugPrinter
+	Encode
+	Exit command
+	Comando Printmode
+
+
+Errores:
+
+
+Hecho:
+	No cobra
+	Mensajes de error
+	No comprueba coste
+	No elimina(ya no son inmortales)
+	Problema daño zombies
+	Un zombie acaba de cambiar de posicion/un zombie a desaparecido(mismo que plantas)
+	Una sf ha desaparecido/ meter un mismo objeto borra el anterior/lista apunta al mismo objeto
+	No he visto ningun BZ(acaba de salir uno)
+	No se comprueba si el nivel es correcto
+	Puedes introducir objetos fuera
+	Los errores actualizan(no deberian)
+	No hay lose/salvo CZ/no sale mensaje
+	Zombies no llegan al final/CZ si llega
+	Los zombies van de 2 en 2(creo que es por el mom que se hace update/ revisar)
+	Los zombies no salen en la linea 3
+	No salen FZ
+	random seed
+	Solo pintar con add y update

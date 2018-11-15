@@ -12,6 +12,7 @@ public class Sunflower extends Plant
 	private int posY;
 	private int cicloI;
 	private int sunGenerator;
+	private String tipoPlanta;
 	
 	public Sunflower(int posX, int posY)
 	{
@@ -23,6 +24,7 @@ public class Sunflower extends Plant
 		this.sunGenerator = 10;
 		this.posX = posX;
 		this.posY = posY;
+		this.tipoPlanta = "S";
 	}
 	public Sunflower()
 	{
@@ -32,6 +34,7 @@ public class Sunflower extends Plant
 		this.damage = 0;
 		this.frecuency = 2;
 		this.sunGenerator = 10;
+		this.tipoPlanta = "S";
 	}
 	
 	public Plant parse(String planta) {
@@ -138,5 +141,8 @@ public class Sunflower extends Plant
 
 	public void setSunGenerator(int sunGenerator) {
 		this.sunGenerator = sunGenerator;
+	}
+	public String getTipoPlanta() {
+		return tipoPlanta;
 	}
 }

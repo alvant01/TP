@@ -16,8 +16,8 @@ public class AddCommand extends Command
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
-		game.addPlant(this.planta, this.posX, this.posY);
+	public boolean execute(Game game, Controller controller) {
+		return game.addPlant(this.planta, this.posX, this.posY);
 	}
 
 	@Override

@@ -34,7 +34,7 @@ public class CommonZombie extends Zombie {
 		this.tipoZombie = "CZ";
 	}
 	public Zombie parse(int zombie) {
-		if(zombie == 1)
+		if(zombie == 0)
 			return this;
 		return null;
 	}

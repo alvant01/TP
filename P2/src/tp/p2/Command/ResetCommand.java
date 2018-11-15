@@ -10,9 +10,9 @@ public class ResetCommand extends Command {
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game, Controller controller) {
 		game.reiniciar();
-
+		return false;
 	}
 
 	@Override

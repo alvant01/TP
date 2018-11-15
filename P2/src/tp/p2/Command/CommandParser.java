@@ -3,19 +3,22 @@ package tp.p2.Command;
 import tp.p2.Controladores.Controller;
 
 public class CommandParser {
-
+	private int numComandos;
+	
 	private static Command[] availableCommands = {
-			new AddCommand("ADD","añade", "añade"),
-			new HelpCommand("add","añade", "help"),
-			new ResetCommand("add","añade", "help"),
-			new ExitCommand("add","añade", "help"),
-			new ListCommand("add","añade", "help"),
-			new UpdateCommand("add","añade", "help"),
+			new AddCommand("ADD","Añade una planta", "Añade una planta"),
+			new HelpCommand("HELP","Muestra los comandos", "Muestra los comandos"),
+			new ResetCommand("RESET","Resetea", "Resetea"),
+			new ExitCommand("EXIT","Sale", "Sale"),
+			new ListCommand("LIST","Lista los objetos", "Lista los objetos"),
+			new UpdateCommand("UPDATE","actualiza", "actualiza"),
+			new PrintModeCommand("PRINTMODE", "Cambia el modo","Cambia el modo" ),
 			};
 
 	public CommandParser() 
 	{
-		CommandParser.availableCommands = new Command[6];
+		this.numComandos = 7;
+		CommandParser.availableCommands = new Command[this.numComandos];
 	}
 	public static Command parseCommand(String[ ] commandWords, Controller controller) 
 	{
@@ -42,6 +45,10 @@ public class CommandParser {
 		else if(availableCommands[5].parse(commandWords, controller) != null)
 		{
 			return availableCommands[5];
+		}
+		else if(availableCommands[6].parse(commandWords, controller) != null)
+		{
+			return availableCommands[6];
 		}
 		return null;
 	}

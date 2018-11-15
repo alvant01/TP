@@ -11,13 +11,15 @@ public class HelpCommand extends Command {
 	}
 
 	@Override
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game, Controller controller) {
 		System.out.println("Add <plant> <x> <y>: Adds a plant in position x, y.\r\n" + 
-				"List: Prints the list of available plants.\r\n" + 
-				"Reset: Starts a new game.\r\n" + 
-				"Help: Prints this help message.\r\n" + 
-				"Exit: Terminates the program.\r\n" + 
-				"none: Skips cycle.");
+				"[L]ist: Prints the list of available plants.\r\n" + 
+				"[R]eset: Starts a new game.\r\n" + 
+				"[H]elp: Prints this help message.\r\n" + 
+				"[E]xit: Terminates the program.\r\n" + 
+				"none: Skips cycle.\r\n" +
+				"[PM]PrintMode: Debug print mode.\r\n");
+		return false;
 	}
 
 	@Override
