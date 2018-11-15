@@ -13,11 +13,13 @@ public class UpdateCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		
+		game.updateGame();
 	}
 
 	@Override
 	public Command parse(String[] commandWords, Controller controller) {
+		if(commandWords[0].toLowerCase().equals("update") || commandWords[0].toLowerCase().equals("u"))
+			return this;
 		return null;
 	}
 

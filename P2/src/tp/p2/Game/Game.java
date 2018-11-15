@@ -3,15 +3,15 @@ package tp.p2.Game;
 import tp.p2.Controladores.*;
 import tp.p2.List.*;
 import tp.p2.Plants.Plant;
+import tp.p2.Printers.BoardPrinter;
 import tp.p2.Printers.GamePrinter;
+import tp.p2.Printers.ReleasePrinter;
 import tp.p2.Zombies.Zombie;
 import tp.p2.Factory.*;
 
 
 public class Game {
 	private List list;
-	
-	private GamePrinter draw;
 	
 	private PlantFactory fabricarPlanta;
 	
@@ -32,23 +32,17 @@ public class Game {
 	
 	public Game(){
 		this.list	  		= new List();
-		this.draw    		= new GamePrinter(this);
 		this.scm      		= new SunCoinsManager();
 		this.gObject 		= new GameObject();
-		this.fabricarPlanta = new PlantFactory(gObject);
-		this.fabricarZombie = new ZombieFactory();
+		this.fabricarPlanta = new PlantFactory(this.gObject);
+		this.fabricarZombie = new ZombieFactory(this.gObject);
 		this.zManager		= new ZombieManager();
 		
 		this.ciclos= 0;
 	}
 
 	public void reiniciar() {
-	//	this.psList.setNumElem(0);
-	//	this.sfList.setNumElem(0);
-	//	this.zList.setNumElem(0);
-		
-		
-		
+		this.list.setNumElem(0);
 	}
 
 	public void pintarTablero() {
@@ -57,38 +51,35 @@ public class Game {
 	}
 
 	public void updateGame() {
-		
+		int posX;
 		this.list.update(this.scm, this.ciclos);
+		
+		if(this.zManager.cicloZombie(this.ciclos))
+		{
+			posX = this.zManager.pos();
+			while(this.list.containsZombie(posX, 7))
+				posX = this.zManager.pos();
+				
+				
+			GameObject o= this.fabricarZombie.creaZombie(this.zManager.zombieType(),posX,7);
+			this.list.insert(this.ciclos, o);
+		}
+		this.ciclos++;
 	}
 
-	//Este metodo lo que hace es que imprime el objeto de la posicion x,y
 	public String obtenerPieza(int posX, int posY) {
-		
 		int posList;
 		posList = this.list.containsPosition(posX, posY);
 		
 		if (posList != -1){
 			return this.list.getList()[posList].getString();
 		}
-	
-		/*if (this.sfList.contains(posX, posY))
-		{
-			return "S["+ this.sfList.getPlantHP(posX, posY) + "]"; 
-		}
-		else if (this.psList.contains(posX, posY))
-		{
-			return "P["+ this.psList.getPlantHP(posX, posY) + "]"; 
-		}
-		else if (this.zList.contains(posX, posY))
-		{
-			return "Z["+ this.zList.getZombieHP(posX, posY) + "]"; 
-		}*/
-		return "    ";//vacio
+		return "     ";//vacio
 	}
 
-	public void InicializarZombies()
+	public boolean InicializarZombies()
 	{
-		this.zManager.Generador(this.semilla, this.level);
+		return this.zManager.Generador(this.semilla, this.level);
 	}
 	
 	public boolean win()
@@ -119,23 +110,30 @@ public class Game {
 	}
 	public boolean addPlant(String planta, int posX, int posY)
 	{
-		//Llamar factory 
-		if (!this.list.contains(posX, posY)){
+		//Llamar factory
+		if (!this.list.contains(posX, posY) && (posX >0 || posX < 4)&& (posY >0 || posY < 8) ){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
-			if(o != null)
+			if(this.scm.getSunCoins() >= o.getCost())
 			{
-				this.list.insert(this.ciclos, o);
-				return true;
+				if(o != null)
+				{
+					this.list.insert(this.ciclos, o);
+					this.scm.removeSuncoins(o.getCost());
+					return true;
+				}
 			}
+			else
+				System.out.println("No tienes suficientes sunCoins");
 		}
+		else
+			System.out.println("Posicion no valida");
 		return false;
 	}
 	public boolean addZombie(int posX, int posY)
 	{
-		int zombie;
 		if (!this.list.contains(posX, posY)){
 			
-			Zombie o  = this.fabricarZombie.creaZombie(this.zManager.zombieType(), posX, posY);
+			GameObject o  = this.fabricarZombie.creaZombie(this.zManager.zombieType(), posX, posY);
 			this.list.insert(this.ciclos, o);
 			return true;
 		}
@@ -155,15 +153,6 @@ public class Game {
 	
 	//Getters y Setters
 	
-
-	public GamePrinter getDraw() {
-		return draw;
-	}
-
-	public void setDraw(GamePrinter draw) {
-		this.draw = draw;
-	}
-
 	public SunCoinsManager getScm() {
 		return scm;
 	}
@@ -190,6 +179,28 @@ public class Game {
 
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public int getPlantaCost(int i) {
+		return this.fabricarPlanta.getPlantas()[i].getCost();
+	}
+
+	public int getPlantaHealth(int i) {
+		return this.fabricarPlanta.getPlantas()[i].getHealth();
+	}
+
+	public int getPlantaDamage(int i) {
+		// TODO Auto-generated method stub
+		return this.fabricarPlanta.getPlantas()[i].getDamage();
+	}
+
+	public String getPlantaBehaviour(int i) {
+		return this.fabricarPlanta.getPlantas()[i].getBehaviour();
+	}
+
+	public int getRemainingZombies() {
+		// TODO Auto-generated method stub
+		return this.zManager.getZombiesPorSalir();
 	}
 	 
 }

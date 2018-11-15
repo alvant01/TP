@@ -15,39 +15,39 @@ public class ListCommand extends Command {
 	public void execute(Game game, Controller controller) {
 		System.out.print("[S]unflower: ");
 		System.out.print("   ");
-		System.out.print(" Cost: " + GameObject.getPlantas()[0].getCost() + " suncoins ");
+		System.out.print(" Cost: " + game.getPlantaCost(0) + " suncoins ");
 		System.out.print("   ");
-		System.out.print("Health: " + GameObject.getPlantas()[0].getHealth());
+		System.out.print("Health: " + game.getPlantaHealth(0));
 		System.out.print("   ");
-		System.out.println(" Damage: " + GameObject.getPlantas()[0].getDamage());
-		System.out.println("Descripcion: " + GameObject.getPlantas()[0].getBehaviour());
+		System.out.println(" Damage: " + game.getPlantaDamage(0));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(0));
 		
 		System.out.print("[P]eaShooter: ");
 		System.out.print("   ");
-		System.out.print(" Cost: " + GameObject.getPlantas()[1].getCost() + " suncoins ");
+		System.out.print(" Cost: " + game.getPlantaCost(1) + " suncoins ");
 		System.out.print("   ");
-		System.out.print("Health: " + GameObject.getPlantas()[1].getHealth());
+		System.out.print("Health: " + game.getPlantaHealth(1));
 		System.out.print("   ");
-		System.out.println(" Damage: " + GameObject.getPlantas()[1].getDamage());
-		System.out.println("Descripcion: " + GameObject.getPlantas()[1].getBehaviour());
+		System.out.println(" Damage: " + game.getPlantaDamage(1));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(1));
 		
 		System.out.print("[N]uez: ");
 		System.out.print("   ");
-		System.out.print(" Cost: " + GameObject.getPlantas()[2].getCost() + " suncoins ");
+		System.out.print(" Cost: " + game.getPlantaCost(2) + " suncoins ");
 		System.out.print("   ");
-		System.out.print("Health: " + GameObject.getPlantas()[2].getHealth());
+		System.out.print("Health: " + game.getPlantaHealth(2));
 		System.out.print("   ");
-		System.out.println(" Damage: " + GameObject.getPlantas()[2].getDamage());
-		System.out.println("Descripcion: " + GameObject.getPlantas()[2].getBehaviour());
+		System.out.println(" Damage: " + game.getPlantaDamage(2));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(2));
 		
 		System.out.print("Peta[C]ereza: ");
 		System.out.print("   ");
-		System.out.print(" Cost: " + GameObject.getPlantas()[3].getCost() + " suncoins ");
+		System.out.print(" Cost: " + game.getPlantaCost(3) + " suncoins ");
 		System.out.print("   ");
-		System.out.print("Health: " + GameObject.getPlantas()[3].getHealth());
+		System.out.print("Health: " + game.getPlantaHealth(3));
 		System.out.print("   ");
-		System.out.println(" Damage: " + GameObject.getPlantas()[3].getDamage());
-		System.out.println("Descripcion: " + GameObject.getPlantas()[3].getBehaviour());
+		System.out.println(" Damage: " + game.getPlantaDamage(3));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(3));
 	}
 
 	@Override

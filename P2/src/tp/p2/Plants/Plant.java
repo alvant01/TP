@@ -3,17 +3,6 @@ package tp.p2.Plants;
 import tp.p2.List.GameObject;
 
 public abstract class Plant extends GameObject {	
-	
-	private int health;
-	private int cost;
-	private String behaviour;
-	private int damage;
-	private int frecuency;
-	private int posX;
-	private int posY;
-	private int cicloI;
-	private int sunGenerator;
-	private String TipoPlanta;
 
 	public Plant() {
 		// TODO Auto-generated constructor stub
@@ -21,22 +10,14 @@ public abstract class Plant extends GameObject {
 	
 	public abstract Plant parse(String planta);
 
-	public boolean update(int ciclo)
-	{
-		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
-	}
+	public abstract boolean update(int ciclo);
 	
 	public abstract void setPosX(int posX);
 	
 	public abstract int getPosX();
 	
 	public abstract int getHealth();
-	
-	public abstract String getTipoPlanta();
-	
-	public abstract void setTipoPlanta(String tipoPlanta);
+
 
 	public abstract void setHealth(int health);
 

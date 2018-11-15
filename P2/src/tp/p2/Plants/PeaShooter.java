@@ -11,7 +11,6 @@ public class PeaShooter extends Plant {
 	private int posX;
 	private int posY;
 	private int cicloI;
-	private String TipoPlanta;
 	
 	
 	public PeaShooter(int posX, int posY)
@@ -23,9 +22,7 @@ public class PeaShooter extends Plant {
 		this.frecuency = 1;
 		this.posX = posX;
 		this.posY = posY;
-		this.TipoPlanta = "P";
 	}
-	
 	public PeaShooter()
 	{
 		this.health= 3;
@@ -121,13 +118,6 @@ public class PeaShooter extends Plant {
 	public void setCicloI(int cicloI) {
 		this.cicloI = cicloI;
 	}
-	
-	public String getTipoPlanta() {
-		return TipoPlanta;
-	}
-	public void setTipoPlanta(String tipoPlanta) {
-		this.TipoPlanta = tipoPlanta;
-	}
 
 
 	@Override
@@ -141,6 +131,11 @@ public class PeaShooter extends Plant {
 	public void setSunGenerator(int sunGenerator) {
 		// Do nothing herency fault
 	}
-	
+	@Override
+	public boolean update(int ciclo) {
+		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
+			return true;
+		return false;
+	}
 	
 }

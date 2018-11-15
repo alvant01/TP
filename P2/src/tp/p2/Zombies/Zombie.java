@@ -11,9 +11,6 @@ public abstract class Zombie extends GameObject {
 		
 		public abstract boolean updateZombie(int ciclo);
 
-		public abstract String getTipoZombie();
-		
-		public abstract void setTipoZombie(String tipoZombie);
 		
 		public abstract void setPosX(int posX);
 		

@@ -13,54 +13,72 @@ public class Controller {
 	
 	private Scanner scanner;
 	
-	private GamePrinter gPrinter;
+	private ReleasePrinter gPrinter;
 	
 	public Controller(Game g)
 	{
 		this.game = g;
 		this.scanner = new Scanner(System.in);
-		this.gPrinter = new GamePrinter(this.game);
+		this.gPrinter = new ReleasePrinter(this.game);
 	}
 	
 	
 	
 	public void run()
 	{
-		/*
 		boolean noPrint = true;
 		boolean exit = false;
-		//game.getcAction().setZombiesRestantes(4);
-		while (!game.isFinished() && !exit) {
-			printGame();
+
+		while(!game.InicializarZombies())
+		{
+			System.out.println("Nivel erroneo");
+			menuSemLevel();
+			
+		}
+			
+			
+		printGame();
+		while (!game.isFinished() && !exit) 
+		{
 			noPrint = false;
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);
 			if (command != null) {
-				command.execute(game, this);
+				if(command.execute(game, this))
+				{
+					update();
+				}
+			}
+			else if(words[0].isEmpty())
+			{
+				update();
 			}
 			else {
-			System.err.println("Comando no reconocido");
-			setNoPrintGameState();
+				System.err.println("Comando no reconocido");
+				setNoPrintGameState();
 			}
-		}*/
-		
-		this.game.addPlant("s", 0, 0);
-		this.game.updateGame();
+			printGame();
+		}
 	}
 	
+	private void update() {
+		String words[0] = "update";
+		Command command = CommandParser.parseCommand(words, this);
+		command.execute(game, this);
+		
+	}
+
+
+
 	public void setNoPrintGameState() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	/*public String obtenerPlanta()
-	{
-	}*/
-
 	public void printGame()
 	{
-		this.gPrinter.printGame(this.game.getSemilla(), this.game.getCiclos(), this.game.getScm().getSunCoins(), 0);
+		this.gPrinter.ReleasePrinter();
 	}
 	
 	public String menuCommands()

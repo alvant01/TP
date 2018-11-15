@@ -10,8 +10,7 @@ public class CommonZombie extends Zombie {
 	private int posY;
 	private int frecuency;
 	private int cicloZom;
-	private String TipoZombie;
-	
+	private String tipoZombie;
 	
 	public CommonZombie(int posX, int posY)
 	{
@@ -22,7 +21,7 @@ public class CommonZombie extends Zombie {
 		this.frecuency = 2;
 		this.posX = posX;
 		this.posY = posY;
-		
+		this.tipoZombie = "CZ";
 	}
 
 
@@ -32,6 +31,7 @@ public class CommonZombie extends Zombie {
 		this.damage = 1;
 		this.velocity = 1;
 		this.frecuency = 2;
+		this.tipoZombie = "CZ";
 	}
 	public Zombie parse(int zombie) {
 		if(zombie == 1)
@@ -124,15 +124,13 @@ public class CommonZombie extends Zombie {
 	}
 
 
-	@Override
 	public String getTipoZombie() {
-		return TipoZombie;
+		return tipoZombie;
 	}
 
 
-	@Override
 	public void setTipoZombie(String tipoZombie) {
-		this.TipoZombie = tipoZombie;
+		this.tipoZombie = tipoZombie;
 	}
 
 	

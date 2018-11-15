@@ -1,8 +1,10 @@
 package tp.p2.Printers;
 
-public abstract class BoardPrinter {
+import tp.p2.Game.Game;
 
-	public BoardPrinter() {
+public abstract class BoardPrinter implements GamePrinter {
+
+	public BoardPrinter(Game game) {
 		// TODO Auto-generated constructor stub
 	}
 	

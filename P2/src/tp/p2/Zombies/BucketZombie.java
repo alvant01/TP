@@ -10,7 +10,7 @@ public class BucketZombie extends Zombie {
 	private int posY;
 	private int frecuency;
 	private int cicloZom;
-	private String TipoZombie;
+	private String tipoZombie;
 	
 	public BucketZombie(int posX, int posY) {
 		this.health    	= 8;
@@ -20,6 +20,7 @@ public class BucketZombie extends Zombie {
 		this.frecuency 	= 4;
 		this.posX = posX;
 		this.posY = posY;
+		this.tipoZombie = "BZ";
 	}
 	public BucketZombie() {
 		this.health    	= 8;
@@ -27,6 +28,7 @@ public class BucketZombie extends Zombie {
 		this.damage 	= 1;
 		this.velocity 	= 1;
 		this.frecuency 	= 4;
+		this.tipoZombie = "BZ";
 		}
 
 	@Override
@@ -106,15 +108,11 @@ public class BucketZombie extends Zombie {
 	public void setCicloZom(int cicloZom) {
 		this.cicloZom = cicloZom;
 	}
-	
-	@Override
 	public String getTipoZombie() {
-		return TipoZombie;
+		return tipoZombie;
 	}
-	
-	@Override
 	public void setTipoZombie(String tipoZombie) {
-		this.TipoZombie = tipoZombie;
+		this.tipoZombie = tipoZombie;
 	}
 
 }

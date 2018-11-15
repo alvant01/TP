@@ -59,10 +59,10 @@ public class List {
 	}
 
 	public boolean lose() {
-		for(int i = 0; i < this.numElem; i++)
+		for(int i = 0; i < 4; i++)
 		{
-			if(this.list[i].getPosX() == 0)
-			{return true;}
+			if(containsZombie(i, 0) )
+			{return true;} 
 		}
 		return false;
 	}
@@ -83,6 +83,14 @@ public class List {
 		}
 		return -1;
 	}
+	public boolean containsZombie(int posX, int posY) {
+		for(int i  = 0; i < this.numElem; i++)
+		{
+			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY && this.list[i].isZombie())
+				return true;
+		}
+		return false;
+	}
 
 	public String getPieza(int posX, int posY) {
 		// TODO Auto-generated method stub
@@ -96,32 +104,36 @@ public class List {
 			GameObject obj = this.list[i];
 			if(obj.isPlant())
 			{
-				if(obj.getPlantas()[0] == obj.getPlanta())//sunflower
+				if(obj.getPlanta().getTipoPlanta().equals("S"))//sunflower
 				{
 					obj.updateSunflower(scm, ciclos);
 				}
-				else if(obj.getPlantas()[1] == obj.getPlanta())
+				else if(obj.getPlanta().getTipoPlanta().equals("P"))
 				{
-					damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage());
+					if(obj.updatePlant(ciclos))
+						damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage());
 				}
-				else if(obj.getPlantas()[2] == obj.getPlanta())
+				else if(obj.getPlanta().getTipoPlanta().equals("N"))
 				{
 					//Nothing
 				}
-				else if(obj.getPlantas()[3] == obj.getPlanta())
+				else if(obj.getPlanta().getTipoPlanta().equals("C"))
 				{
-					cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage());
+					if(obj.updatePlant(ciclos))
+						cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage());
 				}
 			}
 			else
 			{
 				if(contains(obj.getPosX(), obj.getPosY()-1))
 				{
-					if(obj.updateZombie(ciclos))
-						damagePlant(obj.getPosX(),obj.getPosY(), obj.getDamage());
+					damagePlant(obj.getPosX(),obj.getPosY(), obj.getDamage());
 				}
 				else
-					obj.setPosY(obj.getPosY()-1);
+				{
+					if(obj.updateZombie(ciclos))
+						obj.setPosY(obj.getPosY()-1);
+				}
 			}
 		}
 		
@@ -151,10 +163,11 @@ public class List {
 	}
 
 	private void cherryExplosion(int posX, int posY, int damage) {
-	int pos;
+	int pos, posC;
 	int adjX = -1;
 	int adjY = -1;
-		for(int i = 0; i < 9; i++ )
+	posC = containsPosition(posX,posY);
+	for(int i = 0; i < 9; i++ )
 		{
 			pos = containsPosition(posX+adjX,posY+adjY);
 			if(pos != -1 && this.list[pos].isZombie())
@@ -169,16 +182,19 @@ public class List {
 			else
 				adjY++;
 		}
+		
+		eliminar(posC);
 	}
 
 	private void damageZombie(int posX, int posY, int damage) {
 		for(int i = 0 + posY; i < this.numElem; i++)
 		{
-			if(this.list[i].isZombie())
+			if(this.list[i].isZombie() && this.list[i].getPosX() == posX)
 			{
 				this.list[i].damage(damage);
 				if(this.list[i].getHealth() == 0)
 					eliminar(i);
+				return;
 			}
 		}
 	}
