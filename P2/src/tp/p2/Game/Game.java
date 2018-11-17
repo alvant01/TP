@@ -54,7 +54,7 @@ public class Game {
 
 	public void updateGame() {
 		int posX;
-		this.list.update(this.scm, this.ciclos);
+		this.list.update(this, this.ciclos);
 		
 		if(this.zManager.cicloZombie(this.ciclos))
 		{
@@ -65,6 +65,7 @@ public class Game {
 				
 			GameObject o= this.fabricarZombie.creaZombie(this.zManager.zombieType(),posX,7);
 			this.list.insert(this.ciclos, o);
+			this.zManager.setZombiesPorSalir(this.zManager.getZombiesPorSalir()-1);
 		}
 		this.ciclos++;
 	}
@@ -206,7 +207,6 @@ public class Game {
 	}
 
 	public int getRemainingZombies() {
-		// TODO Auto-generated method stub
 		return this.zManager.getZombiesPorSalir();
 	}
 
@@ -273,6 +273,10 @@ public class Game {
 	public void exit() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void setReamingZombies() {
+		this.zManager.setZombiesRestantes(this.zManager.getZombiesRestantes()-1);
 	}
 
 

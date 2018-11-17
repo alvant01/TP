@@ -46,6 +46,7 @@ public class Controller {
 		while (!game.isFinished() && !this.exit) 
 		{
 			noPrint = false;
+			this.game.getScm().addSunCoins(10000);
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);

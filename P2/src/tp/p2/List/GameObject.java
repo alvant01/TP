@@ -75,7 +75,7 @@ public class GameObject {
 		if(planta != null)
 			planta.setHealth(planta.getHealth()-damage);
 		else
-			zombie.setHealth(planta.getHealth()-damage);
+			zombie.setHealth(zombie.getHealth()-damage);
 		
 	}
 	public void updateSunflower(SunCoinsManager scm, int ciclo) {

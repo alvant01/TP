@@ -41,23 +41,17 @@ public class PlantFactory {
 		}
 		else if (plantas[1].parse(planta) != null)
 		{
-			obj.setPlanta(plantas[1]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setPlanta(new PeaShooter(posX, posY));
 			return obj;
 		}
 		else if (plantas[2].parse(planta) != null)
 		{
-			obj.setPlanta(plantas[2]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setPlanta(new Nuez(posX, posY));
 			return obj;
 		}
 		else if (plantas[3].parse(planta) != null)
 		{
-			obj.setPlanta(plantas[3]);
-			obj.setPosX(posX);
-			obj.setPosY(posY);
+			obj.setPlanta(new Petacereza(posX, posY));
 			return obj;
 		}
 		return null;

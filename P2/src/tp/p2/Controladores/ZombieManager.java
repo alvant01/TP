@@ -69,7 +69,7 @@ public class ZombieManager {
 }
 	public boolean cicloZombie(int ciclo)
 	{
-		for(int i  =0; i < this.ZombiesPorSalir; i++)
+		for(int i  =0; i < this.numZomGen; i++)
 		{
 			if(this.ciclos[i] == ciclo)
 				return true;

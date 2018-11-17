@@ -3,6 +3,7 @@ package tp.p2.List;
 import java.util.Arrays;
 
 import tp.p2.Controladores.SunCoinsManager;
+import tp.p2.Game.Game;
 
 public class List {
 
@@ -96,7 +97,7 @@ public class List {
 		return null;
 	}
 
-	public void update(SunCoinsManager scm, int ciclos) {
+	public void update(Game game, int ciclos) {
 		for(int i = 0; i< this.getNumElem();i++)
 		{
 			
@@ -105,12 +106,12 @@ public class List {
 			{
 				if(obj.getPlanta().getTipoPlanta().equals("S"))//sunflower
 				{
-					obj.updateSunflower(scm, ciclos);
+					obj.updateSunflower(game.getScm(), ciclos);
 				}
 				else if(obj.getPlanta().getTipoPlanta().equals("P"))
 				{
 					if(obj.updatePlant(ciclos))
-						damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage());
+						damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage(), game);
 				}
 				else if(obj.getPlanta().getTipoPlanta().equals("N"))
 				{
@@ -119,14 +120,14 @@ public class List {
 				else if(obj.getPlanta().getTipoPlanta().equals("C"))
 				{
 					if(obj.updatePlant(ciclos))
-						cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage());
+						cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage(), game);
 				}
 			}
 			else
 			{
 				if(contains(obj.getPosX(), obj.getPosY()-1))
 				{
-					damagePlant(obj.getPosX(),obj.getPosY(), obj.getDamage());
+					damagePlant(obj.getPosX(),obj.getPosY()-1, obj.getDamage());
 				}
 				else
 				{
@@ -139,9 +140,9 @@ public class List {
 	}
 
 	private void damagePlant(int posX, int posY, int damage) {
-		for(int i = 0 + posY; i < this.numElem; i++)
+		for(int i = 0; i < this.numElem; i++)
 		{
-			if(this.list[i].isPlant())
+			if(this.list[i].isPlant() && this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
 			{
 				this.list[i].damage(damage);
 				if(this.list[i].getHealth() == 0)
@@ -161,7 +162,7 @@ public class List {
 		
 	}
 
-	private void cherryExplosion(int posX, int posY, int damage) {
+	private void cherryExplosion(int posX, int posY, int damage, Game game) {
 	int pos, posC;
 	int adjX = -1;
 	int adjY = -1;
@@ -172,6 +173,11 @@ public class List {
 			if(pos != -1 && this.list[pos].isZombie())
 			{
 				this.list[pos].damage(damage);
+				if(this.list[pos].getHealth() <= 0)
+				{
+					eliminar(i);
+					game.setReamingZombies();
+				}
 			}
 			if(adjY == 1)
 			{
@@ -185,14 +191,17 @@ public class List {
 		eliminar(posC);
 	}
 
-	private void damageZombie(int posX, int posY, int damage) {
+	private void damageZombie(int posX, int posY, int damage, Game game) {
 		for(int i = 0 + posY; i < this.numElem; i++)
 		{
 			if(this.list[i].isZombie() && this.list[i].getPosX() == posX)
 			{
 				this.list[i].damage(damage);
 				if(this.list[i].getHealth() == 0)
+				{
 					eliminar(i);
+					game.setReamingZombies();
+				}
 				return;
 			}
 		}
