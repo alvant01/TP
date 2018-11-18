@@ -12,6 +12,7 @@ Hecho:
 
 Errores:
 
+
 Hecho:
 	No cobra
 	Mensajes de error
