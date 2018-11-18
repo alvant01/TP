@@ -13,15 +13,15 @@ public class List {
 	
 	
 	public List() {
-		this.tamInicio = 10;
+		this.tamInicio = 2;
 		this.list = new GameObject[this.tamInicio];
 		this.numElem =0;
 	}
 	
 	public void redimensionar()
 	{
-		this.list = Arrays.copyOf(this.list, this.numElem + (this.tamInicio*2));//redimesionar
-		this.numElem = this.numElem + (this.tamInicio*2);
+		this.list = Arrays.copyOf(this.list,this.tamInicio*2);//redimesionar
+		this.tamInicio = this.tamInicio*2;
 	}
 	
 	public void insert(int ciclo, GameObject o)
@@ -32,6 +32,8 @@ public class List {
 		//posicionamiento
 		this.list[this.numElem].setCicloI(ciclo);
 		this.numElem++;
+		if(this.numElem >= this.tamInicio)
+			redimensionar();
 	}
 
 	public GameObject[] getList() {

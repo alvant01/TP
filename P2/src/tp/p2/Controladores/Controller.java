@@ -19,6 +19,8 @@ public class Controller {
 	
 	private boolean exit;
 	
+	private boolean noPrint;
+	
 	public Controller(Game g)
 	{
 		this.game = g;
@@ -45,7 +47,7 @@ public class Controller {
 		
 		while (!game.isFinished() && !this.exit) 
 		{
-			noPrint = false;
+			noPrint = true;
 			this.game.getScm().addSunCoins(10000);
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
@@ -54,17 +56,20 @@ public class Controller {
 				if(command.execute(game, this))
 				{
 					update(words);
+					noPrint = false;
 				}
 			}
 			else if(words[0].isEmpty())
 			{
 				update(words);
+				noPrint = false;
 			}
 			else {
 				System.err.println("Comando no reconocido");
-				setNoPrintGameState();
+				//setNoPrintGameState();
 			}
-			printGame();
+			if(!noPrint)
+				printGame();
 		}
 	}
 	
@@ -78,8 +83,6 @@ public class Controller {
 
 
 	public void setNoPrintGameState() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void printGame()

@@ -18,7 +18,8 @@ public class ExitCommand extends Command {
 
 	@Override
 	public Command parse(String[] commandWords, Controller controller) {
-		// TODO Auto-generated method stub
+		if(commandWords[0].toLowerCase().equals("exit") || commandWords[0].toLowerCase().equals("e"))
+			return this;
 		return null;
 	}
 

@@ -47,11 +47,6 @@ public class Game {
 		this.list.setNumElem(0);
 	}
 
-	public void pintarTablero() {
-		
-	//	this.draw.drawTablero(this.semilla, this.ciclos, this.scm.getSunCoins(),this.cAction.getZombiesPorSalir());
-	}
-
 	public void updateGame() {
 		int posX;
 		this.list.update(this, this.ciclos);
@@ -81,9 +76,8 @@ public class Game {
 	}
 
 	public String obtenerPiezaDebug(int i) { 
-		return this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:" + (this.list.getList()[i].getCicloI()%this.list.getList()[i].getFrecuency());
-				
-		//|S[l:2,x:0,y:0,t:2]
+		return this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:" + (this.ciclos%this.list.getList()[i].getFrecuency() - this.list.getList()[i].getCicloI()%this.list.getList()[i].getFrecuency());
+
 	}
 	public boolean InicializarZombies()
 	{
@@ -270,10 +264,6 @@ public class Game {
 		this.printDebug = printDebug;
 	}
 
-	public void exit() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setReamingZombies() {
 		this.zManager.setZombiesRestantes(this.zManager.getZombiesRestantes()-1);
