@@ -10,6 +10,16 @@ Hecho:
 
 Errores:
 
+	Numero de sun coins no es acorde, comienza en 10.020, luego en vez de restar suma sun coins al contador, ya sea si se agrega un sunflower o un peashooter.
+	Los nombres de los zombies deberian de ser:
+		W para Caracubo
+		X Para deportista
+	Comando NONE no funciona
+	Error en pos 0 0 (creo que ya solucionado)
+	Imprime tablero 2 veces (No se como solucionarlo)
+		La primera vez que lo imprime, imprime 20 sun coins, la segunda vez empieza a sumar sun coins de la nada
+	La Petacereza da error al momento de explotar.
+	Solo deja plantar 2 Petacerezas en el campo. (Cuando no hay restricciones de cuantas debe de haber)
 
 Hecho:
 	No cobra
