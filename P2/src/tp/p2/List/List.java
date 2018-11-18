@@ -177,7 +177,7 @@ public class List {
 				this.list[pos].damage(damage);
 				if(this.list[pos].getHealth() <= 0)
 				{
-					eliminar(i);
+					eliminar(pos);
 					game.setReamingZombies();
 				}
 			}

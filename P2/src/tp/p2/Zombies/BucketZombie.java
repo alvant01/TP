@@ -20,7 +20,7 @@ public class BucketZombie extends Zombie {
 		this.frecuency 	= 4;
 		this.posX = posX;
 		this.posY = posY;
-		this.tipoZombie = "BZ";
+		this.tipoZombie = "W";
 	}
 	public BucketZombie() {
 		this.health    	= 8;
@@ -28,7 +28,7 @@ public class BucketZombie extends Zombie {
 		this.damage 	= 1;
 		this.velocity 	= 1;
 		this.frecuency 	= 4;
-		this.tipoZombie = "BZ";
+		this.tipoZombie = "W";
 		}
 
 	@Override

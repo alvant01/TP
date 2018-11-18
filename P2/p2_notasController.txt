@@ -1,15 +1,16 @@
 Por hacer:
 	Limpieza
+	
 
 Hecho:
 	DebugPrinter
 	Encode
 	Exit command
 	Comando Printmode
+	Los comandos(h,l,pm) no pintan tablero
 
 
 Errores:
-
 
 Hecho:
 	No cobra
@@ -30,3 +31,23 @@ Hecho:
 	No salen FZ
 	random seed
 	Solo pintar con add y update
+	Peashooter no dispara 
+	Los zombies solo se ataca a los obj correctos, no los de atras
+	PetaCereza daño incorrecto
+	los zombies y plantas delante de el otro no hacen nada
+	Al introducir seed no funciona(Si lo hace)
+	Error FZ vs PS al ponerla delante (seed 62)
+	remainig zombies no cambia
+	No salen el 3 zombie
+	array no redimensiona
+	Numero de sun coins no es acorde, comienza en 10.020, luego en vez de restar suma sun coins al contador, ya sea si se agrega un sunflower o un peashooter. (/debug)
+	Comando NONE no funciona(es enter)
+	Error en pos 0 0 (creo que ya solucionado)
+	Imprime tablero 2 veces (No se como solucionarlo)/borrar scanner
+		La primera vez que lo imprime, imprime 20 sun coins, la segunda vez empieza a sumar sun coins de la nada
+	La Petacereza da error al momento de explotar. /mala busqueda al eliminar
+	Solo deja plantar 2 Petacerezas en el campo. (Cuando no hay restricciones de cuantas debe de haber)/la tercera se planta al explotar la primera
+	DebugMode tiempo restante sale 0/arreglarlo
+	Los nombres de los zombies deberian de ser:
+		W para Caracubo
+		X Para deportista

@@ -24,22 +24,25 @@ public class DebugPrinter extends BoardPrinter {
 	
 	//Mejorar
 	public void DebugPrinter() {
-		for(int i = 0; i < this.game.getList().getNumElem(); i++)
+		if(this.game.getList().getNumElem() > 0)
 		{
-			System.out.print("-----------------------");
+			for(int i = 0; i < this.game.getList().getNumElem(); i++)
+			{
+				System.out.print("-----------------------");
+			}
+			System.out.println();
+			System.out.print("|");
+			for(int i = 0; i < this.game.getList().getNumElem(); i++)
+			{
+				System.out.print(this.game.obtenerPiezaDebug(i) + "|");
+			}
+			System.out.println();
+			for(int i = 0; i < this.game.getList().getNumElem(); i++)
+			{
+				System.out.print("-----------------------");
+			}
+			System.out.println();
 		}
-		System.out.println();
-		System.out.print("|");
-		for(int i = 0; i < this.game.getList().getNumElem(); i++)
-		{
-			System.out.print(this.game.obtenerPiezaDebug(i) + "|");
-		}
-		System.out.println();
-		for(int i = 0; i < this.game.getList().getNumElem(); i++)
-		{
-			System.out.print("-----------------------");
-		}
-		System.out.println();
 		
 	}
 

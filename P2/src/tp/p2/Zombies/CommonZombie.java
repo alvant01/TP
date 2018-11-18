@@ -21,7 +21,7 @@ public class CommonZombie extends Zombie {
 		this.frecuency = 2;
 		this.posX = posX;
 		this.posY = posY;
-		this.tipoZombie = "CZ";
+		this.tipoZombie = "Z";
 	}
 
 
@@ -31,7 +31,7 @@ public class CommonZombie extends Zombie {
 		this.damage = 1;
 		this.velocity = 1;
 		this.frecuency = 2;
-		this.tipoZombie = "CZ";
+		this.tipoZombie = "Z";
 	}
 	public Zombie parse(int zombie) {
 		if(zombie == 0)

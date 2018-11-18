@@ -117,7 +117,7 @@ public class GameObject {
 			return " " + this.planta.getTipoPlanta() + "[" + this.planta.getHealth() + "]";
 		}
 		else{
-			return this.zombie.getTipoZombie() + "[" + this.zombie.getHealth() + "]";
+			return " " + this.zombie.getTipoZombie() + "[" + this.zombie.getHealth() + "]";
 		}
  		
 	}

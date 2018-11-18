@@ -76,7 +76,15 @@ public class Game {
 	}
 
 	public String obtenerPiezaDebug(int i) { 
-		return this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:" + (this.ciclos%this.list.getList()[i].getFrecuency() - this.list.getList()[i].getCicloI()%this.list.getList()[i].getFrecuency());
+		String s =  this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:";
+		if(this.list.getList()[i].getFrecuency() != 0)
+			if((this.ciclos - this.list.getList()[i].getCicloI())%this.list.getList()[i].getFrecuency() == 0)
+				s = s + 0;
+			else
+				s = s + (this.list.getList()[i].getFrecuency()-((this.ciclos - this.list.getList()[i].getCicloI())%this.list.getList()[i].getFrecuency()));
+		else
+			s  =s + 0;
+		return s;
 
 	}
 	public boolean InicializarZombies()

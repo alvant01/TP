@@ -21,7 +21,7 @@ public class FastZombie extends Zombie {
 		this.frecuency 	= 1;
 		this.posX = posX;
 		this.posY = posY;
-		this.tipoZombie = "FZ";
+		this.tipoZombie = "X";
 	}
 	public FastZombie() {
 		this.health 	= 2;
@@ -29,7 +29,7 @@ public class FastZombie extends Zombie {
 		this.damage 	= 1;
 		this.velocity 	= 1;
 		this.frecuency 	= 1;
-		this.tipoZombie = "FZ";
+		this.tipoZombie = "X";
 	}
 	public Zombie parse(int zombie) {
 		if(zombie == 2)
