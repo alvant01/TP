@@ -48,7 +48,7 @@ public class Controller {
 		while (!game.isFinished() && !this.exit) 
 		{
 			noPrint = true;
-			this.game.getScm().addSunCoins(10000);
+			//this.game.getScm().addSunCoins(10000);
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);
@@ -56,13 +56,17 @@ public class Controller {
 				if(command.execute(game, this))
 				{
 					update(words);
+					this.game.updateSuns();
 					noPrint = false;
+					this.game.setAlreadyCatch(false);
 				}
 			}
 			else if(words[0].isEmpty())
 			{
 				update(words);
+				this.game.updateSuns();
 				noPrint = false;
+				this.game.setAlreadyCatch(false);
 			}
 			else {
 				System.err.println("Comando no reconocido");

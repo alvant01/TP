@@ -13,6 +13,8 @@ import tp.p2.Factory.*;
 public class Game {
 	private List list;
 	
+	private SunList sList;
+	
 	private PlantFactory fabricarPlanta;
 	
 	private ZombieFactory fabricarZombie;
@@ -29,10 +31,13 @@ public class Game {
 	
 	private boolean printDebug;
 	
+	private boolean alreadyCatch;
+	
 	private int ciclos;
 	
 	public Game(){
 		this.list	  		= new List();
+		this.sList			= new SunList();
 		this.scm      		= new SunCoinsManager();
 		this.gObject 		= new GameObject();
 		this.fabricarPlanta = new PlantFactory(this.gObject);
@@ -74,6 +79,17 @@ public class Game {
 		}
 		return "     ";//vacio
 	}
+	
+	public char obtenerSun(int posX, int posY) {
+		int posList;
+		posList = this.sList.containsPosition(posX, posY);
+		
+		if (posList != -1){
+			return this.sList.getsList()[posList].getVisual();
+		}
+		return ' ';//vacio
+	}
+
 
 	public String obtenerPiezaDebug(int i) { 
 		String s =  this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:";
@@ -150,10 +166,41 @@ public class Game {
 		return false;
 	}
 
+
+	public void printMode() {
+		if(this.printDebug)
+			this.printDebug = false;
+		else
+			this.printDebug = true;
+		
+	}
+
+	public void catchSun(int posX, int posY) {
+		if(!this.alreadyCatch)
+		{	
+			if(this.sList.getSunCoins(posX, posY))
+			{
+				this.scm.addSunCoins(20);
+				this.alreadyCatch = true;
+			}
+		}
+		else
+		{
+			System.out.println("Solo un sol por turno");
+		}
+	}
 	
-	
-	
-	
+	public void setAlreadyCatch(boolean alreadyCatch) {
+		this.alreadyCatch = alreadyCatch;
+	}
+
+	public void updateSuns() {
+		if(this.ciclos%this.sList.getFrecuencia() == 0)
+		{
+			this.sList.insertRandom();
+		}
+		
+	}
 	
 	
 	
@@ -255,15 +302,6 @@ public class Game {
 	public String getLevel() {
 		return level;
 	}
-
-	public void printMode() {
-		if(this.printDebug)
-			this.printDebug = false;
-		else
-			this.printDebug = true;
-		
-	}
-
 	public boolean getPrintDebug() {
 		return printDebug;
 	}
@@ -275,6 +313,23 @@ public class Game {
 
 	public void setReamingZombies() {
 		this.zManager.setZombiesRestantes(this.zManager.getZombiesRestantes()-1);
+	}
+
+
+	public SunList getsList() {
+		return sList;
+	}
+
+	public void setsList(SunList sList) {
+		this.sList = sList;
+	}
+
+	public boolean isAlreadyCatch() {
+		return alreadyCatch;
+	}
+
+	public void addSun(int posX, int posY) {
+		this.sList.insert(posX,posY);
 	}
 
 

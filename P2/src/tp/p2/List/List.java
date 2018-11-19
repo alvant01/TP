@@ -13,7 +13,7 @@ public class List {
 	
 	
 	public List() {
-		this.tamInicio = 2;
+		this.tamInicio = 10;
 		this.list = new GameObject[this.tamInicio];
 		this.numElem =0;
 	}
@@ -34,30 +34,6 @@ public class List {
 		this.numElem++;
 		if(this.numElem >= this.tamInicio)
 			redimensionar();
-	}
-
-	public GameObject[] getList() {
-		return list;
-	}
-
-	public void setList(GameObject[] list) {
-		this.list = list;
-	}
-
-	public int getNumElem() {
-		return numElem;
-	}
-
-	public void setNumElem(int numElem) {
-		this.numElem = numElem;
-	}
-
-	public int getTamInicio() {
-		return tamInicio;
-	}
-
-	public void setTamInicio(int tamInicio) {
-		this.tamInicio = tamInicio;
 	}
 
 	public boolean lose() {
@@ -93,12 +69,6 @@ public class List {
 		}
 		return false;
 	}
-
-	public String getPieza(int posX, int posY) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void update(Game game, int ciclos) {
 		for(int i = 0; i< this.getNumElem();i++)
 		{
@@ -108,7 +78,9 @@ public class List {
 			{
 				if(obj.getPlanta().getTipoPlanta().equals("S"))//sunflower
 				{
-					obj.updateSunflower(game.getScm(), ciclos);
+					//obj.updateSunflower(game.getScm(), ciclos);
+					if(obj.updatePlant(ciclos))
+						game.addSun(obj.getPosX(), obj.getPosY());
 				}
 				else if(obj.getPlanta().getTipoPlanta().equals("P"))
 				{
@@ -208,4 +180,39 @@ public class List {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters and Setters
+	
+
+	public GameObject[] getList() {
+		return list;
+	}
+
+	public void setList(GameObject[] list) {
+		this.list = list;
+	}
+
+	public int getNumElem() {
+		return numElem;
+	}
+
+	public void setNumElem(int numElem) {
+		this.numElem = numElem;
+	}
+
+	public int getTamInicio() {
+		return tamInicio;
+	}
+
+	public void setTamInicio(int tamInicio) {
+		this.tamInicio = tamInicio;
+	}
+
 }

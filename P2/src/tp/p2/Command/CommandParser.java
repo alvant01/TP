@@ -13,11 +13,12 @@ public class CommandParser {
 			new ListCommand("LIST","Lista los objetos", "Lista los objetos"),
 			new UpdateCommand("UPDATE","actualiza", "actualiza"),
 			new PrintModeCommand("PRINTMODE", "Cambia el modo","Cambia el modo" ),
+			new CatchCommand("CATCH", "Coje un sol", "Coje un sol"),
 			};
 
 	public CommandParser() 
 	{
-		this.numComandos = 7;
+		this.numComandos = 8;
 		CommandParser.availableCommands = new Command[this.numComandos];
 	}
 	public static Command parseCommand(String[ ] commandWords, Controller controller) 
@@ -49,6 +50,10 @@ public class CommandParser {
 		else if(availableCommands[6].parse(commandWords, controller) != null)
 		{
 			return availableCommands[6];
+		}
+		else if(availableCommands[7].parse(commandWords, controller) != null)
+		{
+			return availableCommands[7];
 		}
 		return null;
 	}

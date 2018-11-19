@@ -56,9 +56,9 @@ public class ReleasePrinter extends BoardPrinter {
 		System.out.print(" ");
 		for(int i = 0; i < this.numColum-1; i++)
 		{
-			System.out.print("-------");
+			System.out.print("--------");
 		}
-		System.out.println("-------");
+		System.out.println("--------");
 	}
 	
 	public void drawLineasV(int posX)
@@ -67,12 +67,18 @@ public class ReleasePrinter extends BoardPrinter {
 		for(int posY = 0; posY< this.numColum; posY++)
 		{
 			drawFiguras(posX, posY);
+			drawSun(posX, posY);
 			System.out.print("|");
 		}
 		System.out.println("");
 	}
 	
 	
+	private void drawSun(int posX, int posY) {
+		System.out.print(this.game.obtenerSun(posX, posY));
+		
+	}
+
 	public void drawFiguras(int posX,int posY)
 	{
 		String pieza;

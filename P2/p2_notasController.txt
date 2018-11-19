@@ -8,11 +8,11 @@ Hecho:
 	Exit command
 	Comando Printmode
 	Los comandos(h,l,pm) no pintan tablero
-
+	Cambiar que Sunflowers genere un sol
+	Visualizar soles
 
 Errores:
-
-
+	
 Hecho:
 	No cobra
 	Mensajes de error
@@ -52,3 +52,5 @@ Hecho:
 	Los nombres de los zombies deberian de ser:
 		W para Caracubo
 		X Para deportista
+	Soles sale en pos mal
+	No sale un sol cada 5
