@@ -1,0 +1,60 @@
+package tp.p2.Command;
+
+import tp.p2.Controladores.Controller;
+import tp.p2.Game.Game;
+
+public class ListZombieCommand extends Command {
+
+	public ListCommand(String commandText, String commandInfo, String helpInfo) {
+		super(commandText, commandInfo, helpInfo);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public boolean execute(Game game, Controller controller) {
+		System.out.print("[z]ombie: ");
+		System.out.print("   ");
+		System.out.print(" Cost: " + game + " suncoins ");
+		System.out.print("   ");
+		System.out.print("Health: " + game.getPlantaHealth(0));
+		System.out.print("   ");
+		System.out.println(" Damage: " + game.getPlantaDamage(0));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(0));
+		
+		System.out.print("[P]eaShooter: ");
+		System.out.print("   ");
+		System.out.print(" Cost: " + game.getPlantaCost(1) + " suncoins ");
+		System.out.print("   ");
+		System.out.print("Health: " + game.getPlantaHealth(1));
+		System.out.print("   ");
+		System.out.println(" Damage: " + game.getPlantaDamage(1));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(1));
+		
+		System.out.print("[N]uez: ");
+		System.out.print("   ");
+		System.out.print(" Cost: " + game.getPlantaCost(2) + " suncoins ");
+		System.out.print("   ");
+		System.out.print("Health: " + game.getPlantaHealth(2));
+		System.out.print("   ");
+		System.out.println(" Damage: " + game.getPlantaDamage(2));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(2));
+		
+		System.out.print("Peta[C]ereza: ");
+		System.out.print("   ");
+		System.out.print(" Cost: " + game.getPlantaCost(3) + " suncoins ");
+		System.out.print("   ");
+		System.out.print("Health: " + game.getPlantaHealth(3));
+		System.out.print("   ");
+		System.out.println(" Damage: " + game.getPlantaDamage(3));
+		System.out.println("Descripcion: " + game.getPlantaBehaviour(3));
+		return false;
+	}
+
+	@Override
+	public Command parse(String[] commandWords, Controller controller) {
+		if(commandWords[0].toLowerCase().equals("zombielist") || commandWords[0].toLowerCase().equals("zl"))
+			return this;
+		return null;
+	}
+
+}

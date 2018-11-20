@@ -13,9 +13,9 @@ public class Controller {
 	
 	private Scanner scanner;
 	
-	private ReleasePrinter gPrinter;
+	private GamePrinter gPrinter;
 
-	private DebugPrinter gPrinterDebug;
+	private boolean printDebug;
 	
 	private boolean exit;
 	
@@ -26,8 +26,8 @@ public class Controller {
 		this.game = g;
 		this.scanner = new Scanner(System.in);
 		this.gPrinter = new ReleasePrinter(this.game);
-		this.gPrinterDebug = new DebugPrinter(this.game);
 		this.exit = false;
+		this.printDebug = false;
 	}
 	
 	
@@ -48,7 +48,7 @@ public class Controller {
 		while (!game.isFinished() && !this.exit) 
 		{
 			noPrint = true;
-			//this.game.getScm().addSunCoins(10000);
+			this.game.getScm().addSunCoins(10000);
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);
@@ -90,12 +90,8 @@ public class Controller {
 	}
 
 	public void printGame()
-	{
-		
-		if(this.game.getPrintDebug())
-			this.gPrinterDebug.DebugPrinter();
-			
-		this.gPrinter.ReleasePrinter();
+	{		
+		this.gPrinter.printGame();
 	}
 	
 	public String menuCommands()
@@ -132,17 +128,33 @@ public class Controller {
 		{
 			System.out.print("Semilla: ");
 			this.game.setSemilla(this.scanner.nextInt());
+			this.scanner.next();
 		}
 		else
 		{
 			this.game.genSemRandom();
 		}
-		//this.in.reset();
 	}
 
 
 
 	public void setExit(boolean exit) {
 		this.exit = exit;
+	}
+
+
+
+	public void printMode() {
+		if(!this.printDebug)
+		{
+			this.gPrinter = new DebugPrinter(this.game);
+			this.printDebug =true;
+		}
+		else
+		{
+			this.gPrinter = new ReleasePrinter(this.game);
+			this.printDebug =false;
+		}
+		
 	}
 }

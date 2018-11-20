@@ -29,8 +29,6 @@ public class Game {
 	
 	private int semilla;
 	
-	private boolean printDebug;
-	
 	private boolean alreadyCatch;
 	
 	private int ciclos;
@@ -44,7 +42,6 @@ public class Game {
 		this.fabricarZombie = new ZombieFactory(this.gObject);
 		this.zManager		= new ZombieManager();
 		
-		this.printDebug = false;
 		this.ciclos= 0;
 	}
 
@@ -92,7 +89,7 @@ public class Game {
 
 
 	public String obtenerPiezaDebug(int i) { 
-		String s =  this.list.getList()[i].getString() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:";
+		String s =  this.list.getList()[i].getStringNoHealth() + "[l:" + this.list.getList()[i].getHealth() + ",x:" + this.list.getList()[i].getPosX()+ ",y:" + this.list.getList()[i].getPosY()+ ",t:";
 		if(this.list.getList()[i].getFrecuency() != 0)
 			if((this.ciclos - this.list.getList()[i].getCicloI())%this.list.getList()[i].getFrecuency() == 0)
 				s = s + 0;
@@ -167,20 +164,13 @@ public class Game {
 	}
 
 
-	public void printMode() {
-		if(this.printDebug)
-			this.printDebug = false;
-		else
-			this.printDebug = true;
-		
-	}
 
 	public void catchSun(int posX, int posY) {
 		if(!this.alreadyCatch)
 		{	
 			if(this.sList.getSunCoins(posX, posY))
 			{
-				this.scm.addSunCoins(20);
+				this.scm.addSunCoins(10);
 				this.alreadyCatch = true;
 			}
 		}
@@ -239,20 +229,19 @@ public class Game {
 	}
 
 	public int getPlantaCost(int i) {
-		return this.fabricarPlanta.getPlantas()[i].getCost();
+		return PlantFactory.getPlantas()[i].getCost();
 	}
 
 	public int getPlantaHealth(int i) {
-		return this.fabricarPlanta.getPlantas()[i].getHealth();
+		return PlantFactory.getPlantas()[i].getHealth();
 	}
 
 	public int getPlantaDamage(int i) {
-		// TODO Auto-generated method stub
-		return this.fabricarPlanta.getPlantas()[i].getDamage();
+		return PlantFactory.getPlantas()[i].getDamage();
 	}
 
 	public String getPlantaBehaviour(int i) {
-		return this.fabricarPlanta.getPlantas()[i].getBehaviour();
+		return PlantFactory.getPlantas()[i].getBehaviour();
 	}
 
 	public int getRemainingZombies() {
@@ -300,17 +289,15 @@ public class Game {
 	}
 
 	public String getLevel() {
+		String level;
+		if(this.level.toLowerCase().equals("e"))
+			level = "EASY";
+		else if(this.level.toLowerCase().equals("h"))
+			level = "HARD";
+		else
+			level = "INSANE";
 		return level;
 	}
-	public boolean getPrintDebug() {
-		return printDebug;
-	}
-
-	public void setPrintDebug(boolean printDebug) {
-		this.printDebug = printDebug;
-	}
-
-
 	public void setReamingZombies() {
 		this.zManager.setZombiesRestantes(this.zManager.getZombiesRestantes()-1);
 	}

@@ -121,6 +121,15 @@ public class GameObject {
 		}
  		
 	}
+	public String getStringNoHealth() {
+		if (this.isPlant()){
+			return " " + this.planta.getTipoPlanta();
+		}
+		else{
+			return " " + this.zombie.getTipoZombie();
+		}
+ 		
+	}
 	public int getCost() {
 		return this.planta.getCost();
 	}

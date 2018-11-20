@@ -1,5 +1,6 @@
 package tp.p2.List;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class SunList {
@@ -21,20 +22,35 @@ public class SunList {
 	{
 		int posX = random(4);	
 		int posY = random(8);
-		while(contains(posX, posY))
+		int i  = 0;
+		while(contains(posX, posY) && i < 32)
 		{
 			posX = random(4);	
 			posY = random(8);
+			i++;//Si todas las casillas tienen un sol evitamos un bucle infinito
 		}
 		this.sList[this.numElem] = new SunObject(posX, posY);
 		this.numElem++;
+		if(this.numElem >= this.tamInicio)
+		{
+			redimensionar();
+		}
 	}
 	public void insert(int posX, int posY) {
 		if(!contains(posX, posY))
 		{
 			this.sList[this.numElem] = new SunObject(posX, posY);
 			this.numElem++;
+			if(this.numElem >= this.tamInicio)
+			{
+				redimensionar();
+			}
 		}
+	}
+	public void redimensionar()
+	{
+		this.sList = Arrays.copyOf(this.sList,this.tamInicio*2);//redimesionar
+		this.tamInicio = this.tamInicio*2;
 	}
 	private boolean contains(int posX, int posY) {
 		for(int i = 0; i < this.numElem; i++)

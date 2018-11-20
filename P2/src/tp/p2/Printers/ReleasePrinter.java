@@ -3,12 +3,6 @@ package tp.p2.Printers;
 import tp.p2.Game.Game;
 
 public class ReleasePrinter extends BoardPrinter {
-
-	private Game game;
-	private int numFilas;
-	private int numColum;
-	
-	
 	
 	int cellSize = 7;
 	String space = " ";
@@ -17,16 +11,13 @@ public class ReleasePrinter extends BoardPrinter {
 	
 	public ReleasePrinter(Game g)
 	{
-		this.game = g;
-		this.numFilas = 4;
-		this.numColum = 8;
+		super(g);
 	}
 	
-	public void ReleasePrinter() {
-		System.out.println("Random seed used: " + game.getSemilla());
-		System.out.println("Number of cycles: " + game.getCiclos());
-		System.out.println("Sun coins: " + game.getScm().getSunCoins());
-		System.out.println("Remaning zombies: " + game.getRemainingZombies());
+	public void releasePrinter() {
+		System.out.println("Number of cycles: " + this.game.getCiclos());
+		System.out.println("Sun coins: " + this.game.getScm().getSunCoins());
+		System.out.println("Remaning zombies: " + this.game.getRemainingZombies());
 		for (int i = 0; i < this.numFilas*2; i++)
 		{
 			if (i%2 != 0)
@@ -45,7 +36,6 @@ public class ReleasePrinter extends BoardPrinter {
 
 	@Override
 	public void encodeGame() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -109,6 +99,12 @@ public class ReleasePrinter extends BoardPrinter {
 
 	public void setNumColum(int numColum) {
 		this.numColum = numColum;
+	}
+
+	@Override
+	public void printGame() {
+		releasePrinter();
+		
 	}
 
 }

@@ -1,6 +1,6 @@
 Por hacer:
 	Limpieza
-	
+	ZombieList
 
 Hecho:
 	DebugPrinter
@@ -10,9 +10,10 @@ Hecho:
 	Los comandos(h,l,pm) no pintan tablero
 	Cambiar que Sunflowers genere un sol
 	Visualizar soles
+	Mostrar nivel
 
 Errores:
-	
+	DEbug muestra 2 veces la vida
 Hecho:
 	No cobra
 	Mensajes de error
@@ -54,3 +55,5 @@ Hecho:
 		X Para deportista
 	Soles sale en pos mal
 	No sale un sol cada 5
+	Al introducir seed salta un ciclo
+	Cambiar pm a p

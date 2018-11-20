@@ -34,9 +34,6 @@ public class PlantFactory {
 		if(plantas[0].parse(planta) != null)
 		{
 			obj.setPlanta(new Sunflower(posX, posY));
-			//obj.setPlanta(plantas[0]);
-			//obj.setPosX(posX);
-			//obj.setPosY(posY);
 			return obj;
 		}
 		else if (plantas[1].parse(planta) != null)

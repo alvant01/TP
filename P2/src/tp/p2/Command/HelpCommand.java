@@ -7,7 +7,6 @@ public class HelpCommand extends Command {
 
 	public HelpCommand(String commandText, String commandInfo, String helpInfo) {
 		super(commandText, commandInfo, helpInfo);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -18,11 +17,10 @@ public class HelpCommand extends Command {
 				"[H]elp: Prints this help message.\r\n" + 
 				"[E]xit: Terminates the program.\r\n" + 
 				"none: Skips cycle.\r\n" +
-				"[PM]PrintMode: Debug print mode.\r\n");
+				"[P]rintMode: Debug print mode.\r\n");
 		return false;
 	}
-
-	@Override
+	
 	public Command parse(String[] commandWords, Controller controller) {
 		if(commandWords[0].toLowerCase().equals("help") || commandWords[0].toLowerCase().equals("h"))
 			return this;
