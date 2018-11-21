@@ -243,7 +243,23 @@ public class Game {
 	public String getPlantaBehaviour(int i) {
 		return PlantFactory.getPlantas()[i].getBehaviour();
 	}
+	
+	//Zombies
+	public int getZombienHealth(int i){
+		return ZombieFactory.getZombies()[i].getHealth();
+	}
+	public int getZombieDamage(int i){
+		return ZombieFactory.getZombies()[i].getDamage();
+	}
+	public String getZombieBehaviour(int i){
+		return ZombieFactory.getZombies()[i].getBehaviour();
+	}
+	public int getZombieFrecuency(int i){
+		return ZombieFactory.getZombies()[i].getFrecuency();
+	}
 
+	
+	//hasta aqui
 	public int getRemainingZombies() {
 		return this.zManager.getZombiesPorSalir();
 	}

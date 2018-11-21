@@ -1,6 +1,7 @@
 package tp.p2.Factory;
 
 import tp.p2.List.GameObject;
+import tp.p2.Plants.Plant;
 import tp.p2.Zombies.BucketZombie;
 import tp.p2.Zombies.CommonZombie;
 import tp.p2.Zombies.FastZombie;
@@ -48,5 +49,17 @@ private GameObject gObject;
 			return obj;
 		}
 		return null;
+	}
+	public GameObject getgObject() {
+		return gObject;
+	}
+	public void setgObject(GameObject gObject) {
+		this.gObject = gObject;
+	}
+	public static Zombie[] getZombies() {
+		return zombies;
+	}
+	public static void setZombies(Zombie[] zombies) {
+		ZombieFactory.zombies = zombies;
 	}
 }
