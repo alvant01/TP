@@ -4,9 +4,6 @@ import tp.p2.List.GameObject;
 
 public abstract class Plant extends GameObject {	
 
-	public Plant() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public abstract Plant parse(String planta);
 

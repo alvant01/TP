@@ -2,7 +2,6 @@ package tp.p2.List;
 
 import java.util.Arrays;
 
-import tp.p2.Controladores.SunCoinsManager;
 import tp.p2.Game.Game;
 
 public class List {

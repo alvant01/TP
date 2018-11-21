@@ -8,7 +8,6 @@ public class DebugPrinter extends BoardPrinter {
 		super(g);
 	}
 
-	@Override
 	public void encodeGame() {
 		
 	}

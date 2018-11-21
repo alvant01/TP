@@ -57,3 +57,5 @@ Hecho:
 	No sale un sol cada 5
 	Al introducir seed salta un ciclo
 	Cambiar pm a p
+	Mensaje si no hay sol en la casilla
+	Las plantas se pueden poner fuera

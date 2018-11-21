@@ -19,6 +19,7 @@ public class PlantsVsZombies
 		if(args.length == 1)
 		{
 			pvz.gameMaster.setLevel(args[0]);
+			pvz.controllerMaster.menuSem();
 		}
 		else if(args.length == 2)
 		{

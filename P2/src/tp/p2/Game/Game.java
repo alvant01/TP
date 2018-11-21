@@ -2,11 +2,6 @@ package tp.p2.Game;
 
 import tp.p2.Controladores.*;
 import tp.p2.List.*;
-import tp.p2.Plants.Plant;
-import tp.p2.Printers.BoardPrinter;
-import tp.p2.Printers.GamePrinter;
-import tp.p2.Printers.ReleasePrinter;
-import tp.p2.Zombies.Zombie;
 import tp.p2.Factory.*;
 
 
@@ -113,11 +108,11 @@ public class Game {
 		}
 		return false;
 	}
-
+	
 	public void genSemRandom() {
 		this.semilla=this.zManager.semillaRandom();
 	}
-
+	
 	public boolean isFinished() {
 		if(this.zManager.getZombiesRestantes()==0)
 		{
@@ -134,7 +129,7 @@ public class Game {
 	public boolean addPlant(String planta, int posX, int posY)
 	{
 		//Llamar factory
-		if (!this.list.contains(posX, posY) && (posX >0 || posX < 4)&& (posY >0 || posY < 8) ){
+		if (!this.list.contains(posX, posY) && (posX >= 0 && posX < 4)&& (posY >= 0 && posY < 8) ){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
 			if(this.scm.getSunCoins() >= o.getCost())
 			{
@@ -172,6 +167,10 @@ public class Game {
 			{
 				this.scm.addSunCoins(10);
 				this.alreadyCatch = true;
+			}
+			else
+			{
+				System.out.println("No hay sol en esa casilla");
 			}
 		}
 		else

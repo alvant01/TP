@@ -42,6 +42,21 @@ public class PeaShooter extends Plant {
 		}
 		return null;
 	}
+	
+	public boolean update(int ciclo) {
+		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
+			return true;
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters y Setters
 
 	public int getHealth() {
 		return health;
@@ -133,12 +148,6 @@ public class PeaShooter extends Plant {
 	@Override
 	public void setSunGenerator(int sunGenerator) {
 		// Do nothing herency fault
-	}
-	@Override
-	public boolean update(int ciclo) {
-		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
 	}
 	public String getTipoPlanta() {
 		return tipoPlanta;

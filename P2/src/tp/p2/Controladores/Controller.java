@@ -48,7 +48,6 @@ public class Controller {
 		while (!game.isFinished() && !this.exit) 
 		{
 			noPrint = true;
-			this.game.getScm().addSunCoins(10000);
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
 			Command command = CommandParser.parseCommand(words, this);
@@ -122,6 +121,21 @@ public class Controller {
 		System.out.print("Nivel: ");
 		level = this.scanner.nextLine();
 		this.game.setLevel(level);
+		System.out.print("Semilla?(y/n):");
+		String response = this.scanner.nextLine().toLowerCase();
+		if(response.equals("y"))
+		{
+			System.out.print("Semilla: ");
+			this.game.setSemilla(this.scanner.nextInt());
+			this.scanner.next();
+		}
+		else
+		{
+			this.game.genSemRandom();
+		}
+	}
+	public void menuSem() {
+
 		System.out.print("Semilla?(y/n):");
 		String response = this.scanner.nextLine().toLowerCase();
 		if(response.equals("y"))

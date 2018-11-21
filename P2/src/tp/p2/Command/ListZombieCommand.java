@@ -1,10 +1,8 @@
 package tp.p2.Command;
 
 import tp.p2.Controladores.Controller;
-import tp.p2.Controladores.ZombieManager;
 import tp.p2.Game.Game;
-import tp.p2.Zombies.BucketZombie;
-import tp.p2.Zombies.Zombie;
+
 
 public class ListZombieCommand extends Command {
 

@@ -31,7 +31,6 @@ public class BucketZombie extends Zombie {
 		this.tipoZombie = "W";
 		}
 
-	@Override
 	public Zombie parse(int zombie) {
 		if(zombie == 1)
 			return this;
@@ -44,7 +43,12 @@ public class BucketZombie extends Zombie {
 			return true;
 		return false;
 	}
-
+	
+	
+	
+	
+	
+	//Getters and Setters
 	public int getHealth() {
 		return health;
 	}

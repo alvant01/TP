@@ -38,6 +38,18 @@ public class Nuez extends Plant {
 				return this;
 		return null;
 	}
+	public boolean update(int ciclo) {
+		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
+			return true;
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	//Getters y Setters
 
 
 	@Override
@@ -114,14 +126,6 @@ public class Nuez extends Plant {
 
 	public void setCicloI(int cicloI) {
 		this.cicloI = cicloI;
-	}
-
-
-	@Override
-	public boolean update(int ciclo) {
-		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
 	}
 
 

@@ -17,7 +17,8 @@ public class HelpCommand extends Command {
 				"[H]elp: Prints this help message.\r\n" + 
 				"[E]xit: Terminates the program.\r\n" + 
 				"none: Skips cycle.\r\n" +
-				"[P]rintMode: Debug print mode.\r\n");
+				"[P]rintMode: Debug print mode.\r\n" +
+				"[ZL]ZombieList: Prints the list of zombies.\r\n");
 		return false;
 	}
 	

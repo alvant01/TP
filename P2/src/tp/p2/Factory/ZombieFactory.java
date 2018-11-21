@@ -1,7 +1,6 @@
 package tp.p2.Factory;
 
 import tp.p2.List.GameObject;
-import tp.p2.Plants.Plant;
 import tp.p2.Zombies.BucketZombie;
 import tp.p2.Zombies.CommonZombie;
 import tp.p2.Zombies.FastZombie;

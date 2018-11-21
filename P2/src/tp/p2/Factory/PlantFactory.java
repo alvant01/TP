@@ -14,7 +14,6 @@ public class PlantFactory {
 			new Petacereza(),
 	};
 	
-	//private Plant planta;
 	
 	
 	public PlantFactory(GameObject o)
@@ -24,13 +23,11 @@ public class PlantFactory {
 	//modificar
 	public GameObject creaPlanta(String planta, int posX, int posY){
 
-		//this.gObject = new GameObject(posX, posY);
 		return parsePlant(planta, posX, posY);
 		
 	}
 	public GameObject parsePlant(String planta, int posX, int posY) {
 		GameObject obj = new GameObject();
-		//GameObject obj2 = new GameObject();
 		if(plantas[0].parse(planta) != null)
 		{
 			obj.setPlanta(new Sunflower(posX, posY));

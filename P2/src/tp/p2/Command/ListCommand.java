@@ -2,7 +2,6 @@ package tp.p2.Command;
 
 import tp.p2.Controladores.Controller;
 import tp.p2.Game.Game;
-import tp.p2.List.GameObject;
 
 public class ListCommand extends Command {
 

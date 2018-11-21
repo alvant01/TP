@@ -44,6 +44,13 @@ public class CommonZombie extends Zombie {
 			return true;
 		return false;
 	}
+	
+	
+	
+	
+	
+	
+	//Getters and Setters
 	public int getCicloZom() {
 		return this.cicloZom;
 	}

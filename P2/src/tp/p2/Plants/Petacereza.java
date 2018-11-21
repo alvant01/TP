@@ -37,7 +37,22 @@ public class Petacereza extends Plant {
 			return this;
 		return null;
 	}
-
+	public boolean update(int ciclo) {
+		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
+			return true;
+		return false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters and Setters
 	public int getHealth() {
 		return health;
 	}
@@ -113,12 +128,6 @@ public class Petacereza extends Plant {
 	public void setSunGenerator(int sunGenerator) {
 		// TODO Auto-generated method stub
 		
-	}
-	@Override
-	public boolean update(int ciclo) {
-		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
 	}
 	public String getTipoPlanta() {
 		return tipoPlanta;

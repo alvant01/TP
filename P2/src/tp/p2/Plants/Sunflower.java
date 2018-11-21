@@ -53,7 +53,10 @@ public class Sunflower extends Plant
 	}
 	
 
-
+	
+	
+	
+	//Getters and Setters
 	public int getHealth() {
 		return health;
 	}

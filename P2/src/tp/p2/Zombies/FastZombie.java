@@ -43,6 +43,16 @@ public class FastZombie extends Zombie {
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters and Setters
 	public int getHealth() {
 		return health;
 	}
