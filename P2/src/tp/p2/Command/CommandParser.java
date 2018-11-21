@@ -6,7 +6,7 @@ public class CommandParser {
 	private int numComandos;
 	
 	private static Command[] availableCommands = {
-			new AddCommand("ADD","Añade una planta", "Añade una planta"),
+			new AddCommand("ADD","A?ade una planta", "A?ade una planta"),
 			new HelpCommand("HELP","Muestra los comandos", "Muestra los comandos"),
 			new ResetCommand("RESET","Resetea", "Resetea"),
 			new ExitCommand("EXIT","Sale", "Sale"),
@@ -14,6 +14,7 @@ public class CommandParser {
 			new UpdateCommand("UPDATE","actualiza", "actualiza"),
 			new PrintModeCommand("PRINTMODE", "Cambia el modo","Cambia el modo" ),
 			new CatchCommand("CATCH", "Coje un sol", "Coje un sol"),
+			new ListZombieCommand("LISTZOMBIE", "Lista los zombies", "Lista los zombies")
 			};
 
 	public CommandParser() 
@@ -54,6 +55,10 @@ public class CommandParser {
 		else if(availableCommands[7].parse(commandWords, controller) != null)
 		{
 			return availableCommands[7];
+		}
+		else if(availableCommands[8].parse(commandWords, controller) != null)
+		{
+			return availableCommands[8];
 		}
 		return null;
 	}

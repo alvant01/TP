@@ -26,15 +26,6 @@ public class ListZombieCommand extends Command {
 		System.out.println("Descripcion: " + game.getZombieBehaviour(0));
 		
 		System.out.print("[Z]ombie Deportista: ");
-		System.out.print("Speed: " + game.getZombieFrecuency(1));
-		System.out.print("   ");
-		System.out.print("Harm: " + game.getZombieDamage(1));
-		System.out.print("   ");
-		System.out.print("Life: " + game.getZombienHealth(1));
-		System.out.print("   ");
-		System.out.println("Descripcion: " + game.getZombieBehaviour(1));
-		
-		System.out.print("[Z]ombie Caracubo: ");
 		System.out.print("Speed: " + game.getZombieFrecuency(2));
 		System.out.print("   ");
 		System.out.print("Harm: " + game.getZombieDamage(2));
@@ -42,6 +33,15 @@ public class ListZombieCommand extends Command {
 		System.out.print("Life: " + game.getZombienHealth(2));
 		System.out.print("   ");
 		System.out.println("Descripcion: " + game.getZombieBehaviour(2));
+		
+		System.out.print("[Z]ombie Caracubo: ");
+		System.out.print("Speed: " + game.getZombieFrecuency(1));
+		System.out.print("   ");
+		System.out.print("Harm: " + game.getZombieDamage(1));
+		System.out.print("   ");
+		System.out.print("Life: " + game.getZombienHealth(1));
+		System.out.print("   ");
+		System.out.println("Descripcion: " + game.getZombieBehaviour(1));
 	
 		return false;
 	}
