@@ -1,6 +1,5 @@
 Por hacer:
 	Limpieza
-	ZombieList
 
 Hecho:
 	DebugPrinter
@@ -11,9 +10,19 @@ Hecho:
 	Cambiar que Sunflowers genere un sol
 	Visualizar soles
 	Mostrar nivel
+	ZombieList
+
+
+	
+Corregir:
+	cambiar if por for en parses
+	cambiar aupdate planta para que cada planta haga sus cosas(encapsulamiento)
+	cambiar Sunlist para ser como dice la practica
+Corregido:
+
 
 Errores:
-	DEbug muestra 2 veces la vida
+	Al introducir seed pide dos ints
 Hecho:
 	No cobra
 	Mensajes de error
@@ -57,5 +66,4 @@ Hecho:
 	No sale un sol cada 5
 	Al introducir seed salta un ciclo
 	Cambiar pm a p
-	Mensaje si no hay sol en la casilla
-	Las plantas se pueden poner fuera
+	Debug muestra 2 veces la vida

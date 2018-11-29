@@ -1,6 +1,7 @@
 package tp.p2.List;
 
 import tp.p2.Controladores.SunCoinsManager;
+import tp.p2.Game.Game;
 import tp.p2.Plants.*;
 import tp.p2.Zombies.*;
 
@@ -78,18 +79,16 @@ public class GameObject {
 			zombie.setHealth(zombie.getHealth()-damage);
 		
 	}
-	public void updateSunflower(SunCoinsManager scm, int ciclo) {
+	/*public void updateSunflower(SunCoinsManager scm, int ciclo) {
 		if(this.planta.update(ciclo))
 			scm.addSunCoins(planta.getSunGenerator());
-	}
-	public boolean updatePlant(int ciclo)
+	}*/
+	public void updatePlant(int ciclo, Game game)
 	{
-		if(this.planta.update(ciclo))
-			return true;
-		return false;
+		this.planta.update(ciclo, game);
 	}
-	public boolean updateZombie(int ciclos) {
-		return this.zombie.updateZombie(ciclos);
+	public void updateZombie(int ciclos) {
+		this.zombie.updateZombie(ciclos);
 	}
 	private void damageZombie() {
 		

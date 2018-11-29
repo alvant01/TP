@@ -15,12 +15,10 @@ public class ZombieFactory {
 			new FastZombie(),
 	};
 	
-	
-private GameObject gObject;
-	
-	public ZombieFactory(GameObject o)
+	private int numZombies;
+	public ZombieFactory()
 	{
-		this.gObject = o;
+		this.numZombies = 3;
 	}
 	
 	//Modificar
@@ -31,30 +29,21 @@ private GameObject gObject;
 	
 	public GameObject parseZombie(int zombie, int posX, int posY)
 	{
-		GameObject obj = new GameObject();
-		if(zombies[0].parse(zombie) != null)
+		GameObject obj = null;
+		
+		for(int i  =0; i < this.numZombies; i++)
 		{
-			obj.setZombie(new CommonZombie(posX, posY));
-			return obj;
-		}
-		else if(zombies[1].parse(zombie) != null)
-		{
-			obj.setZombie(new BucketZombie(posX, posY));
-			return obj;
-		}
-		else if(zombies[2].parse(zombie) != null)
-		{
-			obj.setZombie(new FastZombie(posX, posY));
-			return obj;
+			obj.setZombie(zombies[i].parse(zombie));
+			if(obj.getPlanta() != null)
+			{
+				obj.setPosX(posX);
+				obj.setPosY(posY);
+				return obj;
+			}
 		}
 		return null;
 	}
-	public GameObject getgObject() {
-		return gObject;
-	}
-	public void setgObject(GameObject gObject) {
-		this.gObject = gObject;
-	}
+
 	public static Zombie[] getZombies() {
 		return zombies;
 	}

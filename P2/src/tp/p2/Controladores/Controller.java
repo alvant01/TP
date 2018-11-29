@@ -127,7 +127,7 @@ public class Controller {
 		{
 			System.out.print("Semilla: ");
 			this.game.setSemilla(this.scanner.nextInt());
-			this.scanner.next();
+			this.scanner.nextLine();
 		}
 		else
 		{
@@ -142,7 +142,7 @@ public class Controller {
 		{
 			System.out.print("Semilla: ");
 			this.game.setSemilla(this.scanner.nextInt());
-			this.scanner.next();
+			this.scanner.nextLine();
 		}
 		else
 		{

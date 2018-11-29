@@ -1,5 +1,7 @@
 package tp.p2.Plants;
 
+import tp.p2.Game.Game;
+
 public class Sunflower extends Plant
 {
 	
@@ -45,11 +47,10 @@ public class Sunflower extends Plant
 		return null;
 	}
 	
-	public boolean update(int ciclo)
+	public void update(int ciclo, Game game)
 	{
 		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
+			game.addSun(this.posX, this.posY);
 	}
 	
 

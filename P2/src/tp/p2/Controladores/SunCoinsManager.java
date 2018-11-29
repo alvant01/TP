@@ -21,5 +21,9 @@ public class SunCoinsManager {
 	public void removeSuncoins(int cost) {
 		this.sunCoins = this.sunCoins - cost;
 	}
+	public void insertRandom() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

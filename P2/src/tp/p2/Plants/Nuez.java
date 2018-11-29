@@ -1,5 +1,7 @@
 package tp.p2.Plants;
 
+import tp.p2.Game.Game;
+
 public class Nuez extends Plant {
 
 	private int health;
@@ -38,10 +40,8 @@ public class Nuez extends Plant {
 				return this;
 		return null;
 	}
-	public boolean update(int ciclo) {
-		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
+	public void update(int ciclo, Game game) {
+		//do nothing
 	}
 	
 	
@@ -133,4 +133,6 @@ public class Nuez extends Plant {
 	public String getTipoPlanta() {
 		return this.tipoPlanta;
 	}
+
+
 }

@@ -14,7 +14,7 @@ public class AddCommand extends Command
 	public AddCommand(String commandText, String commandInfo, String helpInfo) {
 		super(commandText, commandInfo, helpInfo);
 	}
-
+	
 	@Override
 	public boolean execute(Game game, Controller controller) {
 		return game.addPlant(this.planta, this.posX, this.posY);

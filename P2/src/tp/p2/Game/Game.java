@@ -17,8 +17,6 @@ public class Game {
 	private SunCoinsManager scm;
 	
 	private ZombieManager zManager;
-	
-	private GameObject gObject;
 
 	private String level;
 	
@@ -32,9 +30,8 @@ public class Game {
 		this.list	  		= new List();
 		this.sList			= new SunList();
 		this.scm      		= new SunCoinsManager();
-		this.gObject 		= new GameObject();
-		this.fabricarPlanta = new PlantFactory(this.gObject);
-		this.fabricarZombie = new ZombieFactory(this.gObject);
+		this.fabricarPlanta = new PlantFactory();
+		this.fabricarZombie = new ZombieFactory();
 		this.zManager		= new ZombieManager();
 		
 		this.ciclos= 0;
@@ -186,7 +183,7 @@ public class Game {
 	public void updateSuns() {
 		if(this.ciclos%this.sList.getFrecuencia() == 0)
 		{
-			this.sList.insertRandom();
+			this.scm.insertRandom();
 		}
 		
 	}
@@ -295,14 +292,6 @@ public class Game {
 		this.zManager = zManager;
 	}
 
-	public GameObject getgObject() {
-		return gObject;
-	}
-
-	public void setgObject(GameObject gObject) {
-		this.gObject = gObject;
-	}
-
 	public String getLevel() {
 		String level;
 		if(this.level.toLowerCase().equals("e"))
@@ -334,6 +323,14 @@ public class Game {
 		this.sList.insert(posX,posY);
 	}
 
-
+	public void cherryExplosion(int posX, int posY, int damage) {
+		this.list.cherryExplosion(posX, posY, damage,this);
+	}
+	public void damageZombie(int posX, int posY, int damage) {
+		this.list.damageZombie(posX, posY, damage, this);
+	}
+	public void damagePlant(int posX, int posY, int damage) {
+		this.damagePlant(posX, posY, damage);
+	}
 	 
 }

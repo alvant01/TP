@@ -3,6 +3,7 @@ package tp.p2.List;
 import java.util.Arrays;
 
 import tp.p2.Game.Game;
+import tp.p2.Plants.*;
 
 public class List {
 
@@ -75,26 +76,7 @@ public class List {
 			GameObject obj = this.list[i];
 			if(obj.isPlant())
 			{
-				if(obj.getPlanta().getTipoPlanta().equals("S"))//sunflower
-				{
-					//obj.updateSunflower(game.getScm(), ciclos);
-					if(obj.updatePlant(ciclos))
-						game.addSun(obj.getPosX(), obj.getPosY());
-				}
-				else if(obj.getPlanta().getTipoPlanta().equals("P"))
-				{
-					if(obj.updatePlant(ciclos))
-						damageZombie(obj.getPosX(), obj.getPosY(), obj.getDamage(), game);
-				}
-				else if(obj.getPlanta().getTipoPlanta().equals("N"))
-				{
-					//Nothing
-				}
-				else if(obj.getPlanta().getTipoPlanta().equals("C"))
-				{
-					if(obj.updatePlant(ciclos))
-						cherryExplosion(obj.getPosX(), obj.getPosY(), obj.getDamage(), game);
-				}
+				obj.updatePlant(ciclos, game);
 			}
 			else
 			{
@@ -104,15 +86,14 @@ public class List {
 				}
 				else
 				{
-					if(obj.updateZombie(ciclos))
-						obj.setPosY(obj.getPosY()-1);
+					obj.updateZombie(ciclos);
 				}
 			}
 		}
 		
 	}
 
-	private void damagePlant(int posX, int posY, int damage) {
+	public void damagePlant(int posX, int posY, int damage) {
 		for(int i = 0; i < this.numElem; i++)
 		{
 			if(this.list[i].isPlant() && this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
@@ -124,8 +105,38 @@ public class List {
 		}
 		
 	}
+	
+	public void cherryExplosion(int posX, int posY, int damage, Game game) 
+	{
+		int pos, posC;
+		int adjX = -1;
+		int adjY = -1;
+		posC = containsPosition(posX,posY);
+		for(int i = 0; i < 9; i++ )
+			{
+				pos = containsPosition(posX+adjX,posY+adjY);
+				if(pos != -1 && this.list[pos].isZombie())
+				{
+					this.list[pos].damage(damage);
+					if(this.list[pos].getHealth() <= 0)
+					{
+						eliminar(pos);
+						game.setReamingZombies();
+					}
+				}
+				if(adjY == 1)
+				{
+					adjY = -1;
+					adjX++;
+				}
+				else
+					adjY++;
+			}
+			
+			eliminar(posC);
+		}
 
-	private void eliminar(int i) {
+	public void eliminar(int i) {
 		this.list[i] = null;
 		this.numElem--;
 		for(; i < this.numElem; i++)
@@ -135,36 +146,8 @@ public class List {
 		
 	}
 
-	private void cherryExplosion(int posX, int posY, int damage, Game game) {
-	int pos, posC;
-	int adjX = -1;
-	int adjY = -1;
-	posC = containsPosition(posX,posY);
-	for(int i = 0; i < 9; i++ )
-		{
-			pos = containsPosition(posX+adjX,posY+adjY);
-			if(pos != -1 && this.list[pos].isZombie())
-			{
-				this.list[pos].damage(damage);
-				if(this.list[pos].getHealth() <= 0)
-				{
-					eliminar(pos);
-					game.setReamingZombies();
-				}
-			}
-			if(adjY == 1)
-			{
-				adjY = -1;
-				adjX++;
-			}
-			else
-				adjY++;
-		}
-		
-		eliminar(posC);
-	}
 
-	private void damageZombie(int posX, int posY, int damage, Game game) {
+	public void damageZombie(int posX, int posY, int damage, Game game) {
 		for(int i = 0 + posY; i < this.numElem; i++)
 		{
 			if(this.list[i].isZombie() && this.list[i].getPosX() == posX)

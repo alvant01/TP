@@ -1,5 +1,6 @@
 package tp.p2.Plants;
 
+import tp.p2.Game.Game;
 import tp.p2.List.GameObject;
 
 public abstract class Plant extends GameObject {	
@@ -7,7 +8,7 @@ public abstract class Plant extends GameObject {
 	
 	public abstract Plant parse(String planta);
 
-	public abstract boolean update(int ciclo);
+	public abstract void update(int ciclo, Game game);
 	
 	public abstract void setPosX(int posX);
 	

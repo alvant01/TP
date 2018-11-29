@@ -1,5 +1,7 @@
 package tp.p2.Plants;
 
+import tp.p2.Game.Game;
+
 public class PeaShooter extends Plant {
 
 	
@@ -43,10 +45,9 @@ public class PeaShooter extends Plant {
 		return null;
 	}
 	
-	public boolean update(int ciclo) {
+	public void update(int ciclo, Game game) {
 		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
-			return true;
-		return false;
+			game.damageZombie(this.posX, this.posY, this.damage);
 	}
 	
 	

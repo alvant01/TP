@@ -38,11 +38,10 @@ public class CommonZombie extends Zombie {
 			return this;
 		return null;
 	}
-	public boolean updateZombie(int ciclo)
+	public void updateZombie(int ciclo)
 	{
 		if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
-			return true;
-		return false;
+			this.posY -= 1;
 	}
 	
 	

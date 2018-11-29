@@ -5,8 +5,7 @@ import tp.p2.Plants.*;
 
 public class PlantFactory {
 	
-	private GameObject gObject;
-	
+
 	public static Plant[] plantas = {
 			new Sunflower(),
 			new PeaShooter(),
@@ -15,10 +14,10 @@ public class PlantFactory {
 	};
 	
 	
-	
-	public PlantFactory(GameObject o)
+	private int numPlantas;
+	public PlantFactory()
 	{
-		this.gObject = o;
+		this.numPlantas = 4;
 	}
 	//modificar
 	public GameObject creaPlanta(String planta, int posX, int posY){
@@ -27,8 +26,19 @@ public class PlantFactory {
 		
 	}
 	public GameObject parsePlant(String planta, int posX, int posY) {
-		GameObject obj = new GameObject();
-		if(plantas[0].parse(planta) != null)
+		GameObject obj = null;
+		
+		for(int i  =0; i < this.numPlantas; i++)
+		{
+			obj.setPlanta(plantas[i].parse(planta));
+			if(obj.getPlanta() != null)
+			{
+				obj.setPosX(posX);
+				obj.setPosY(posY);
+				return obj;
+			}
+		}
+	/*	if(plantas[0].parse(planta) != null)
 		{
 			obj.setPlanta(new Sunflower(posX, posY));
 			return obj;
@@ -47,14 +57,8 @@ public class PlantFactory {
 		{
 			obj.setPlanta(new Petacereza(posX, posY));
 			return obj;
-		}
+		}*/
 		return null;
-	}
-	public GameObject getgObject() {
-		return gObject;
-	}
-	public void setgObject(GameObject gObject) {
-		this.gObject = gObject;
 	}
 	public static Plant[] getPlantas() {
 		return plantas;
