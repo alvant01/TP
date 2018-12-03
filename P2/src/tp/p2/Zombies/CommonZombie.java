@@ -1,5 +1,6 @@
 package tp.p2.Zombies;
 
+import tp.p2.Game.Game;
 
 public class CommonZombie extends Zombie {
 	private int health;
@@ -38,10 +39,17 @@ public class CommonZombie extends Zombie {
 			return this;
 		return null;
 	}
-	public void updateZombie(int ciclo)
+	public void updateZombie(int ciclo, Game game)
 	{
-		if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
-			this.posY -= 1;
+		if(game.contains(this.posX, this.posY-1))
+		{
+			game.damagePlant(this.posX, this.posY, this.damage);
+		}
+		else
+		{
+			if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
+				this.posY -= 1;
+		}
 	}
 	
 	

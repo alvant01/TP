@@ -80,14 +80,7 @@ public class List {
 			}
 			else
 			{
-				if(contains(obj.getPosX(), obj.getPosY()-1))
-				{
-					damagePlant(obj.getPosX(),obj.getPosY()-1, obj.getDamage());
-				}
-				else
-				{
-					obj.updateZombie(ciclos);
-				}
+				obj.updateZombie(ciclos, game);
 			}
 		}
 		

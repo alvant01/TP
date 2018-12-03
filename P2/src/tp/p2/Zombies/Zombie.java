@@ -1,5 +1,6 @@
 package tp.p2.Zombies;
 
+import tp.p2.Game.Game;
 import tp.p2.List.GameObject;
 
 public abstract class Zombie extends GameObject {
@@ -9,7 +10,7 @@ public abstract class Zombie extends GameObject {
 	
 		public abstract Zombie parse(int zombie);
 		
-		public abstract void updateZombie(int ciclo);
+		public abstract void updateZombie(int ciclo, Game game);
 
 		
 		public abstract void setPosX(int posX);

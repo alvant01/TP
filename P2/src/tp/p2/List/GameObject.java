@@ -6,8 +6,8 @@ import tp.p2.Plants.*;
 import tp.p2.Zombies.*;
 
 public class GameObject {
-	private static int posX;
-	private static int posY;
+	//private static int posX;
+	//private static int posY;
 	
 	private Plant planta;
 	private Zombie zombie;
@@ -16,8 +16,8 @@ public class GameObject {
 	public GameObject() {
 	}
 	public GameObject(int x, int y) {
-		this.posX = x;
-		this.posY = y;
+		//this.posX = x;
+		//this.posY = y;
 	}
 	public void setPosX(int posX) { 
 		if(this.planta != null)
@@ -87,11 +87,9 @@ public class GameObject {
 	{
 		this.planta.update(ciclo, game);
 	}
-	public void updateZombie(int ciclos) {
-		this.zombie.updateZombie(ciclos);
-	}
-	private void damageZombie() {
-		
+	public void updateZombie(int ciclos, Game game) 
+	{
+		this.zombie.updateZombie(ciclos, game);
 	}
 	public Plant getPlanta() {
 		return planta;

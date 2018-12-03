@@ -330,7 +330,12 @@ public class Game {
 		this.list.damageZombie(posX, posY, damage, this);
 	}
 	public void damagePlant(int posX, int posY, int damage) {
-		this.damagePlant(posX, posY, damage);
+		this.list.damagePlant(posX, posY, damage);
+	}
+
+	public boolean contains(int posX, int i) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	 
 }
