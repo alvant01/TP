@@ -1,6 +1,7 @@
 package tp.p3.Game;
 
 import tp.p3.Controladores.*;
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.List.*;
 import tp.p3.Factory.*;
 
@@ -124,7 +125,7 @@ public class Game {
 		}
 		return false;
 	}
-	public boolean addPlant(String planta, int posX, int posY)
+	public boolean addPlant(String planta, int posX, int posY) throws CommandExecuteException
 	{
 		//Llamar factory
 		if (!this.list.contains(posX, posY) && (posX >= 0 && posX < 4)&& (posY >= 0 && posY < 8) ){
@@ -139,10 +140,10 @@ public class Game {
 				}
 			}
 			else
-				System.out.println("No tienes suficientes sunCoins");
+				throw new CommandExecuteException("No hay soles");
 		}
 		else
-			System.out.println("Posicion no valida");
+			throw new CommandExecuteException("Posicion no valida");
 		return false;
 	}
 	public boolean addZombie(int posX, int posY)
@@ -158,7 +159,7 @@ public class Game {
 
 
 
-	public void catchSun(int posX, int posY) {
+	public void catchSun(int posX, int posY) throws CommandExecuteException {
 		if(!this.alreadyCatch)
 		{	
 			if(this.sList.getSunCoins(posX, posY))
@@ -168,12 +169,12 @@ public class Game {
 			}
 			else
 			{
-				System.out.println("No hay sol en esa casilla");
+				throw new CommandExecuteException("No hay sol en esa casilla");
 			}
 		}
 		else
 		{
-			System.out.println("Solo un sol por turno");
+			throw new CommandExecuteException("Solo un sol por turno");
 		}
 	}
 	

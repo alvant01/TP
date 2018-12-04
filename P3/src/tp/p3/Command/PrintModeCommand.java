@@ -12,12 +12,12 @@ public class PrintModeCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		controller.printMode();
+		//controller.printMode();
 		return false;
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("p") ||commandWords[0].toLowerCase().equals("printMode") )
 			return this;
 		return null;

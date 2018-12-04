@@ -22,11 +22,11 @@ public class CommandParser {
 		numComandos = 8;
 		CommandParser.availableCommands = new Command[numComandos];
 	}
-	public static Command parseCommand(String[ ] commandWords, Controller controller) 
+	public static Command parseCommand(String[ ] commandWords) 
 	{
 		for(int i = 0; i <= 8; i++)
 		{
-			if (availableCommands[i].parse(commandWords, controller) != null)
+			if (availableCommands[i].parse(commandWords) != null)
 			{
 				return availableCommands[i];
 			}

@@ -45,7 +45,7 @@ public class ListZombieCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("zombielist") || commandWords[0].toLowerCase().equals("zl"))
 			return this;
 		return null;

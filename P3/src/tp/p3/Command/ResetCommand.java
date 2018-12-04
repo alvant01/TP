@@ -16,7 +16,7 @@ public class ResetCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("reset") || commandWords[0].toLowerCase().equals("r"))
 			return this;
 		return null;

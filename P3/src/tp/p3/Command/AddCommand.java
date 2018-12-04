@@ -1,6 +1,7 @@
 package tp.p3.Command;
 
-import tp.p3.Controladores.Controller;
+import tp.p3.Exceptions.CommandExecuteException;
+import tp.p3.Exceptions.CommandParseException;
 import tp.p3.Game.Game;
 
 public class AddCommand extends Command 
@@ -16,12 +17,12 @@ public class AddCommand extends Command
 	}
 	
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		return game.addPlant(this.planta, this.posX, this.posY);
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) 
+	public Command parse(String[] commandWords) throws CommandParseException 
 	{
 		try
 		{
@@ -35,7 +36,7 @@ public class AddCommand extends Command
 		}
 		catch(NumberFormatException e)
 		{
-			System.out.print("Valores no admitidos");
+			throw new CommandParseException("Comando no reconocido");
 		}
 		return null;
 	}

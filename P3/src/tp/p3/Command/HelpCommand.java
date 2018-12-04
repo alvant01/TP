@@ -22,7 +22,7 @@ public class HelpCommand extends Command {
 		return false;
 	}
 	
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("help") || commandWords[0].toLowerCase().equals("h"))
 			return this;
 		return null;

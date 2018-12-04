@@ -12,12 +12,12 @@ public class ExitCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		controller.setExit(true);
+		//controller.setExit(true);
 		return false;
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("exit") || commandWords[0].toLowerCase().equals("e"))
 			return this;
 		return null;

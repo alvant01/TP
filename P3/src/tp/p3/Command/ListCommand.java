@@ -51,7 +51,7 @@ public class ListCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("list") || commandWords[0].toLowerCase().equals("l"))
 			return this;
 		return null;

@@ -18,7 +18,7 @@ public class UpdateCommand extends Command {
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("update") || commandWords[0].toLowerCase().equals("u"))
 			return this;
 		return null;

@@ -1,6 +1,6 @@
 package tp.p3.Command;
 
-import tp.p3.Controladores.Controller;
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Game.Game;
 
 public class CatchCommand extends Command {
@@ -15,13 +15,13 @@ public class CatchCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		game.catchSun(this.posX, this.posY);
 		return false;
 	}
 
 	@Override
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords) {
 		if(commandWords[0].toLowerCase().equals("catch") || commandWords[0].toLowerCase().equals("c"))
 		{
 			this.posX = Integer.parseInt(commandWords[1]);

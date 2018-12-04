@@ -6,6 +6,7 @@ import tp.p3.Command.Command;
 import tp.p3.Command.CommandParser;
 import tp.p3.Game.Game;
 import tp.p3.Printers.*;
+import tp.p3.Exceptions.*;
 
 public class Controller {
 
@@ -57,7 +58,7 @@ public class Controller {
 						printGame();
 				} 
 				else
-					System.out.println(unknownCommandMsg);
+					throw new CommandParseException("Comando no reconocido");
 				} 
 			catch (CommandParseException | CommandExecuteException ex) 
 			{
@@ -96,10 +97,10 @@ public class Controller {
 		}*/
 	}
 	
-	private void update(String[] words) {
+	private void update(String[] words) throws CommandExecuteException {
 		words[0] = "update";
-		Command command = CommandParser.parseCommand(words, this);
-		command.execute(game, this);
+		Command command = CommandParser.parseCommand(words);
+		command.execute(game);
 		
 	}
 
