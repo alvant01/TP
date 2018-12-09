@@ -26,7 +26,8 @@ public class PlantFactory {
 		return parsePlant(planta, posX, posY);
 		
 	}
-	public GameObject parsePlant(String planta, int posX, int posY) throws CommandExecuteException {
+	public GameObject parsePlant(String planta, int posX, int posY) //throws CommandExecuteException
+	{
 		GameObject obj = new GameObject();
 		
 		for(int i  =0; i < this.numPlantas; i++)
@@ -40,9 +41,9 @@ public class PlantFactory {
 				return obj;
 			}
 		}
-		if (obj.getPlanta() == null){
+		/*if (obj.getPlanta() == null){
 			throw new CommandExecuteException("Ha introducido una planta inexistente: Utilice [L]ist para saber las plantas existentes.");
-		}
+		}*/
 		return null;
 	}
 	public static Plant[] getPlantas() {

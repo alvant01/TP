@@ -59,7 +59,6 @@ public class List {
 		{
 			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
 				throw new CommandExecuteException("Posicion no valida: Esta posicion ya esta ocupada.");
-				return true;
 		}
 		return false;
 	}

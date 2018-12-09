@@ -154,12 +154,13 @@ public class GameObject {
 		}
 		return this.zombie.externalise();
 	}
-	private boolean isPlant(char c) {
-		if(c == ('P' | 'S' | 'C' | 'N'))
+	public static boolean isPlant(String c) {
+		if(c.equals("P" )|| c.equals("S" )|| c.equals("N" )||c.equals("C" ))
 		{
 			return true;
 		}
 		return false;
 	}
+
 
 }

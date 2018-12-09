@@ -15,21 +15,10 @@ public class Controller {
 	
 	private Scanner scanner;
 	
-	private GamePrinter gPrinter;
-
-	private boolean printDebug;
-	
-	private boolean exit;
-	
-	private boolean noPrint;
-	
 	public Controller(Game g)
 	{
 		this.game = g;
 		this.scanner = new Scanner(System.in);
-		this.gPrinter = new ReleasePrinter(this.game);
-		this.exit = false;
-		this.printDebug = false;
 	}
 	
 	
@@ -45,7 +34,7 @@ public class Controller {
 			
 		}			
 	
-		printGame();
+		game.printGame();
 		
 		this.game.getScm().addSunCoins(100000); //Debug
 		while (!game.isFinished()){
@@ -58,7 +47,7 @@ public class Controller {
 					if (command.execute(game))
 					{
 						update(words);
-						printGame();	
+						game.printGame();	
 					}
 				} 
 				else if(words[0].isEmpty())
@@ -67,7 +56,7 @@ public class Controller {
 					this.game.updateSuns();
 					noPrint = false;
 					this.game.setAlreadyCatch(false);
-					printGame();
+					game.printGame();
 				}
 				else
 					throw new CommandParseException("Comando no reconocido");
@@ -125,10 +114,6 @@ public class Controller {
 	public void setNoPrintGameState() {
 	}
 
-	public void printGame()
-	{		
-		this.gPrinter.printGame();
-	}
 	
 	public String menuCommands()
 	{
@@ -185,27 +170,5 @@ public class Controller {
 		{
 			this.game.genSemRandom();
 		}
-	}
-
-
-
-	public void setExit(boolean exit) {
-		this.exit = exit;
-	}
-
-
-
-	public void printMode() {
-		if(!this.printDebug)
-		{
-			this.gPrinter = new DebugPrinter(this.game);
-			this.printDebug =true;
-		}
-		else
-		{
-			this.gPrinter = new ReleasePrinter(this.game);
-			this.printDebug =false;
-		}
-		
 	}
 }

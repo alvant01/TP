@@ -8,6 +8,9 @@ import tp.p3.Controladores.*;
 import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Exceptions.FileContentsException;
 import tp.p3.List.*;
+import tp.p3.Printers.DebugPrinter;
+import tp.p3.Printers.GamePrinter;
+import tp.p3.Printers.ReleasePrinter;
 import tp.p3.Factory.*;
 
 
@@ -32,6 +35,14 @@ public class Game {
 	
 	private int ciclos;
 	
+	private GamePrinter gPrinter;
+
+	private boolean printDebug;
+	
+	private boolean exit;
+	
+	private boolean noPrint;
+	
 	public Game(){
 		this.list	  		= new List();
 		this.sList			= new SunList();
@@ -39,6 +50,9 @@ public class Game {
 		this.fabricarPlanta = new PlantFactory();
 		this.fabricarZombie = new ZombieFactory();
 		this.zManager		= new ZombieManager();
+		this.gPrinter 		= new ReleasePrinter(this);
+		this.exit 			= false;
+		this.printDebug 	= false;
 		this.ciclos= 0;
 	}
 
@@ -127,12 +141,17 @@ public class Game {
 			System.out.println("Zombies Wins");
 			return true;
 		}
+		else if(this.exit)
+		{
+			System.out.println("****** Game over!: User exit ******\r\n" + "");
+			return true;
+		}
 		return false;
 	}
+	@SuppressWarnings("unused")
 	public boolean addPlant(String planta, int posX, int posY) throws CommandExecuteException
 	{
 		//Llamar factory
-		//this.fabricarPlanta = new PlantFactory();
 		if (!this.list.contains(posX, posY) && (posX >= 0 && posX < 4)&& (posY >= 0 && posY < 8) ){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
 			if(this.scm.getSunCoins() >= o.getCost())
@@ -196,7 +215,29 @@ public class Game {
 		
 	}
 	
-	
+	public void setExit(boolean exit) {
+		this.exit = exit;
+	}
+
+
+
+	public void printMode() {
+		if(!this.printDebug)
+		{
+			this.gPrinter = new DebugPrinter(this);
+			this.printDebug =true;
+		}
+		else
+		{
+			this.gPrinter = new ReleasePrinter(this);
+			this.printDebug =false;
+		}
+		
+	}
+	public void printGame()
+	{		
+		this.gPrinter.printGame();
+	}
 	
 	
 	
@@ -360,7 +401,7 @@ public class Game {
 	public void load(BufferedReader out) throws FileContentsException, CommandExecuteException {
 		String s1;
 		try {
-
+			this.reiniciar();
 			s1 = out.readLine();
 
 			this.setCiclos(loadParseAux(s1, 7));
@@ -402,12 +443,17 @@ public class Game {
 	
 	public void insertarLoad(String s, int h, int posX, int posY, int ciclo ) throws CommandExecuteException
 	{
-		
-		GameObject o  = this.fabricarPlanta.creaPlanta(s, posX, posY);
-		if(o == null)
-			o= this.fabricarZombie.creaZombie(this.zManager.parse(s), posX, posY);
+		GameObject o;
+		if(GameObject.isPlant(s))
+			 o  = this.fabricarPlanta.creaPlanta(s, posX, posY);
+		else
+			 o= this.fabricarZombie.creaZombie(this.zManager.parse(s), posX, posY);
 		o.setHeath(h);
 		this.list.insert(ciclo, o);
+	}
+
+	public boolean isExit() {
+		return exit;
 	}
 	
 	 

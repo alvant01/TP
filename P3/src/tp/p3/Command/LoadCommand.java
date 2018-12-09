@@ -22,7 +22,7 @@ public class LoadCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) throws FileContentsException, IOException, CommandExecuteException {
+	public boolean execute(Game game) throws FileContentsException, CommandExecuteException, IOException{
 		BufferedWriter inTmp = null;
 		BufferedReader out = null;
 		//System.out.println("El directorio temporal del sistema es "
@@ -37,29 +37,31 @@ public class LoadCommand extends Command {
 			inTmp.newLine();
 			game.store(inTmp);
 			inTmp.close();
-			out =  new  BufferedReader(new FileReader(file));
-			if (MyStringUtils.fileExists(this.fichero))
+			
+			if(!file.exists())
+				throw new FileContentsException("Archivo no encontrado");
+			/*if (MyStringUtils.fileExists(this.fichero)) //No funciona
 			{
 				throw new FileContentsException("Archivo no encontrado");
-			}
+			}*/
+			out =  new  BufferedReader(new FileReader(file));
 			out.readLine();//Leo la cabecera
 			out.readLine();//Leo el salto de linea
 			game.load(out);
-			System.out.println("Game successfully loaded from file" + this.fichero);
+			System.out.println("Game successfully loaded from file " + this.fichero);
 		}
-		catch(IOException | NumberFormatException ex)
+		catch(IOException | NumberFormatException | NullPointerException ex)
 		{
 			BufferedReader outTmp =  new  BufferedReader(new FileReader(tempFile));
 			outTmp.readLine();//Leo la cabecera
 			outTmp.readLine();//Leo el salto de linea
 			game.load(outTmp);
+			out.close();
 			throw new FileContentsException("Error loading, restoring to a previous game.");
 		}
 		finally
 		{
 			tempFile.delete();
-			out.close();
-			
 		}
 		return true;
 	}

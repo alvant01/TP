@@ -24,23 +24,20 @@ public class AddCommand extends Command
 	@Override
 	public Command parse(String[] commandWords) throws CommandParseException 
 	{
-		try
+		if(commandWords[0].toUpperCase().equals("ADD") || commandWords[0].toUpperCase().equals("A"))
 		{
-			if(commandWords[0].toUpperCase().equals("ADD") || commandWords[0].toUpperCase().equals("A"))
-			{
-				this.planta = commandWords[1];
-				this.posX = Integer.parseInt(commandWords[2]);
-				this.posY = Integer.parseInt(commandWords[3]);					
-				return this;
-			}
+				try
+				{
+					this.planta = commandWords[1];
+					this.posX = Integer.parseInt(commandWords[2]);
+					this.posY = Integer.parseInt(commandWords[3]);					
+					return this;
+				}
+				catch(ArrayIndexOutOfBoundsException | NumberFormatException es){
+					throw new CommandParseException("Ha escrito mal el comando");
+				}
 		}
-		catch(NumberFormatException e)
-		{
-			//throw new CommandParseException("Comando no reconocido");
-		}
-		catch(ArrayIndexOutOfBoundsException es){
-			throw new CommandParseException("Ha escrito mal el comando");
-		}
+		
 		return null;
 	}
 }

@@ -1,6 +1,5 @@
 package tp.p3.Command;
 
-import tp.p3.Controladores.Controller;
 import tp.p3.Exceptions.CommandParseException;
 
 public class CommandParser {
@@ -17,8 +16,7 @@ public class CommandParser {
 			new CatchCommand("CATCH", "Coje un sol", "Coje un sol"),
 			new ListZombieCommand("LISTZOMBIE", "Lista los zombies", "Lista los zombies"),
 			new SaveCommand("SAVE", "Guarda la partida", "Guarda la partida"),
-			new LoadCommand("LOAD", "Carga la partida", "Carga la partida"),
-			new NoneCommand("NONE", "None", "Nada")
+			new LoadCommand("LOAD", "Carga la partida", "Carga la partida")
 			};
 
 	public CommandParser() 
@@ -28,7 +26,7 @@ public class CommandParser {
 	}
 	public static Command parseCommand(String[ ] commandWords) throws CommandParseException 
 	{
-		for(int i = 0; i <= 11; i++)
+		for(int i = 0; i <= 10; i++)
 		{
 			if (availableCommands[i].parse(commandWords) != null)
 			{

@@ -1,6 +1,5 @@
 package tp.p3.Command;
 
-import tp.p3.Controladores.Controller;
 import tp.p3.Game.Game;
 
 public class ExitCommand extends Command {
@@ -12,7 +11,7 @@ public class ExitCommand extends Command {
 
 	@Override
 	public boolean execute(Game game) {
-		//controller.setExit(true);
+		game.setExit(true);
 		return false;
 	}
 
