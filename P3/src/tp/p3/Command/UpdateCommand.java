@@ -1,6 +1,7 @@
 package tp.p3.Command;
 
 import tp.p3.Controladores.Controller;
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Game.Game;
 
 public class UpdateCommand extends Command {
@@ -12,7 +13,7 @@ public class UpdateCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) {
+	public boolean execute(Game game) throws CommandExecuteException {
 		game.updateGame();
 		return true;
 	}

@@ -1,5 +1,6 @@
 package tp.p3.Zombies;
 
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Game.Game;
 import tp.p3.List.GameObject;
 
@@ -10,7 +11,7 @@ public abstract class Zombie extends GameObject {
 	
 		public abstract Zombie parse(int zombie);
 		
-		public abstract void updateZombie(int ciclo, Game game);
+		public abstract void updateZombie(int ciclo, Game game) throws CommandExecuteException;
 
 		
 		public abstract void setPosX(int posX);

@@ -22,7 +22,7 @@ public class LoadCommand extends Command {
 	}
 
 	@Override
-	public boolean execute(Game game) throws FileContentsException, IOException {
+	public boolean execute(Game game) throws FileContentsException, IOException, CommandExecuteException {
 		BufferedWriter inTmp = null;
 		BufferedReader out = null;
 		//System.out.println("El directorio temporal del sistema es "

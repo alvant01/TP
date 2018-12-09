@@ -113,7 +113,7 @@ public class Controller {
 		}*/
 	}
 	
-	private void update(String[] words) throws CommandExecuteException, IOException, FileContentsException {
+	private void update(String[] words) throws CommandExecuteException, IOException, FileContentsException, CommandParseException {
 		words[0] = "update";
 		Command command = CommandParser.parseCommand(words);
 		command.execute(game);

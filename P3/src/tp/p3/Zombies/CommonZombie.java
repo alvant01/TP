@@ -1,5 +1,6 @@
 package tp.p3.Zombies;
 
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Game.Game;
 
 public class CommonZombie extends Zombie {
@@ -39,7 +40,7 @@ public class CommonZombie extends Zombie {
 			return new CommonZombie();
 		return null;
 	}
-	public void updateZombie(int ciclo, Game game)
+	public void updateZombie(int ciclo, Game game) throws CommandExecuteException
 	{
 		if(game.contains(this.posX, this.posY-1))
 		{

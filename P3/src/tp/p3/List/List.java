@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Arrays;
 
+import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Exceptions.FileContentsException;
 import tp.p3.Game.Game;
 import tp.p3.Plants.*;
@@ -53,10 +54,11 @@ public class List {
 		return false;
 	}
 
-	public boolean contains(int posX, int posY) {
+	public boolean contains(int posX, int posY) throws CommandExecuteException {
 		for(int i  = 0; i < this.numElem; i++)
 		{
 			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
+				throw new CommandExecuteException("Posicion no valida: Esta posicion ya esta ocupada.");
 				return true;
 		}
 		return false;
@@ -77,7 +79,7 @@ public class List {
 		}
 		return false;
 	}
-	public void update(Game game, int ciclos) {
+	public void update(Game game, int ciclos) throws CommandExecuteException {
 		for(int i = 0; i< this.getNumElem();i++)
 		{
 			
@@ -215,7 +217,7 @@ public class List {
 		}*/
 	}
 
-	public void load(char[] cs, Game game) throws FileContentsException {
+	public void load(char[] cs, Game game) throws FileContentsException, CommandExecuteException {
 		char[] obj = new char[9];
 		try
 		{

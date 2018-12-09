@@ -47,7 +47,7 @@ public class Game {
 		this.ciclos = 0;
 	}
 
-	public void updateGame() {
+	public void updateGame() throws CommandExecuteException {
 		int posX;
 		this.list.update(this, this.ciclos);
 		
@@ -148,10 +148,10 @@ public class Game {
 				throw new CommandExecuteException("No hay soles");
 		}
 		else
-			throw new CommandExecuteException("Posicion no valida");
+			throw new CommandExecuteException("Posicion no valida: Fuera de Rango.");
 		return false;
 	}
-	public boolean addZombie(int posX, int posY)
+	public boolean addZombie(int posX, int posY) throws CommandExecuteException
 	{
 		this.fabricarZombie = new ZombieFactory();
 		if (!this.list.contains(posX, posY)){
@@ -341,7 +341,7 @@ public class Game {
 		this.list.damagePlant(posX, posY, damage);
 	}
 
-	public boolean contains(int posX, int posY) {
+	public boolean contains(int posX, int posY) throws CommandExecuteException {
 		return this.list.contains(posX, posY);
 	}
 
@@ -357,7 +357,7 @@ public class Game {
 		this.list.store(in);
 	}
 
-	public void load(BufferedReader out) throws FileContentsException {
+	public void load(BufferedReader out) throws FileContentsException, CommandExecuteException {
 		String s1;
 		try {
 
@@ -400,7 +400,7 @@ public class Game {
 
 	}
 	
-	public void insertarLoad(String s, int h, int posX, int posY, int ciclo )
+	public void insertarLoad(String s, int h, int posX, int posY, int ciclo ) throws CommandExecuteException
 	{
 		
 		GameObject o  = this.fabricarPlanta.creaPlanta(s, posX, posY);
