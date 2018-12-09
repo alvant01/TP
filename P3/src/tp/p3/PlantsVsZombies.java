@@ -1,7 +1,5 @@
 package tp.p3;
 
-import java.io.IOException;
-
 import tp.p3.Controladores.Controller;
 import tp.p3.Game.Game;
 

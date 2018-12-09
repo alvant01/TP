@@ -1,18 +1,12 @@
 package tp.p3.List;
 
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.util.Arrays;
 
 import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Exceptions.FileContentsException;
 import tp.p3.Game.Game;
-import tp.p3.Plants.*;
 
 public class List {
 
@@ -54,11 +48,11 @@ public class List {
 		return false;
 	}
 
-	public boolean contains(int posX, int posY) throws CommandExecuteException {
+	public boolean contains(int posX, int posY) {
 		for(int i  = 0; i < this.numElem; i++)
 		{
 			if(this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
-				throw new CommandExecuteException("Posicion no valida: Esta posicion ya esta ocupada.");
+				return true;
 		}
 		return false;
 	}
@@ -78,7 +72,7 @@ public class List {
 		}
 		return false;
 	}
-	public void update(Game game, int ciclos) throws CommandExecuteException {
+	public void update(Game game, int ciclos) {
 		for(int i = 0; i< this.getNumElem();i++)
 		{
 			
@@ -98,7 +92,7 @@ public class List {
 	public void damagePlant(int posX, int posY, int damage) {
 		for(int i = 0; i < this.numElem; i++)
 		{
-			if(this.list[i].isPlant() && this.list[i].getPosX() == posX && this.list[i].getPosY() == posY)
+			if(this.list[i].isPlant() && this.list[i].getPosX() == posX && this.list[i].getPosY() == posY-1)
 			{
 				this.list[i].damage(damage);
 				if(this.list[i].getHealth() == 0)
@@ -217,20 +211,25 @@ public class List {
 	}
 
 	public void load(char[] cs, Game game) throws FileContentsException, CommandExecuteException {
-		char[] obj = new char[9];
+		int tam = 0;
 		try
 		{
-		for(int i = 0; i < cs.length; i += 10)
-		{
-			System.arraycopy(cs, i, obj, 0, 9);
-			game.insertarLoad(Character.toString(obj[0]),
-					Character.getNumericValue(obj[2]),Character.getNumericValue(obj[4]),Character.getNumericValue(obj[6]),Character.getNumericValue(obj[8]));
-
-		}
+		//obj = cs.toCharArray();
+			for(int i = 0; i < cs.length -1; i += tam+1)
+			{
+				for(; cs[tam] != ',' || cs.length == tam; tam++);//calcula la pos hasta la coma
+				
+				char[] obj = new char[tam];
+				
+				System.arraycopy(cs, i, obj, 0, tam);
+				game.insertarLoad(Character.toString(obj[0]),
+						Character.getNumericValue(obj[2]),Character.getNumericValue(obj[4]),Character.getNumericValue(obj[6]),Character.getNumericValue(obj[8]));
+	
+			}
 		}
 		catch(ArrayIndexOutOfBoundsException ex)
 		{
-			throw new FileContentsException("Archiivo de carga corrupto");
+			throw new FileContentsException("Archivo de carga corrupto");
 		}
 		
 	}

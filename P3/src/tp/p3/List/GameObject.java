@@ -1,6 +1,5 @@
 package tp.p3.List;
 
-import tp.p3.Controladores.SunCoinsManager;
 import tp.p3.Exceptions.CommandExecuteException;
 import tp.p3.Game.Game;
 import tp.p3.Plants.*;
@@ -95,7 +94,7 @@ public class GameObject {
 	{
 		this.planta.update(ciclo, game);
 	}
-	public void updateZombie(int ciclos, Game game) throws CommandExecuteException 
+	public void updateZombie(int ciclos, Game game)
 	{
 		this.zombie.updateZombie(ciclos, game);
 	}

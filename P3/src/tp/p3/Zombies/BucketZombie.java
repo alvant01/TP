@@ -40,7 +40,7 @@ public class BucketZombie extends Zombie {
 		return null;
 	}
 	
-	public void updateZombie(int ciclo, Game game) throws CommandExecuteException
+	public void updateZombie(int ciclo, Game game)
 	{	
 		if(game.contains(this.posX, this.posY-1))
 		{

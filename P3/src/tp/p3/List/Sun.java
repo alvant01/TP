@@ -1,6 +1,6 @@
 package tp.p3.List;
 
-public class SunObject {
+public class Sun extends PasiveGameObject{
 
 	private int posX;
 	private int posY;
@@ -14,7 +14,7 @@ public class SunObject {
 		this.valor = valor;
 	}
 
-	public SunObject(int posX, int posY) {
+	public Sun(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
 		this.visual = '*';

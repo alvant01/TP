@@ -2,6 +2,11 @@ package tp.p3.Exceptions;
 
 public class FileContentsException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FileContentsException() {
 		// TODO Auto-generated constructor stub
 	}

@@ -6,7 +6,6 @@ import java.util.Scanner;
 import tp.p3.Command.Command;
 import tp.p3.Command.CommandParser;
 import tp.p3.Game.Game;
-import tp.p3.Printers.*;
 import tp.p3.Exceptions.*;
 
 public class Controller {
@@ -25,7 +24,6 @@ public class Controller {
 	
 	public void run()
 	{
-		boolean noPrint = true;
 
 		while(!game.InicializarZombies())
 		{
@@ -54,7 +52,6 @@ public class Controller {
 				{
 					update(words);
 					this.game.updateSuns();
-					noPrint = false;
 					this.game.setAlreadyCatch(false);
 					game.printGame();
 				}

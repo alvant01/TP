@@ -17,8 +17,6 @@ import tp.p3.Factory.*;
 public class Game {
 	private List list;
 	
-	private SunList sList;
-	
 	private PlantFactory fabricarPlanta;
 	
 	private ZombieFactory fabricarZombie;
@@ -41,11 +39,10 @@ public class Game {
 	
 	private boolean exit;
 	
-	private boolean noPrint;
+	//private boolean noPrint;
 	
 	public Game(){
 		this.list	  		= new List();
-		this.sList			= new SunList();
 		this.scm      		= new SunCoinsManager();
 		this.fabricarPlanta = new PlantFactory();
 		this.fabricarZombie = new ZombieFactory();
@@ -61,7 +58,7 @@ public class Game {
 		this.ciclos = 0;
 	}
 
-	public void updateGame() throws CommandExecuteException {
+	public void updateGame() {
 		int posX;
 		this.list.update(this, this.ciclos);
 		
@@ -91,10 +88,10 @@ public class Game {
 	
 	public char obtenerSun(int posX, int posY) {
 		int posList;
-		posList = this.sList.containsPosition(posX, posY);
+		posList = this.scm.containsPosition(posX, posY);
 		
 		if (posList != -1){
-			return this.sList.getsList()[posList].getVisual();
+			return this.scm.getsList()[posList].getVisual();
 		}
 		return ' ';//vacio
 	}
@@ -152,7 +149,9 @@ public class Game {
 	public boolean addPlant(String planta, int posX, int posY) throws CommandExecuteException
 	{
 		//Llamar factory
-		if (!this.list.contains(posX, posY) && (posX >= 0 && posX < 4)&& (posY >= 0 && posY < 8) ){
+		if( (posX < 0 && posX >= 4)&& (posY < 0 && posY >= 8))
+			throw new CommandExecuteException("Posicion no valida: Fuera de Rango.");
+		if (!this.list.contains(posX, posY)){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
 			if(this.scm.getSunCoins() >= o.getCost())
 			{
@@ -167,7 +166,7 @@ public class Game {
 				throw new CommandExecuteException("No hay soles");
 		}
 		else
-			throw new CommandExecuteException("Posicion no valida: Fuera de Rango.");
+			throw new CommandExecuteException("Posicion no valida: Posicion ya ocupada.");
 		return false;
 	}
 	public boolean addZombie(int posX, int posY) throws CommandExecuteException
@@ -187,7 +186,7 @@ public class Game {
 	public void catchSun(int posX, int posY) throws CommandExecuteException {
 		if(!this.alreadyCatch)
 		{	
-			if(this.sList.getSunCoins(posX, posY))
+			if(this.scm.getSunCoins(posX, posY))
 			{
 				this.scm.addSunCoins(10);
 				this.alreadyCatch = true;
@@ -208,7 +207,7 @@ public class Game {
 	}
 
 	public void updateSuns() {
-		if(this.ciclos%this.sList.getFrecuencia() == 0)
+		if(this.ciclos%this.scm.getFrecuencia() == 0)
 		{
 			this.scm.insertRandom();
 		}
@@ -356,20 +355,12 @@ public class Game {
 	}
 
 
-	public SunList getsList() {
-		return sList;
-	}
-
-	public void setsList(SunList sList) {
-		this.sList = sList;
-	}
-
 	public boolean isAlreadyCatch() {
 		return alreadyCatch;
 	}
 
 	public void addSun(int posX, int posY) {
-		this.sList.insert(posX,posY);
+		this.scm.insert(posX,posY);
 	}
 
 	public void cherryExplosion(int posX, int posY, int damage) {
@@ -382,7 +373,7 @@ public class Game {
 		this.list.damagePlant(posX, posY, damage);
 	}
 
-	public boolean contains(int posX, int posY) throws CommandExecuteException {
+	public boolean contains(int posX, int posY) {
 		return this.list.contains(posX, posY);
 	}
 
@@ -443,11 +434,16 @@ public class Game {
 	
 	public void insertarLoad(String s, int h, int posX, int posY, int ciclo ) throws CommandExecuteException
 	{
+		int i = 0;
 		GameObject o;
 		if(GameObject.isPlant(s))
 			 o  = this.fabricarPlanta.creaPlanta(s, posX, posY);
 		else
+		{
 			 o= this.fabricarZombie.creaZombie(this.zManager.parse(s), posX, posY);
+			 i++;
+		}
+		this.zManager.setZombiesRestantes(this.zManager.getZombiesPorSalir() + i);
 		o.setHeath(h);
 		this.list.insert(ciclo, o);
 	}
