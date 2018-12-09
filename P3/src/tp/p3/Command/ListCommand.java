@@ -52,7 +52,7 @@ public class ListCommand extends Command {
 
 	@Override
 	public Command parse(String[] commandWords) {
-		if(commandWords[0].toLowerCase().equals("list") || commandWords[0].toLowerCase().equals("l"))
+		if(commandWords[0].toLowerCase().equals("list") || commandWords[0].toLowerCase().equals("pl"))
 			return this;
 		return null;
 	}

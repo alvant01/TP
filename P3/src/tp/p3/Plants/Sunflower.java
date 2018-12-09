@@ -42,7 +42,7 @@ public class Sunflower extends Plant
 	public Plant parse(String planta) {
 		if(planta.toLowerCase().equals("s") ||planta.toLowerCase().equals("sunflower"))
 		{
-			return this;
+			return new Sunflower();
 		}
 		return null;
 	}
@@ -53,7 +53,20 @@ public class Sunflower extends Plant
 			game.addSun(this.posX, this.posY);
 	}
 	
-
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoPlanta;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloI;
+		
+		return cadena;
+	}
 	
 	
 	

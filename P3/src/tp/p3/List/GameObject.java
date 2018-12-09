@@ -65,6 +65,13 @@ public class GameObject {
 		else
 			return zombie.getHealth();
 	}
+	public void setHeath(int h) {
+		if(planta != null)
+			planta.setHealth(h);
+		else
+			zombie.setHealth(h);
+		
+	}
 
 	public int getDamage() {
 		if(planta != null)
@@ -139,4 +146,19 @@ public class GameObject {
 			return this.planta.getFrecuency();
 		return this.zombie.getFrecuency();
 	}
+	public String externalise() {//symbol:lr:x:y:t
+		if(this.planta != null)
+		{
+			return this.planta.externalise();
+		}
+		return this.zombie.externalise();
+	}
+	private boolean isPlant(char c) {
+		if(c == ('P' | 'S' | 'C' | 'N'))
+		{
+			return true;
+		}
+		return false;
+	}
+
 }

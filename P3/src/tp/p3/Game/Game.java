@@ -1,7 +1,12 @@
 package tp.p3.Game;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import tp.p3.Controladores.*;
 import tp.p3.Exceptions.CommandExecuteException;
+import tp.p3.Exceptions.FileContentsException;
 import tp.p3.List.*;
 import tp.p3.Factory.*;
 
@@ -34,7 +39,6 @@ public class Game {
 		this.fabricarPlanta = new PlantFactory();
 		this.fabricarZombie = new ZombieFactory();
 		this.zManager		= new ZombieManager();
-		
 		this.ciclos= 0;
 	}
 
@@ -128,6 +132,7 @@ public class Game {
 	public boolean addPlant(String planta, int posX, int posY) throws CommandExecuteException
 	{
 		//Llamar factory
+		//this.fabricarPlanta = new PlantFactory();
 		if (!this.list.contains(posX, posY) && (posX >= 0 && posX < 4)&& (posY >= 0 && posY < 8) ){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);
 			if(this.scm.getSunCoins() >= o.getCost())
@@ -148,6 +153,7 @@ public class Game {
 	}
 	public boolean addZombie(int posX, int posY)
 	{
+		this.fabricarZombie = new ZombieFactory();
 		if (!this.list.contains(posX, posY)){
 			
 			GameObject o  = this.fabricarZombie.creaZombie(this.zManager.zombieType(), posX, posY);
@@ -295,7 +301,7 @@ public class Game {
 	}
 
 	public String getLevel() {
-		String level;
+	String level;
 		if(this.level.toLowerCase().equals("e"))
 			level = "EASY";
 		else if(this.level.toLowerCase().equals("h"))
@@ -335,9 +341,74 @@ public class Game {
 		this.list.damagePlant(posX, posY, damage);
 	}
 
-	public boolean contains(int posX, int i) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean contains(int posX, int posY) {
+		return this.list.contains(posX, posY);
 	}
+
+	public void store(BufferedWriter in) throws IOException {
+		in.write("cycle: " + this.ciclos);
+		in.newLine();
+		in.write("sunCoins: " + this.scm.getSunCoins());
+		in.newLine();
+		in.write("level: " + this.ciclos);
+		in.newLine();
+		in.write("remZombies: " + this.getRemainingZombies());
+		in.newLine();
+		this.list.store(in);
+	}
+
+	public void load(BufferedReader out) throws FileContentsException {
+		String s1;
+		try {
+
+			s1 = out.readLine();
+
+			this.setCiclos(loadParseAux(s1, 7));
+			
+			s1 = out.readLine();
+			
+			this.scm.setSunCoins(loadParseAux(s1, 10));
+			
+			s1 = out.readLine();
+			
+			this.level = String.valueOf(loadParseAux(s1, 7));
+			
+			s1 = out.readLine();
+			
+			this.zManager.setZombiesRestantes(loadParseAux(s1, 12));
+
+			s1 = out.readLine();
+			if(s1 != null)
+				this.list.load(s1.toCharArray(), this);
+			
+			
+		} catch (IOException e) {
+			throw new FileContentsException("Error al cargar el fichero");
+		}
+		
+	}
+	
+	public int loadParseAux(String s, int pos) throws FileContentsException
+	{
+		String sAux = "";
+
+		for(int i = pos;i < s.length(); i++ )
+		{
+			sAux += s.charAt(i);
+		}
+		return Integer.parseInt(sAux);
+
+	}
+	
+	public void insertarLoad(String s, int h, int posX, int posY, int ciclo )
+	{
+		
+		GameObject o  = this.fabricarPlanta.creaPlanta(s, posX, posY);
+		if(o == null)
+			o= this.fabricarZombie.creaZombie(this.zManager.parse(s), posX, posY);
+		o.setHeath(h);
+		this.list.insert(ciclo, o);
+	}
+	
 	 
 }

@@ -40,7 +40,7 @@ public class PeaShooter extends Plant {
 	public Plant parse(String planta) {
 		if(planta.toLowerCase().equals("p") ||planta.toLowerCase().equals("peashooter"))
 		{
-			return this;
+			return new PeaShooter();
 		}
 		return null;
 	}
@@ -49,7 +49,20 @@ public class PeaShooter extends Plant {
 		if(this.cicloI%this.frecuency - ciclo%this.frecuency == 0 && this.cicloI != ciclo)
 			game.damageZombie(this.posX, this.posY, this.damage);
 	}
-	
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoPlanta;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloI;
+		
+		return cadena;
+	}
 	
 	
 	

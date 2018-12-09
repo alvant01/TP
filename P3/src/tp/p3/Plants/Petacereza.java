@@ -36,7 +36,7 @@ public class Petacereza extends Plant {
 	@Override
 	public Plant parse(String planta) {
 		if(planta.toLowerCase().equals("c") || planta.toLowerCase().equals("petacereza"))
-			return this;
+			return new Petacereza();
 		return null;
 	}
 	public void update(int ciclo, Game game) {
@@ -44,7 +44,20 @@ public class Petacereza extends Plant {
 			game.cherryExplosion(this.posX, this.posY, this.damage);
 	}
 	
-	
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoPlanta;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloI;
+		
+		return cadena;
+	}
 	
 	
 	

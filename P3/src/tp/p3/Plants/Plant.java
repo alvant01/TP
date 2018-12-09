@@ -62,4 +62,6 @@ public abstract class Plant extends GameObject {
 	public abstract void setSunGenerator(int sunGenerator);
 
 	public abstract String getTipoPlanta();
+	
+	public abstract String externalise();
 }

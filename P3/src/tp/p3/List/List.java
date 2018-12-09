@@ -1,7 +1,15 @@
 package tp.p3.List;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Arrays;
 
+import tp.p3.Exceptions.FileContentsException;
 import tp.p3.Game.Game;
 import tp.p3.Plants.*;
 
@@ -188,6 +196,42 @@ public class List {
 
 	public void setTamInicio(int tamInicio) {
 		this.tamInicio = tamInicio;
+	}
+
+	public void store(BufferedWriter in) throws IOException {
+		//try
+		//{
+			for(int i  = 0; i < this.numElem; i++)
+			{
+				if (i != 0)
+					in.write(',');
+				in.write(this.list[i].externalise());
+
+			}
+		/*}
+		catch (IOException e)
+		{
+			throw new FileContentsException("Error al crear la salva");
+		}*/
+	}
+
+	public void load(char[] cs, Game game) throws FileContentsException {
+		char[] obj = new char[9];
+		try
+		{
+		for(int i = 0; i < cs.length; i += 10)
+		{
+			System.arraycopy(cs, i, obj, 0, 9);
+			game.insertarLoad(Character.toString(obj[0]),
+					Character.getNumericValue(obj[2]),Character.getNumericValue(obj[4]),Character.getNumericValue(obj[6]),Character.getNumericValue(obj[8]));
+
+		}
+		}
+		catch(ArrayIndexOutOfBoundsException ex)
+		{
+			throw new FileContentsException("Archiivo de carga corrupto");
+		}
+		
 	}
 
 }

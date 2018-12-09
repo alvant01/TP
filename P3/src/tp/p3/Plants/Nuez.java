@@ -37,11 +37,25 @@ public class Nuez extends Plant {
 	@Override
 	public Plant parse(String planta) {
 		if(planta.toLowerCase().equals("n")|| planta.toLowerCase().equals("nuez"))
-				return this;
+				return new Nuez();
 		return null;
 	}
 	public void update(int ciclo, Game game) {
 		//do nothing
+	}
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoPlanta;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloI;
+		
+		return cadena;
 	}
 	
 	

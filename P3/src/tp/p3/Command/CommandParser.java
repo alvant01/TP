@@ -14,17 +14,19 @@ public class CommandParser {
 			new UpdateCommand("UPDATE","actualiza", "actualiza"),
 			new PrintModeCommand("PRINTMODE", "Cambia el modo","Cambia el modo" ),
 			new CatchCommand("CATCH", "Coje un sol", "Coje un sol"),
-			new ListZombieCommand("LISTZOMBIE", "Lista los zombies", "Lista los zombies")
+			new ListZombieCommand("LISTZOMBIE", "Lista los zombies", "Lista los zombies"),
+			new SaveCommand("SAVE", "Guarda la partida", "Guarda la partida"),
+			new LoadCommand("LOAD", "Carga la partida", "Carga la partida")
 			};
 
 	public CommandParser() 
 	{
-		numComandos = 8;
+		numComandos = 10;
 		CommandParser.availableCommands = new Command[numComandos];
 	}
 	public static Command parseCommand(String[ ] commandWords) 
 	{
-		for(int i = 0; i <= 8; i++)
+		for(int i = 0; i <= 10; i++)
 		{
 			if (availableCommands[i].parse(commandWords) != null)
 			{

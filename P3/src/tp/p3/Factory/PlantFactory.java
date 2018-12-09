@@ -26,10 +26,11 @@ public class PlantFactory {
 		
 	}
 	public GameObject parsePlant(String planta, int posX, int posY) {
-		GameObject obj = null;
+		GameObject obj = new GameObject();
 		
 		for(int i  =0; i < this.numPlantas; i++)
 		{
+			//Plant p = new plantas[i].parse(planta);
 			obj.setPlanta(plantas[i].parse(planta));
 			if(obj.getPlanta() != null)
 			{
@@ -38,26 +39,6 @@ public class PlantFactory {
 				return obj;
 			}
 		}
-	/*	if(plantas[0].parse(planta) != null)
-		{
-			obj.setPlanta(new Sunflower(posX, posY));
-			return obj;
-		}
-		else if (plantas[1].parse(planta) != null)
-		{
-			obj.setPlanta(new PeaShooter(posX, posY));
-			return obj;
-		}
-		else if (plantas[2].parse(planta) != null)
-		{
-			obj.setPlanta(new Nuez(posX, posY));
-			return obj;
-		}
-		else if (plantas[3].parse(planta) != null)
-		{
-			obj.setPlanta(new Petacereza(posX, posY));
-			return obj;
-		}*/
 		return null;
 	}
 	public static Plant[] getPlantas() {

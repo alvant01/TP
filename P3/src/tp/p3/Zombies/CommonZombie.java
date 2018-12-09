@@ -36,7 +36,7 @@ public class CommonZombie extends Zombie {
 	}
 	public Zombie parse(int zombie) {
 		if(zombie == 0)
-			return this;
+			return new CommonZombie();
 		return null;
 	}
 	public void updateZombie(int ciclo, Game game)
@@ -51,7 +51,20 @@ public class CommonZombie extends Zombie {
 				this.posY -= 1;
 		}
 	}
-	
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoZombie;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloZom;
+		
+		return cadena;
+	}
 	
 	
 	

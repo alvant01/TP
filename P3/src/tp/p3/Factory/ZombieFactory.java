@@ -26,12 +26,12 @@ public class ZombieFactory {
 	
 	public GameObject parseZombie(int zombie, int posX, int posY)
 	{
-		GameObject obj = null;
+		GameObject obj = new GameObject();
 		
 		for(int i  =0; i < this.numZombies; i++)
 		{
 			obj.setZombie(zombies[i].parse(zombie));
-			if(obj.getPlanta() != null)
+			if(obj.getZombie() != null)
 			{
 				obj.setPosX(posX);
 				obj.setPosY(posY);

@@ -22,7 +22,7 @@ public class AddCommand extends Command
 	}
 
 	@Override
-	public Command parse(String[] commandWords) throws CommandParseException 
+	public Command parse(String[] commandWords) //throws CommandParseException 
 	{
 		try
 		{
@@ -36,7 +36,7 @@ public class AddCommand extends Command
 		}
 		catch(NumberFormatException e)
 		{
-			throw new CommandParseException("Comando no reconocido");
+			//throw new CommandParseException("Comando no reconocido");
 		}
 		return null;
 	}

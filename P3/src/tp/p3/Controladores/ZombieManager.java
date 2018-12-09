@@ -38,13 +38,13 @@ public class ZombieManager {
 	
 	//frcuencia y generacion de ciclos
 
-	public boolean Generador(int semilla, String levelIntroducido){
+	public boolean Generador(int semilla, String level){
 		
 		Random rd = new Random(semilla);
 		this.ciclos = new int [10];
 		double frecuencia;
 		double aleatorio;
-		frecuencia = Reconocedor(levelIntroducido);
+		frecuencia = Reconocedor(level);
 		if(frecuencia == 0)
 		{
 			return false;
@@ -99,6 +99,19 @@ public class ZombieManager {
 		z = rd.nextInt(4);
 		
 		return z;
+	}
+	public int parse(String s)
+	{
+		int zombie;
+		if(s.equals("Z"))
+			zombie = 0;
+		else if(s.equals("X"))
+			zombie = 1;
+		else 
+			zombie = 2;
+		
+		return zombie;
+			
 	}
 	
 	

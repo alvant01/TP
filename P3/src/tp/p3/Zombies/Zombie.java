@@ -58,6 +58,8 @@ public abstract class Zombie extends GameObject {
 		public abstract void setFrecuency(int frecuency);
 
 		public abstract String getTipoZombie();
+		
+		public abstract String externalise();
 
 
 }

@@ -35,7 +35,7 @@ public class BucketZombie extends Zombie {
 
 	public Zombie parse(int zombie) {
 		if(zombie == 1)
-			return this;
+			return new BucketZombie();
 		return null;
 	}
 	
@@ -50,6 +50,20 @@ public class BucketZombie extends Zombie {
 			if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
 				this.posY -= 1;
 		}
+	}
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoZombie;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloZom;
+		
+		return cadena;
 	}
 	
 	

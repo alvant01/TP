@@ -35,7 +35,7 @@ public class FastZombie extends Zombie {
 	}
 	public Zombie parse(int zombie) {
 		if(zombie == 2)
-			return this;
+			return new FastZombie();
 		return null;
 	}
 	public void updateZombie(int ciclo, Game game)
@@ -49,6 +49,20 @@ public class FastZombie extends Zombie {
 			if(this.cicloZom%this.frecuency - ciclo%this.frecuency == 0 && this.cicloZom != ciclo)
 				this.posY -= 1;
 		}
+	}
+	public String externalise() {
+		String cadena;
+		cadena = this.tipoZombie;
+		cadena += ':';
+		cadena += this.health;
+		cadena += ":";
+		cadena += this.posX;
+		cadena += ":";
+		cadena += this.posY;
+		cadena += ":";
+		cadena += this.cicloZom;
+		
+		return cadena;
 	}
 
 	

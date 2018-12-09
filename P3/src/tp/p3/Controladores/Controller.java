@@ -1,5 +1,6 @@
 package tp.p3.Controladores;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import tp.p3.Command.Command;
@@ -46,7 +47,7 @@ public class Controller {
 	
 		printGame();
 		
-		
+		this.game.getScm().addSunCoins(100000); //Debug
 		while (!game.isFinished()){
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().trim().split ("\\s+");
@@ -54,16 +55,31 @@ public class Controller {
 				Command command = CommandParser.parseCommand(words);
 				if (command != null) 
 				{
-					if (command.execute(game)) 
-						printGame();
+					if (command.execute(game))
+					{
+						update(words);
+						printGame();	
+					}
 				} 
+				else if(words[0].isEmpty())
+				{
+					update(words);
+					this.game.updateSuns();
+					noPrint = false;
+					this.game.setAlreadyCatch(false);
+					printGame();
+				}
 				else
 					throw new CommandParseException("Comando no reconocido");
 				} 
-			catch (CommandParseException | CommandExecuteException ex) 
+			catch (CommandParseException | CommandExecuteException | IOException ex) 
 			{
 				System.out.format(ex.getMessage() + " %n %n");
+			} catch (FileContentsException e) {
+				System.out.format(e.getMessage() + " %n %n");
+				//e.printStackTrace();
 			}
+			
 		}
 
 		/*while (!game.isFinished() && !this.exit) 
@@ -97,7 +113,7 @@ public class Controller {
 		}*/
 	}
 	
-	private void update(String[] words) throws CommandExecuteException {
+	private void update(String[] words) throws CommandExecuteException, IOException, FileContentsException {
 		words[0] = "update";
 		Command command = CommandParser.parseCommand(words);
 		command.execute(game);
