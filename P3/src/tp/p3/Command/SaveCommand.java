@@ -19,7 +19,6 @@ public class SaveCommand extends Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public boolean execute(Game game) throws FileContentsException, IOException {
 		BufferedWriter in = null;

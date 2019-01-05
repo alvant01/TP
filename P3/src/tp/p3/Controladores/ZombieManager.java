@@ -106,9 +106,9 @@ public class ZombieManager {
 		if(s.equals("Z"))
 			zombie = 0;
 		else if(s.equals("X"))
-			zombie = 1;
-		else 
 			zombie = 2;
+		else 
+			zombie = 1;
 		
 		return zombie;
 			

@@ -56,6 +56,7 @@ public class Game {
 	public void reiniciar() {
 		this.list.setNumElem(0);
 		this.ciclos = 0;
+		this.scm.setNumElem(0);
 	}
 
 	public void updateGame() {

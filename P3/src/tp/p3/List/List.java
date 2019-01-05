@@ -211,20 +211,25 @@ public class List {
 	}
 
 	public void load(char[] cs, Game game) throws FileContentsException, CommandExecuteException {
+		int pos = 0;
 		int tam = 0;
 		try
 		{
 		//obj = cs.toCharArray();
 			for(int i = 0; i < cs.length -1; i += tam+1)
 			{
-				for(; cs[tam] != ',' || cs.length == tam; tam++);//calcula la pos hasta la coma
+				tam = 0;
+				for(;  cs.length != pos && cs[pos] != ','; pos++)
+				{
+					tam++;//calcula la pos hasta la coma
+				}
 				
 				char[] obj = new char[tam];
 				
 				System.arraycopy(cs, i, obj, 0, tam);
 				game.insertarLoad(Character.toString(obj[0]),
 						Character.getNumericValue(obj[2]),Character.getNumericValue(obj[4]),Character.getNumericValue(obj[6]),Character.getNumericValue(obj[8]));
-	
+				pos++;
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException ex)

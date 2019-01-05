@@ -67,36 +67,6 @@ public class Controller {
 			}
 			
 		}
-
-		/*while (!game.isFinished() && !this.exit) 
-		{
-			noPrint = true;
-			System.out.print("Comando> ");
-			String[] words = scanner.nextLine().toLowerCase().trim().split("\\s+");
-			Command command = CommandParser.parseCommand(words, this);
-			if (command != null) {
-				if(command.execute(game, this))
-				{
-					update(words);
-					this.game.updateSuns();
-					noPrint = false;
-					this.game.setAlreadyCatch(false);
-				}
-			}
-			else if(words[0].isEmpty())
-			{
-				update(words);
-				this.game.updateSuns();
-				noPrint = false;
-				this.game.setAlreadyCatch(false);
-			}
-			else {
-				System.err.println("Comando no reconocido");
-				//setNoPrintGameState();
-			}
-			if(!noPrint)
-				printGame();
-		}*/
 	}
 	
 	private void update(String[] words) throws CommandExecuteException, IOException, FileContentsException, CommandParseException {
@@ -117,7 +87,6 @@ public class Controller {
 		String comando;
 		System.out.print("Command > ");
 		comando = this.scanner.nextLine();
-		//this.in.reset();
 		return comando;
 		
 	}
