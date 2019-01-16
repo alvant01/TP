@@ -149,8 +149,10 @@ public class Game {
 	@SuppressWarnings("unused")
 	public boolean addPlant(String planta, int posX, int posY) throws CommandExecuteException
 	{
+		if(!GameObject.isPlant(planta))
+			throw new CommandExecuteException("Planta no reconocida");
 		//Llamar factory
-		if( (posX < 0 && posX >= 4)&& (posY < 0 && posY >= 8))
+		if ((posX < 0 || posX >= 4) ||(posY < 0 || posY >= 8))
 			throw new CommandExecuteException("Posicion no valida: Fuera de Rango.");
 		if (!this.list.contains(posX, posY)){
 			GameObject o  = this.fabricarPlanta.creaPlanta(planta, posX, posY);

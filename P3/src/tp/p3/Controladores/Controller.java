@@ -34,7 +34,7 @@ public class Controller {
 	
 		game.printGame();
 		
-		this.game.getScm().addSunCoins(100000); //Debug
+	//	this.game.getScm().addSunCoins(100000); //Debug
 		while (!game.isFinished()){
 			System.out.print("Comando> ");
 			String[] words = scanner.nextLine().trim().split ("\\s+");
