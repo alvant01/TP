@@ -16,7 +16,8 @@ public class Body{
 	
 	
 	
-	public Body(Vector vel,Vector acc, Vector poss, double mass) {
+	public Body(String id,Vector vel,Vector acc, Vector poss, double mass) {
+		this.id = id;
 		this.a = acc;
 		this.p = poss;
 		this.m= mass;
