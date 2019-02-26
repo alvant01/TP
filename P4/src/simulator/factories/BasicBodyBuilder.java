@@ -48,6 +48,7 @@ public class BasicBodyBuilder extends Builder<Body> {
 		JSONObject jo1 = new JSONObject();
 		
 		jo1.put("desc", "cuerpo normal");
+		jo1.put("data", "\"type\": \"basic\", \"data\": { \"id\": \"b1\", \"pos\": [0.0e00, 0.0e00], \"vel\": [0.05e04, 0.0e00], \"mass\": 5.97e24");
 		return null;
 	}
 }

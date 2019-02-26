@@ -4,10 +4,10 @@ import java.util.List;
 
 public class NoGravity implements GravityLaws {
 
-	@Override
+	/*@Override
 	public void apply(List<Body> bodies) {
 		// TODO Auto-generated method stub
 
 	}
-
+*/
 }
