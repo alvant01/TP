@@ -16,12 +16,12 @@ public class FallingToCenterGravity implements GravityLaws {
 	}
 	
 	@Override
-	public void apply(List<Body> bodies) {
+	public void apply(List<Body> cuerpo) {
 		
-		for (int i = 0; i < bodies.size(); i++)
+		for (int i = 0; i < cuerpo.size(); i++)
 		{	
 			
-			FuerzaAplicadaSobreElObjeto(bodies.get(i));
+			AplicaAceleracion(cuerpo.get(i));
 		
 		}
 	}
@@ -33,8 +33,8 @@ public class FallingToCenterGravity implements GravityLaws {
 		//Vector Origin = new Vector(0);
 		
 		fuerza = cuerpo.getAcceleration().scale(g);
-		AplicaAceleracion(cuerpo);
-		
+
+		//AplicaAceleracion(cuerpo);
 		//fuerza1 = cuerpo.getPosition().scale(g);
 		//fuerza1 = fuerza.distanceTo(Origin);
 		
@@ -43,7 +43,9 @@ public class FallingToCenterGravity implements GravityLaws {
 	
 	public void AplicaAceleracion(Body cuerpo) {
 		
-		cuerpo.setAcceleration(fuerza);
+		
+		this.fuerza = FuerzaAplicadaSobreElObjeto(cuerpo);
+		cuerpo.setAcceleration(this.fuerza);
 		
 	}
 	
