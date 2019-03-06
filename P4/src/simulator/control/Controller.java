@@ -28,7 +28,7 @@ public class Controller {
 		JSONObject jsonInupt = new JSONObject(new JSONTokener(in));
 		JSONArray jarray = jsonInupt.getJSONArray("bodies");
 		
-		for(int i = 0; i < jsonInupt.length(); i++)
+		for(int i = 0; i <= jsonInupt.length(); i++)
 		{
 			Body n = this.factory.createInstance(jarray.getJSONObject(i));
 			this.ps.addBody(n);

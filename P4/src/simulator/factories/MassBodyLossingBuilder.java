@@ -25,6 +25,8 @@ public class MassBodyLossingBuilder extends Builder<Body> {
 
 			double[] v = new double[2];
 			double[] p = new double[2];
+			double[] a = new double[2];
+			
 			
 			JSONArray g = data.getJSONArray("vel");
 			
@@ -38,9 +40,12 @@ public class MassBodyLossingBuilder extends Builder<Body> {
 			p[0] = g.getDouble(0);	
 			p[1] = g.getDouble(1);
 			
+			a[0] = 0;
+			a[1] = 0;
+			
 			try
 			{
-			MassLossingBody mlb = new MassLossingBody(data.getString("id"),data.getDouble("factor"),data.getDouble("freq"), new Vector(v) , new Vector(0),  new Vector(p),data.getDouble("mass"));
+			MassLossingBody mlb = new MassLossingBody(data.getString("id"),data.getDouble("factor"),data.getDouble("freq"), new Vector(v) , new Vector(a),  new Vector(p),data.getDouble("mass"));
 			return mlb;
 			}
 			catch(JSONException ex)

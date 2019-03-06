@@ -1,5 +1,6 @@
 package simulator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import simulator.misc.Vector;
@@ -23,31 +24,12 @@ public class PhysicsSimulator {
 	// se debe de lanzar una excepcion
 	
 	public PhysicsSimulator(double tiempoRealPorPaso, GravityLaws leyesGravedad ) throws IllegalArgumentException{
-		
-		/*NewtonUniversalGravitation newtonUGravitation = null;
-		FallingToCenterGravity fallingTCenter = null;
-		NoGravity nGavity = null;*/
-		
 		this.tiempoRealPorPaso = tiempoRealPorPaso;
 		this.leyesGravedad = leyesGravedad;
-		
+		this.listBodies = new ArrayList<Body>();
 		try
 		{
-			this.tiempoRealPorPaso = tiempoRealPorPaso;
-		//	cuerpo.move(this.tiempoRealPorPaso);  Que cuerpo mueve? es un constructor
-			//this.leyesGravedad = leyesGravedad;
-			
-			/*
-			Vector vel = null;
-			Vector acc = null;
-			Body bo = new Body(vel, vel, acc, tiempoRealPorPaso);
-			
-			bo.move(tiempoRealPorPaso);
-			*/
-			
-
-			
-			//codigo: valor valido
+			this.tiempoRealPorPaso = tiempoRealPorPaso;			
 		}
 		catch (IllegalArgumentException exceptions)
 		{
@@ -59,18 +41,6 @@ public class PhysicsSimulator {
 		try
 		{
 			this.leyesGravedad = leyesGravedad;
-			
-			/*
-			Vector vel = null;
-			Vector acc = null;
-			Body bo = new Body(vel, vel, acc, tiempoRealPorPaso);
-			
-			bo.move(tiempoRealPorPaso);
-			*/
-			
-			//bo.move(tiempoRealPorPaso);
-			
-			//codigo: valor valido
 		}
 		catch (IllegalArgumentException exceptions)
 		{
@@ -91,9 +61,7 @@ public class PhysicsSimulator {
 		NoGravity nGavity = null;
 		*/
 		
-		newtonUGravitation.apply(this.listBodies);
-		fallingTCenter.apply(this.listBodies);
-		nGavity.apply(this.listBodies);
+		this.leyesGravedad.apply(this.listBodies);
 		
 		//double tiempoRealPorPaso = 0;
 		//cuerpo.move(this.tiempoRealPorPaso);
@@ -109,25 +77,29 @@ public class PhysicsSimulator {
 	public void addBody(Body cuerpob){
 		
 		//anhade el cuerpo b al simulador
-		
-		
+		boolean found = false;
 		try
 		{
-			for (int i = 0; i < listBodies.size(); i++){
-			
-				if (!(listBodies.get(i).equals(cuerpob))){
-					//anhade el objeto
-					listBodies.add(cuerpob);
-				}
-				else {
-					//throw exception;
-					System.out.println("El objeto introducido ya se encuentra, intenta añadiendo otro objeto");
+			if(this.listBodies.isEmpty())
+			{
+				listBodies.add(cuerpob);
+			}
+			else
+			{
+				int tam = this.listBodies.size(); //evitamos un bucle infinito debido al cambio del valor de size
+				for(int i =0; i < tam; i++)
+				{
+					if (listBodies.get(i).getId().equals(cuerpob.getId()))
+					{
+						found = true;
+					}
+					
+					if(!found)
+						listBodies.add(cuerpob);
+					else 
+						throw new IllegalArgumentException();
 				}
 			}
-			
-			//llama a la factoria para crear un nuevo body
-			
-			
 		}
 		catch (IllegalArgumentException exceptions)
 		{

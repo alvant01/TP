@@ -1,5 +1,6 @@
 package simulator.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import simulator.misc.Vector;
@@ -16,12 +17,12 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	
 	public NewtonUniversalGravitation(){
 		
-		List<Body> listaBody;
-		double fuerza = 0;
-		double G = 6.67384E-11;
-		Vector aplicarAceleracion = null;
-		double distancia = 0;
-		double fuerzaAcumulada = 0;
+		List<Body> listaBody = new ArrayList<Body>();
+		this.fuerza = 0;
+		this.G = 6.67384E-11;
+		this.aplicarAceleracion = null;
+		this.distancia = 0;
+		this.fuerzaAcumulada = 0;
 		
 	}
 	
@@ -62,6 +63,7 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	public double FuerzaAcumulada(Body cuerpoA){
 		double masa1 = cuerpoA.getMass();
 		Vector pos1 = cuerpoA.getPosition();
+		
 		
 		for (int i = 0; i < listaBody.size(); i++){
 			
