@@ -2,6 +2,7 @@ package simulator.factories;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +28,26 @@ public class BasicBodyBuilder extends Builder<Body> {
 			
 			try
 			{
-			Body b = new Body(data.getString("id"),new Vector(data.getInt("vel")) , new Vector(0),  new Vector(data.getInt("poss")),data.getDouble("mass"));
+			
+			double[] v = new double[2];
+			double[] p = new double[2];
+			
+			JSONArray g = data.getJSONArray("vel");
+			
+			
+			v[0] = g.getDouble(0);	
+			v[1] = g.getDouble(1);
+			
+			g = data.getJSONArray("pos");
+			
+			
+			p[0] = g.getDouble(0);	
+			p[1] = g.getDouble(1);
+			
+			
+			
+			
+			Body b = new Body(data.getString("id"), new Vector(v) , new Vector(0),  new Vector(p),data.getDouble("mass"));
 			return b;
 			}
 			catch(JSONException ex)
@@ -44,11 +64,16 @@ public class BasicBodyBuilder extends Builder<Body> {
 		return null;
 	}
 
-	public JSONObject getInfo() {
+	public JSONObject getBuilderInfo() {
 		JSONObject jo1 = new JSONObject();
 		
-		jo1.put("desc", "cuerpo normal");
+		/*
 		jo1.put("data", "\"type\": \"basic\", \"data\": { \"id\": \"b1\", \"pos\": [0.0e00, 0.0e00], \"vel\": [0.05e04, 0.0e00], \"mass\": 5.97e24");
-		return null;
+		*/
+		jo1.put("desc", "cuerpo normal");
+		jo1.put("type", "basic");
+		jo1.put("data", "{ \"id\": \"b1\", \"pos\", \"vel\", \"mass\" })");
+		
+		return jo1;
 	}
 }

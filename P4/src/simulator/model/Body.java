@@ -16,7 +16,7 @@ public class Body{
 	
 	
 	
-	public Body(String id,Vector vel,Vector acc, Vector poss, double mass) {
+	public Body(String id, Vector vel,Vector acc, Vector poss, double mass) {
 		this.id = id;
 		this.a = acc;
 		this.p = poss;
@@ -28,7 +28,6 @@ public class Body{
 		return this.id;
 	}
 	public Vector getVelocity() {
-		//return (Vector) this.v.clone();
 		return new Vector(v);
 	}
 	public Vector getAcceleration(){

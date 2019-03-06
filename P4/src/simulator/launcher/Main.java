@@ -1,5 +1,17 @@
 package simulator.launcher;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * Examples of command-line parameters:
  * 
@@ -20,9 +32,18 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.json.JSONObject;
 
+import simulator.control.Controller;
+import simulator.factories.BasicBodyBuilder;
+import simulator.factories.Builder;
+import simulator.factories.BuilderBasicFactory;
 import simulator.factories.Factory;
+import simulator.factories.FallingToCenterGravityBuilder;
+import simulator.factories.MassBodyLossingBuilder;
+import simulator.factories.NewtonUniversalGravitationBuider;
+import simulator.factories.NoGravityBuilder;
 import simulator.model.Body;
 import simulator.model.GravityLaws;
+import simulator.model.PhysicsSimulator;
 
 public class Main {
 
@@ -34,6 +55,8 @@ public class Main {
 	//
 	private static Double _dtime = null;
 	private static String _inFile = null;
+	private static String _outFile = null;
+	private static String _n  = null;
 	private static JSONObject _gravityLawsInfo = null;
 
 	// factories
@@ -41,11 +64,25 @@ public class Main {
 	private static Factory<GravityLaws> _gravityLawsFactory;
 
 	private static void init() {
-		// initialize the bodies factory
-		// ...
 
+		List<Builder<Body>> listaB = new ArrayList<Builder<Body>>();
+		
+		
+		//ArrayList<Builder<Body>> bodyBuilders = new ArrayList<>();
+		listaB.add(new BasicBodyBuilder());
+		listaB.add(new MassBodyLossingBuilder());
+		Factory<Body> bodyFactory = new BuilderBasicFactory<Body>(listaB);
+		
+		// initialize the bodies factory
+		_bodyFactory = new BuilderBasicFactory<Body>(listaB);
+
+		
+		List<Builder<GravityLaws>> listaG = new ArrayList<Builder<GravityLaws>>();
+		listaG.add(new NewtonUniversalGravitationBuider());
+		listaG.add(new FallingToCenterGravityBuilder());
+		listaG.add(new NoGravityBuilder());
 		// initialize the gravity laws factory
-		// ...
+		_gravityLawsFactory = new BuilderBasicFactory<GravityLaws>(listaG);
 	}
 
 	private static void parseArgs(String[] args) {
@@ -61,8 +98,10 @@ public class Main {
 			CommandLine line = parser.parse(cmdLineOptions, args);
 			parseHelpOption(line, cmdLineOptions);
 			parseInFileOption(line);
+			parseOutFileOption(line);
 			parseDeltaTimeOption(line);
 			parseGravityLawsOption(line);
+			parseStepOptions(line);
 
 			// if there are some remaining arguments, then something wrong is
 			// provided in the command line!
@@ -96,6 +135,10 @@ public class Main {
 				.desc("A double representing actual time, in seconds, per simulation step. Default value: "
 						+ _dtimeDefaultValue + ".")
 				.build());
+		cmdLineOptions.addOption(Option.builder("o").longOpt("output").hasArg().desc("Bodies JSON output file").build());
+		
+		cmdLineOptions.addOption(Option.builder("s").longOpt("steps").hasArg().desc("Number of steps").build());
+		
 
 		// gravity laws -- there is a workaround to make it work even when
 		// _gravityLawsFactory is null. 
@@ -134,6 +177,12 @@ public class Main {
 			throw new ParseException("An input file of bodies is required");
 		}
 	}
+	private static void parseOutFileOption(CommandLine line) throws ParseException {
+		_outFile = line.getOptionValue("o");
+		if (_outFile == null) {
+			throw new ParseException("An input file of bodies is required");
+		}
+	}
 
 	private static void parseDeltaTimeOption(CommandLine line) throws ParseException {
 		String dt = line.getOptionValue("dt", _dtimeDefaultValue.toString());
@@ -167,9 +216,43 @@ public class Main {
 			_gravityLawsInfo = _gravityLawsFactory.getInfo().get(0);
 		}
 	}
+	private static void parseStepOptions(CommandLine line)
+	{
+		_n = line.getOptionValue("n");
+		if (_n == null)
+		{
+			_n = "150";
+		}
+	}
 
 	private static void startBatchMode() throws Exception {
 		// create and connect components, then start the simulator
+		
+		//establecer leyes de la gravedad
+		GravityLaws gl =  _gravityLawsFactory.createInstance(_gravityLawsInfo);
+		//Instancia simulador y controlador
+		PhysicsSimulator simulador = new PhysicsSimulator(_dtime,gl);//Revisar faltan leyes
+		Controller controlador = new Controller(simulador, _bodyFactory);
+		
+		
+		
+
+		//Crear ficheros entrada/salida
+		
+		InputStream in =  new FileInputStream(_inFile);
+		OutputStream out  =  new FileOutputStream(_outFile);
+		
+		/*Abrir el fichero dado en -i y -o, sacar los cuerpos de -i*/
+		
+		
+		
+		
+		
+		//añadir cuerpos al simulador(addBodies)
+		controlador.loadBodies(in);
+		//iniciar(run del controlador)
+		controlador.run(Integer.parseInt(_n), out);
+		
 	}
 
 	private static void start(String[] args) throws Exception {

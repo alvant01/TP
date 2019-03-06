@@ -21,7 +21,7 @@ public class NewtonUniversalGravitationBuider extends Builder<GravityLaws> {
 		 
 		if ("nlug".equals(info.get("type")))
 		{
-			JSONObject data = info.getJSONObject("data");
+//			JSONObject data = info.getJSONObject("data");
 			
 			try
 			{
@@ -42,12 +42,14 @@ public class NewtonUniversalGravitationBuider extends Builder<GravityLaws> {
 		return null;
 	}
 
-	public JSONObject getInfo() {
+	public JSONObject getBuilderInfo() {
 		JSONObject jo1 = new JSONObject();
 		
-		jo1.put("desc", "cuerpo que pierde masa");
-		jo1.put("data", "\"type\": \"mlb\", \"data\"{ \\\"type\\\": \\\"mlb\\\",\\\"data\\\": {\\\"id\\\": \\\"b1\\\",\\\"pos\\\": [-3.5e10, 0.0e00],\\\"vel\\\": [0.0e00, 1.4e03],\\\"mass\\\": 3.0e28,\\\"freq\\\": 1e3,\\\"factor\\\": 1e-3}}\"");
-		return null;
+		jo1.put("desc", "Ley de Newton");
+		jo1.put("type", "nlug");
+		jo1.put("data", "");
+		
+		return jo1;
 	}
 
 }

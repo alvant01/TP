@@ -24,9 +24,9 @@ public class PhysicsSimulator {
 	
 	public PhysicsSimulator(double tiempoRealPorPaso, GravityLaws leyesGravedad ) throws IllegalArgumentException{
 		
-		NewtonUniversalGravitation newtonUGravitation = null;
+		/*NewtonUniversalGravitation newtonUGravitation = null;
 		FallingToCenterGravity fallingTCenter = null;
-		NoGravity nGavity = null;
+		NoGravity nGavity = null;*/
 		
 		this.tiempoRealPorPaso = tiempoRealPorPaso;
 		this.leyesGravedad = leyesGravedad;
@@ -34,7 +34,7 @@ public class PhysicsSimulator {
 		try
 		{
 			this.tiempoRealPorPaso = tiempoRealPorPaso;
-			cuerpo.move(this.tiempoRealPorPaso);
+		//	cuerpo.move(this.tiempoRealPorPaso);  Que cuerpo mueve? es un constructor
 			//this.leyesGravedad = leyesGravedad;
 			
 			/*
