@@ -25,16 +25,21 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		this.fuerzaAcumulada = 0;
 		
 	}
-	
+	//Considero que la gravitacion universal solo puede darsse entre dos cuepros
 	@Override
 	public void apply(List<Body> bodies) {
 		
+		this.listaBody = bodies;
 		for (int i = 0; i < bodies.size(); i++)
 		{	
 			
 			AplicarAceleracion(bodies.get(i));
 		
 		}
+		
+		//this.aplicarAceleracion = bodies.get(0).getAcceleration().scale(FuerzaAcumulada(bodies.get(1)));
+		//bodies.get(0).setAcceleration(this.aplicarAceleracion);
+		
 	}
 	
 	/*
@@ -60,30 +65,45 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		
 	}
 	
-	public double FuerzaAcumulada(Body cuerpoA){
-		double masa1 = cuerpoA.getMass();
-		Vector pos1 = cuerpoA.getPosition();
+	public double FuerzaAcumulada(Body cuerpo1, Body cuerpo2){
+		//Por que aqui se hacen dos veces?
+		//Calculamos la fureza acumulado sobre UN solo cuerpo
 		
-		
-		for (int i = 0; i < listaBody.size(); i++){
+		//for (int i = 0; i < listaBody.size(); i++){
 			
-			double masa2 = listaBody.get(i).getMass();
-			Vector pos2 = listaBody.get(i).getPosition();
+			//double masa2 = listaBody.get(i).getMass();
+			//Vector pos2 = listaBody.get(i).getPosition();
 			
-			this.fuerzaAcumulada = this.fuerzaAcumulada + FuerzaAplicada(masa1, masa2, pos1, pos2);
-		}
+			this.fuerzaAcumulada = this.fuerzaAcumulada + FuerzaAplicada(cuerpo1.getMass(), cuerpo2.getMass(), cuerpo1.getPosition(), cuerpo2.getPosition());
+		//}
 		
 		return fuerzaAcumulada;
 		
 	}
 	
 	public void AplicarAceleracion(Body cuerpoA){
+		int j = -1;
+		double aSol[] = new double[2];
+		//Obtiene el otro cuerpo
+		for(int i = 0; i < this.listaBody.size(); i++)
+		{
+			if(!this.listaBody.get(i).equals(cuerpoA))
+				j = i;
+		}
+		if (j == -1)
+			throw new  IllegalArgumentException();
 		
-		this.aplicarAceleracion = cuerpoA.getAcceleration().scale(FuerzaAcumulada(cuerpoA));
+		//this.aplicarAceleracion = 
+		double fAcumulada = FuerzaAcumulada(this.listaBody.get(j), cuerpoA);
+		
+		
+		aSol[0] = 0.0;
+		aSol[1] = fAcumulada;
+		
+		this.aplicarAceleracion = cuerpoA.getAcceleration().plus(new Vector(aSol));
 		cuerpoA.setAcceleration(this.aplicarAceleracion);
 		
 	}
-	
 	
 }
 	

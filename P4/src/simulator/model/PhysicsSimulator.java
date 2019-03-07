@@ -67,7 +67,7 @@ public class PhysicsSimulator {
 		//cuerpo.move(this.tiempoRealPorPaso);
 		
 		for (int i = 0; i < this.listBodies.size(); i++){
-			
+			//System.out.println(this.listBodies.get(i).getAcceleration());
 			this.listBodies.get(i).move(this.tiempoRealPorPaso);
 		}
 		

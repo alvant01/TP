@@ -218,7 +218,7 @@ public class Main {
 	}
 	private static void parseStepOptions(CommandLine line)
 	{
-		_n = line.getOptionValue("n");
+		_n = line.getOptionValue("s");
 		if (_n == null)
 		{
 			_n = "150";
