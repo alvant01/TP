@@ -6,12 +6,12 @@ import simulator.misc.Vector;
 
 public class FallingToCenterGravity implements GravityLaws {
 
-	private Vector fuerza;
+	private double fuerza;
 	private double g; //gravedad
 	
 	public FallingToCenterGravity(){
 		
-		 this.fuerza = null;
+		 this.fuerza = 0;
 		 this.g = (-9.81);
 	}
 	
@@ -26,26 +26,25 @@ public class FallingToCenterGravity implements GravityLaws {
 		}
 	}
 	
-	//private double g = (-9.81); //gravedad
-	
-	public Vector FuerzaAplicadaSobreElObjeto(Body cuerpo){
-		//Vector fuerza1;
-		//Vector Origin = new Vector(0);
+	public double FuerzaAplicadaSobreElObjeto(Body cuerpo){
 		
-		fuerza = cuerpo.getAcceleration().scale(g);
+		this.fuerza = (cuerpo.getMass())*(this.g); // F = m.a
+		//this.fuerza = cuerpo.getAcceleration().plus(new Vector(grav));
+		//this.fuerza = cuerpo.getAcceleration().scale(g);
 
-		//AplicaAceleracion(cuerpo);
-		//fuerza1 = cuerpo.getPosition().scale(g);
-		//fuerza1 = fuerza.distanceTo(Origin);
-		
-		return fuerza;
+		return this.fuerza;
 	}
 	
 	public void AplicaAceleracion(Body cuerpo) {
 		
-		
 		this.fuerza = FuerzaAplicadaSobreElObjeto(cuerpo);
-		cuerpo.setAcceleration(this.fuerza);
+		
+		double fuerzaAcumulada = this.fuerza;
+		double grav[] = new double[1];
+		grav[0] = this.fuerza;
+		
+		//this.fuerza = FuerzaAplicadaSobreElObjeto(cuerpo);
+		cuerpo.setAcceleration(new Vector(grav));
 		
 	}
 	
