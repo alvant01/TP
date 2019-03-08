@@ -26,8 +26,6 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		
 	}
 	//Considero que la gravitacion universal solo puede darsse entre dos cuepros
-	//el enunciado dicta: Bi se define como la suma de 
-	//todas las fuerzas aplicadas sobre Bi por otros cuerpos
 	@Override
 	public void apply(List<Body> bodies) {
 		
@@ -68,11 +66,8 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	}
 	
 	public double FuerzaAcumulada(Body cuerpo1, Body cuerpo2){
-		//Por que aqui se hacen dos veces? //Porque el enunciado dicta: Bi se define como la suma de 
-		//todas las fuerzas aplicadas sobre Bi por otros cuerpos
+		//Por que aqui se hacen dos veces?
 		//Calculamos la fureza acumulado sobre UN solo cuerpo
-		//Calculamos la fuerza acumulada de todos los objetos sobre el cuerpo en cuestion
-
 		
 		//for (int i = 0; i < listaBody.size(); i++){
 			
@@ -87,7 +82,6 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	}
 	
 	public void AplicarAceleracion(Body cuerpoA){
-		//Este no es un for similar al que habia antes mas arriba?
 		int j = -1;
 		double aSol[] = new double[2];
 		//Obtiene el otro cuerpo
@@ -107,9 +101,6 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		aSol[1] = fAcumulada;
 		
 		this.aplicarAceleracion = cuerpoA.getAcceleration().plus(new Vector(aSol));
-		//Aqui deberia de ser:
-		// a = F/m
-		//He intentado bastante hacer que funcione con esa otra formula pero tengo problemas con el vector
 		cuerpoA.setAcceleration(this.aplicarAceleracion);
 		
 	}

@@ -46,7 +46,7 @@ public class BasicBodyBuilder extends Builder<Body> {
 			p[1] = g.getDouble(1);
 			
 			a[0] = 0;
-			a[1] = 0;
+			a[1] = 1;
 			
 			
 			Body b = new Body(data.getString("id"), new Vector(v) , new Vector(a),  new Vector(p),data.getDouble("mass"));

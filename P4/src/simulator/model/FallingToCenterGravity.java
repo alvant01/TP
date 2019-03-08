@@ -1,18 +1,22 @@
 package simulator.model;
 
 import java.util.List;
+import java.lang.Math;
 
 import simulator.misc.Vector;
 
 public class FallingToCenterGravity implements GravityLaws {
 
-	private double fuerza;
+	private Vector fuerza;
 	private double g; //gravedad
+	private int dirX;
+	private int dirY;
 	
 	public FallingToCenterGravity(){
 		
-		 this.fuerza = 0;
 		 this.g = (-9.81);
+		 this.dirX = 1;
+		 this.dirY = 1;
 	}
 	
 	@Override
@@ -20,44 +24,61 @@ public class FallingToCenterGravity implements GravityLaws {
 		
 		for (int i = 0; i < cuerpo.size(); i++)
 		{	
+			//Calculo la direccion
+			forceDirection(cuerpo.get(i));
 			
+			//Calculo la aceleracion
+			forceAceleration(cuerpo.get(i));
+			
+			//Calculo la fuerza
+			forceCalculation(cuerpo.get(i));
+			
+			//Aplico Fuerza
 			AplicaAceleracion(cuerpo.get(i));
 		
 		}
 	}
 	
-	public double FuerzaAplicadaSobreElObjeto(Body cuerpo){
-		
-		this.fuerza = (cuerpo.getMass())*(this.g); // F = m.a
-		//this.fuerza = cuerpo.getAcceleration().plus(new Vector(grav));
-		//this.fuerza = cuerpo.getAcceleration().scale(g);
-
-		return this.fuerza;
-	}
+	//private double g = (-9.81); //gravedad
 	
+	private void forceCalculation(Body body) {
+		
+		
+		//F = m*a
+		this.fuerza = body.getAcceleration().scale(body.getMass());
+		
+	}
+
+	private void forceAceleration(Body body) {
+		
+		//Calculo el angulo
+		double direction = Math.atan(body.getAcceleration().coordinate(0)/body.getAcceleration().coordinate(1));
+		double aPos[]  = new double[2];
+		
+		//Calculo la acceleracion respecto a su aceleracion inicial y su grado
+		//pos*(g+a)*cos(direccion)
+		aPos[0] = this.dirX*((body.getAcceleration().coordinate(0) + this.g) * Math.cos(direction));
+		//pos*(g+a)*sin(direccion)
+		aPos[1] = this.dirY*((body.getAcceleration().coordinate(1) + this.g) * Math.sin(direction));
+		
+		
+		body.setAcceleration(new Vector(aPos));
+	}
+
+	private void forceDirection(Body body) {
+		
+		if(body.getPosition().coordinate(0) < 0)
+		{
+			this.dirX = -1;
+		}
+		if(body.getPosition().coordinate(1) < 0)
+		{
+			this.dirY = -1;
+		}
+	}
 	public void AplicaAceleracion(Body cuerpo) {
 		
-		this.fuerza = FuerzaAplicadaSobreElObjeto(cuerpo);
-		
-		double fuerzaAcumulada = this.fuerza;
-		double grav[] = new double[1];
-		grav[0] = this.fuerza;
-		
-		//this.fuerza = FuerzaAplicadaSobreElObjeto(cuerpo);
-		cuerpo.setAcceleration(new Vector(grav));
-		
+		//V = F
+		cuerpo.setVelocity(this.fuerza);
 	}
-	
-	/*
-	double g = -9.81;
-	Vector coordenadas;
-	
-	public Vector cayendo (double _data[], int i, Vector d1) {
-		
-		coordenadas = d1.scale(g);
-		
-		return coordenadas;
-		
-	}
-	*/
 }

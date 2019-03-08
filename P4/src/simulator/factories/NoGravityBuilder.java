@@ -17,7 +17,7 @@ public class NoGravityBuilder extends Builder<GravityLaws> {
 		 
 		if ("ftcg".equals(info.get("type")))
 		{
-			JSONObject data = info.getJSONObject("data");
+//			JSONObject data = info.getJSONObject("data");
 			
 			try
 			{
@@ -43,7 +43,7 @@ public class NoGravityBuilder extends Builder<GravityLaws> {
 		
 		jo1.put("desc", "no gravedad");
 		jo1.put("type", "ng");
-		//jo1.put("data", "{}");
+		jo1.put("data", "");
 		
 		return jo1;
 	}

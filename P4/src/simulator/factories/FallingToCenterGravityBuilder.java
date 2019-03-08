@@ -19,7 +19,7 @@ public class FallingToCenterGravityBuilder extends Builder<GravityLaws> {
 		 
 		if ("ftcg".equals(info.get("type")))
 		{
-			JSONObject data = info.getJSONObject("data");
+//			JSONObject data = info.getJSONObject("data");
 			
 			try
 			{
@@ -44,7 +44,7 @@ public class FallingToCenterGravityBuilder extends Builder<GravityLaws> {
 		JSONObject jo1 = new JSONObject();
 		jo1.put("desc", "cayendo");
 		jo1.put("type", "ftcg");
-		jo1.put("data", "{}");
+		jo1.put("data", "");
 		
 		return jo1;
 	}
