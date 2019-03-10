@@ -61,6 +61,6 @@ public class Body{
 	}
 	public String toString()
 	{
-		return "{ 'id':" +  this.id + ", 'mass':" + this.m + ", 'pos': "+ this.p + ", 'vel':" + this.v+ ", 'acc':" + this.a + "}";
+		return "{ \"id\": \"" +  this.id + "\", \"mass\": " + this.m + ", \"pos\": "+ this.p + ", \"vel\": " + this.v+ ", \"acc\":" + this.a + "}";
 	}
 }

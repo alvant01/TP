@@ -41,7 +41,7 @@ public class MassBodyLossingBuilder extends Builder<Body> {
 			p[1] = g.getDouble(1);
 			
 			a[0] = 0;
-			a[1] = 1;
+			a[1] = 0;
 			
 			try
 			{

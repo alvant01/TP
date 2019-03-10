@@ -36,11 +36,19 @@ public class Controller {
 	}
 	public void run(int n, OutputStream out) throws IOException
 	{
-		
+		out.write("{ \n".getBytes());
+		out.write("\"states\": [ \n".getBytes());
 		for(int i = 0; i < n; i++)
 		{
 			this.ps.advance();
-			out.write(ps.toString().getBytes());
+			out.write(ps.toString2().getBytes());
+			if(i != n-1)
+				out.write(",\n".getBytes());
+			else
+				out.write("\n".getBytes());
 		}
+		out.write("] \n".getBytes());
+		out.write("} \n".getBytes());
+		out.close();
 	}
 }

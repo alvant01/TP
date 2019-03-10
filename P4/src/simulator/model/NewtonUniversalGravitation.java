@@ -32,7 +32,8 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		this.listaBody = bodies;
 		for (int i = 0; i < bodies.size(); i++)
 		{	
-			
+			//Calculo Fuerza
+		//	ForceCalculation(bodies.get(i));
 			AplicarAceleracion(bodies.get(i));
 		
 		}
@@ -49,6 +50,42 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	double G = 6.67384E-11;
 	*/
 	
+	private void ForceCalculation(Body body) {
+		for(int i = 0; i < this.listaBody.size(); i++)
+		{
+			if(!body.equals(this.listaBody.get(i)))
+			{
+				this.aplicarAceleracion = this.aplicarAceleracion.plus(accelerationCalculation(body, this.listaBody.get(i)));
+			}
+		}
+		
+	}
+	private Vector accelerationCalculation(Body body, Body body2) {
+		//Calculo el angulo
+		double direction = Math.atan((body.getAcceleration().coordinate(0) - body2.getAcceleration().coordinate(0) )/body.getAcceleration().coordinate(1));
+		double aPos[]  = new double[2];
+		double dirX = 0;
+		double dirY = 0;
+		
+		
+		if(body.getPosition().coordinate(0) < 0)
+		{
+			dirX = -1;
+		}
+		if(body.getPosition().coordinate(1) < 0)
+		{
+			dirY = -1;
+		}
+		
+		//Calculo la acceleracion respecto a su aceleracion inicial y su grado
+		//pos*(g+a)*cos(direccion)
+		aPos[0] = dirX*((body.getAcceleration().coordinate(0) + this.G) * Math.cos(direction));
+		//pos*(g+a)*sin(direccion)
+		aPos[1] = dirY*((body.getAcceleration().coordinate(1) + this.G) * Math.sin(direction));
+		
+		
+		return new Vector(aPos);
+	}
 	public double FuerzaAplicada (double masa1, double masa2, Vector pos1, Vector pos2) {
 		
 		this.fuerza = G*((masa1*(masa2))/(Distancia(pos1, pos2)*Distancia(pos1, pos2)));

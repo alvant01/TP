@@ -14,6 +14,7 @@ public class PhysicsSimulator {
 	private NewtonUniversalGravitation newtonUGravitation;
 	private FallingToCenterGravity fallingTCenter;
 	private NoGravity nGavity;
+	private double tiempoActual;
 	
 	
 	//tiempoRealPorPaso es un numero de tipo double que representa el tiempo (en segundos)
@@ -24,6 +25,7 @@ public class PhysicsSimulator {
 	// se debe de lanzar una excepcion
 	
 	public PhysicsSimulator(double tiempoRealPorPaso, GravityLaws leyesGravedad ) throws IllegalArgumentException{
+		this.tiempoActual = 0.0;
 		this.tiempoRealPorPaso = tiempoRealPorPaso;
 		this.leyesGravedad = leyesGravedad;
 		this.listBodies = new ArrayList<Body>();
@@ -70,7 +72,7 @@ public class PhysicsSimulator {
 			//System.out.println(this.listBodies.get(i).getAcceleration());
 			this.listBodies.get(i).move(this.tiempoRealPorPaso);
 		}
-		
+		this.tiempoActual += this.tiempoRealPorPaso;
 
 		
 	}
@@ -109,7 +111,7 @@ public class PhysicsSimulator {
 	
 	@Override
 	public String toString() {
-		return "PhysicsSimulator [cuerpo=" + this.cuerpo + ", lista de cuerpos=" + this.listBodies
+		return "{ \"time\":" + this.tiempoRealPorPaso + " \"bodies\": [cuerpo=" + this.cuerpo + ", lista de cuerpos=" + this.listBodies
 				+ ", tiempoRealPorPaso=" + this.tiempoRealPorPaso
 				+ ", leyesGravedad=" + this.leyesGravedad + ", newtonUGravitation="
 				+ newtonUGravitation + ", fallingTCenter=" + fallingTCenter
@@ -117,9 +119,10 @@ public class PhysicsSimulator {
 				+ ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
-	
+	//{ "time": 0.0, "bodies": [ {  "id": "b1", "mass": 1.5E30, "pos": [0.0, 4.5E10], "vel": [10000.0, 0.0], "acc": [0.0, 0.0] }, {  "id": "b2", "mass": 1.5E30, "pos": [0.0, -4.5E10], "vel": [-10000.0, 0.0], "acc": [0.0, 0.0] } ] },
+
 	public String toString2() {
-		return "Time: " + this.tiempoRealPorPaso + ", bodies: [" + listBodies + "]";
+		return "{ \"time\": " + this.tiempoActual + ", \"bodies\": " + listBodies.toString() + "}";
 		
 	}
 }

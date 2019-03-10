@@ -52,11 +52,16 @@ public class FallingToCenterGravity implements GravityLaws {
 	private void forceAceleration(Body body) {
 		
 		//Calculo el angulo
-		double direction = Math.atan(body.getAcceleration().coordinate(0)/body.getAcceleration().coordinate(1));
+		double direction = Math.atan(body.getPosition().coordinate(0)/body.getPosition().coordinate(1));
 		double aPos[]  = new double[2];
 		
+		
+		if (Double.isNaN(direction))
+			direction  =0.0;
 		//Calculo la acceleracion respecto a su aceleracion inicial y su grado
 		//pos*(g+a)*cos(direccion)
+		
+		double d = Math.cos(direction);
 		aPos[0] = this.dirX*((body.getAcceleration().coordinate(0) + this.g) * Math.cos(direction));
 		//pos*(g+a)*sin(direccion)
 		aPos[1] = this.dirY*((body.getAcceleration().coordinate(1) + this.g) * Math.sin(direction));
