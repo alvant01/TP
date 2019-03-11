@@ -34,14 +34,45 @@ public class NewtonUniversalGravitationDiego implements GravityLaws {
 		for (int i = 0; i < bodies.size(); i++)
 		{	
 			
+			//Calculo Fuerza
+			//setAplicarAceleracion(bodies.get(i));
 			AplicarAceleracion(bodies.get(i));
 		}		
 	}
 	
+	/*
+	List<Body> listaBody;
+
+	double fuerza;
+	double G = 6.67384E-11;
+	*/
+	
+	/*
+	private void ForceCalculation(Body body) {
+		for(int i = 0; i < this.listaBody.size(); i++)
+		{
+			if(!body.equals(this.listaBody.get(i)))
+			{
+				this.aplicarAceleracion = this.aplicarAceleracion.plus(accelerationCalculation(body, this.listaBody.get(i)));
+			}
+		}
+		
+	}
+	*/
+	
 	//Aplica la ley de la Gravedad entre 2 cuerpos en especifico
 	public double FuerzaAplicada (double masa1, double masa2, Vector pos1, Vector pos2) {
 		
-		this.fuerza = G*((masa1*(masa2))/(Distancia(pos1, pos2)*Distancia(pos1, pos2)));
+		//calculo de la fuerza a aplicar, evitando de que sea dividida por 0
+		if (!((Distancia(pos1, pos2)) == 0)) {
+			
+			this.fuerza = G*((masa1*(masa2))/(Distancia(pos1, pos2)*Distancia(pos1, pos2)));
+		
+		}
+		
+		else{
+			//Do nothing
+		}
 		
 		return this.fuerza;
 		
@@ -56,14 +87,33 @@ public class NewtonUniversalGravitationDiego implements GravityLaws {
 		
 	}
 	
+	private void MultiplicarPorAngulo(Body x, Body y){
+		
+		if (!(x.getId().equals(y))){
+			//x.getId().equals(y)
+			this.aplicarAceleracion = FuerzaAcumulada(x)/(x.getMass())*((FuerzaAcumulada(y)/y.getMass()));
+			//x.getPosition().scale(y.getPosition());
+			//x.getPosition()*y.getPosition();
+			//(x.getPosition().direction()).scale(y.getPosition().direction());
+			double aAceleracion[] = new double[1];
+			aAceleracion[0] = this.aplicarAceleracion;
+			x.setAcceleration(new Vector(aAceleracion));
+			return ;
+		}
+
+	}
+	
+	
 	//Por cada cuerpo llamado, se calcula la fuerza que le aplican los demas cuerpos sobre el
 	public double FuerzaAcumulada(Body cuerpoA){
+		double masa1 = cuerpoA.getMass();
+		Vector pos1 = cuerpoA.getPosition();
 		//El enunciado dicta: Bi se define como la suma de 
 		//todas las fuerzas aplicadas sobre Bi por otros cuerpos
 		//Calculamos la fuerza acumulada de todos los objetos sobre el cuerpo en cuestion
 		
-		double masa1 = cuerpoA.getMass();
-		Vector pos1 = cuerpoA.getPosition();
+		//double masa1 = cuerpoA.getMass();
+		//Vector pos1 = cuerpoA.getPosition();
 		
 		for (int i = 0; i < listaBody.size(); i++){
 			
@@ -93,6 +143,33 @@ public class NewtonUniversalGravitationDiego implements GravityLaws {
 		aAceleracion[0] = this.aplicarAceleracion;
 		cuerpoA.setAcceleration(new Vector(aAceleracion));
 		
+	}
+	
+	private Vector accelerationCalculation(Body body, Body body2) {
+		//Calculo el angulo
+		double direction = Math.atan((body.getAcceleration().coordinate(0) - body2.getAcceleration().coordinate(0) )/body.getAcceleration().coordinate(1));
+		double aPos[]  = new double[2];
+		double dirX = 0;
+		double dirY = 0;
+		
+		
+		if(body.getPosition().coordinate(0) < 0)
+		{
+			dirX = -1;
+		}
+		if(body.getPosition().coordinate(1) < 0)
+		{
+			dirY = -1;
+		}
+		
+		//Calculo la acceleracion respecto a su aceleracion inicial y su grado
+		//pos*(g+a)*cos(direccion)
+		aPos[0] = dirX*((body.getAcceleration().coordinate(0) + this.G) * Math.cos(direction));
+		//pos*(g+a)*sin(direccion)
+		aPos[1] = dirY*((body.getAcceleration().coordinate(1) + this.G) * Math.sin(direction));
+		
+		
+		return new Vector(aPos);
 	}
 	
 }
