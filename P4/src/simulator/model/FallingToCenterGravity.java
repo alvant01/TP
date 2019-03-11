@@ -7,7 +7,6 @@ import simulator.misc.Vector;
 
 public class FallingToCenterGravity implements GravityLaws {
 
-	private Vector fuerza;
 	private double g; //gravedad
 	private int dirX;
 	private int dirY;
@@ -62,12 +61,6 @@ public class FallingToCenterGravity implements GravityLaws {
 		return false;
 	}
 
-	private void forceCalculation(Body body) {
-		//F = m*a
-		this.fuerza = body.getAcceleration().scale(body.getMass());
-		
-	}
-
 	private void forceAceleration(Body body) {
 		
 		//Calculo el angulo
@@ -76,6 +69,8 @@ public class FallingToCenterGravity implements GravityLaws {
 		double anguloX;
 		double anguloY;
 		
+		
+		//Correcion debido al mal calculo de los angulos
 		if(body.getPosition().coordinate(0) == 0)
 			anguloX = 0;
 		else
@@ -85,16 +80,11 @@ public class FallingToCenterGravity implements GravityLaws {
 		else
 			anguloY = Math.cos(angulo);
 		
-		double angulo2 = Math.atan(3/3);
-		double p = Math.cos(angulo2);
 		
 		if (Double.isNaN(angulo))
 			angulo  =0.0;
 		//Calculo la acceleracion respecto a su aceleracion inicial y su grado
 		//pos*(g+a)*cos(direccion)
-		double b = Math.toRadians(Math.PI/2);
-		double o = Math.cos(Math.toRadians(Math.PI/2));
-		double y = Math.cos(Math.PI/2);
 		aPos[0] = this.dirX*((this.g) * anguloX);
 		//pos*(g+a)*sin(direccion)
 		aPos[1] = this.dirY*((this.g) * anguloY);
@@ -116,7 +106,6 @@ public class FallingToCenterGravity implements GravityLaws {
 	}
 	public void AplicaAceleracion(Body cuerpo) {
 		
-		//V = F
 		cuerpo.setVelocity(cuerpo.getAcceleration());
 	}
 }

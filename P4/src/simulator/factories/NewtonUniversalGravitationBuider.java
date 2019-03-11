@@ -3,7 +3,6 @@ package simulator.factories;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import simulator.misc.Vector;
 import simulator.model.GravityLaws;
 import simulator.model.NewtonUniversalGravitation;
 
@@ -20,9 +19,7 @@ public class NewtonUniversalGravitationBuider extends Builder<GravityLaws> {
 		{
 		 
 		if ("nlug".equals(info.get("type")))
-		{
-//			JSONObject data = info.getJSONObject("data");
-			
+		{	
 			try
 			{
 			NewtonUniversalGravitation nug = new NewtonUniversalGravitation();
