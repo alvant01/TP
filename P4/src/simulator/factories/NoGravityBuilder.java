@@ -3,8 +3,6 @@ package simulator.factories;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import simulator.misc.Vector;
-import simulator.model.FallingToCenterGravity;
 import simulator.model.GravityLaws;
 import simulator.model.NoGravity;
 
@@ -17,8 +15,6 @@ public class NoGravityBuilder extends Builder<GravityLaws> {
 		 
 		if ("ftcg".equals(info.get("type")))
 		{
-//			JSONObject data = info.getJSONObject("data");
-			
 			try
 			{
 			NoGravity ng = new NoGravity();

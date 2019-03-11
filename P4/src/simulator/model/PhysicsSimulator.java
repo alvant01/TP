@@ -3,17 +3,11 @@ package simulator.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import simulator.misc.Vector;
-
 public class PhysicsSimulator {
 	
-	private Body cuerpo;
 	private List<Body> listBodies; //Lista de cuerpos
 	private double tiempoRealPorPaso;
 	private GravityLaws leyesGravedad;
-	private NewtonUniversalGravitation newtonUGravitation;
-	private FallingToCenterGravity fallingTCenter;
-	private NoGravity nGavity;
 	private double tiempoActual;
 	
 	
@@ -65,21 +59,15 @@ public class PhysicsSimulator {
 		
 		this.leyesGravedad.apply(this.listBodies);
 		
-		//double tiempoRealPorPaso = 0;
-		//cuerpo.move(this.tiempoRealPorPaso);
-		
 		for (int i = 0; i < this.listBodies.size(); i++){
-			//System.out.println(this.listBodies.get(i).getAcceleration());
 			this.listBodies.get(i).move(this.tiempoRealPorPaso);
 		}
-		this.tiempoActual += this.tiempoRealPorPaso;
-
 		
+		this.tiempoActual += this.tiempoRealPorPaso;
 	}
 	public void addBody(Body cuerpob){
 		
-		//anhade el cuerpo b al simulador
-		boolean found = false;
+		//añade el cuerpo b al simulador
 		try
 		{
 			if(this.listBodies.isEmpty())
@@ -88,19 +76,7 @@ public class PhysicsSimulator {
 			}
 			else
 			{
-				int tam = this.listBodies.size(); //evitamos un bucle infinito debido al cambio del valor de size
-				for(int i =0; i < tam; i++)
-				{
-					if (listBodies.get(i).getId().equals(cuerpob.getId()))
-					{
-						found = true;
-					}
-					
-					if(!found)
-						listBodies.add(cuerpob);
-					else 
-						throw new IllegalArgumentException();
-				}
+				this.listBodies.add(cuerpob);
 			}
 		}
 		catch (IllegalArgumentException exceptions)
@@ -108,19 +84,6 @@ public class PhysicsSimulator {
 			System.out.println("El objeto ya se encuentra en el simulador");
 		}
 	}
-	
-	@Override
-	public String toString() {
-		return "{ \"time\":" + this.tiempoRealPorPaso + " \"bodies\": [cuerpo=" + this.cuerpo + ", lista de cuerpos=" + this.listBodies
-				+ ", tiempoRealPorPaso=" + this.tiempoRealPorPaso
-				+ ", leyesGravedad=" + this.leyesGravedad + ", newtonUGravitation="
-				+ newtonUGravitation + ", fallingTCenter=" + fallingTCenter
-				+ ", nGavity=" + nGavity + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
-	//{ "time": 0.0, "bodies": [ {  "id": "b1", "mass": 1.5E30, "pos": [0.0, 4.5E10], "vel": [10000.0, 0.0], "acc": [0.0, 0.0] }, {  "id": "b2", "mass": 1.5E30, "pos": [0.0, -4.5E10], "vel": [-10000.0, 0.0], "acc": [0.0, 0.0] } ] },
-
 	public String toString2() {
 		return "{ \"time\": " + this.tiempoActual + ", \"bodies\": " + listBodies.toString() + "}";
 		

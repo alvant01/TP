@@ -9,7 +9,6 @@ public class BuilderBasicFactory<T> implements Factory<T> {
 	
 	private List<Builder<T>> listaF;
 	
-	private int numBuilders = 5;
 	public BuilderBasicFactory(List<Builder<T>> builders) {
 		this.listaF = builders;
 	}

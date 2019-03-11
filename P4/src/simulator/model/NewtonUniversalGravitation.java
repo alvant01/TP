@@ -17,7 +17,6 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	
 	public NewtonUniversalGravitation(){
 		
-		List<Body> listaBody = new ArrayList<Body>();
 		this.fuerza = 0;
 		this.G = 6.67384E-11;
 		this.aplicarAceleracion = null;
@@ -49,7 +48,7 @@ public class NewtonUniversalGravitation implements GravityLaws {
 	double fuerza;
 	double G = 6.67384E-11;
 	*/
-	
+	/*
 	private void ForceCalculation(Body body) {
 		for(int i = 0; i < this.listaBody.size(); i++)
 		{
@@ -85,7 +84,7 @@ public class NewtonUniversalGravitation implements GravityLaws {
 		
 		
 		return new Vector(aPos);
-	}
+	}*/
 	public double FuerzaAplicada (double masa1, double masa2, Vector pos1, Vector pos2) {
 		
 		this.fuerza = G*((masa1*(masa2))/(Distancia(pos1, pos2)*Distancia(pos1, pos2)));

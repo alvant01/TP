@@ -1,7 +1,5 @@
 package simulator.factories;
 
-import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,10 +66,7 @@ public class BasicBodyBuilder extends Builder<Body> {
 
 	public JSONObject getBuilderInfo() {
 		JSONObject jo1 = new JSONObject();
-		
-		/*
-		jo1.put("data", "\"type\": \"basic\", \"data\": { \"id\": \"b1\", \"pos\": [0.0e00, 0.0e00], \"vel\": [0.05e04, 0.0e00], \"mass\": 5.97e24");
-		*/
+
 		jo1.put("desc", "cuerpo normal");
 		jo1.put("type", "basic");
 		jo1.put("data", "{ \"id\": \"b1\", \"pos\", \"vel\", \"mass\" })");

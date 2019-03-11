@@ -1,12 +1,7 @@
 package simulator.launcher;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -71,7 +66,6 @@ public class Main {
 		//ArrayList<Builder<Body>> bodyBuilders = new ArrayList<>();
 		listaB.add(new BasicBodyBuilder());
 		listaB.add(new MassBodyLossingBuilder());
-		Factory<Body> bodyFactory = new BuilderBasicFactory<Body>(listaB);
 		
 		// initialize the bodies factory
 		_bodyFactory = new BuilderBasicFactory<Body>(listaB);

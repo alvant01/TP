@@ -25,10 +25,9 @@ public class Controller {
 	public void loadBodies(InputStream in)
 	{
 		
-		JSONObject jsonInupt = new JSONObject(new JSONTokener(in));
-		JSONArray jarray = jsonInupt.getJSONArray("bodies");
-		
-		for(int i = 0; i <= jsonInupt.length(); i++)
+		JSONObject jsonInput = new JSONObject(new JSONTokener(in));
+		JSONArray jarray = jsonInput.getJSONArray("bodies");
+		for(int i = 0; i < jarray.length(); i++)
 		{
 			Body n = this.factory.createInstance(jarray.getJSONObject(i));
 			this.ps.addBody(n);
