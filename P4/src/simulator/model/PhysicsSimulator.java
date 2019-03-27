@@ -51,11 +51,7 @@ public class PhysicsSimulator {
 		
 		//aplica un paso a la simulacion
 		
-		/*
-		NewtonUniversalGravitation newtonUGravitation = null;
-		FallingToCenterGravity fallingTCenter = null;
-		NoGravity nGavity = null;
-		*/
+
 		
 		this.leyesGravedad.apply(this.listBodies);
 		

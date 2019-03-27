@@ -37,6 +37,8 @@ public class Controller {
 	{
 		out.write("{ \n".getBytes());
 		out.write("\"states\": [ \n".getBytes());
+		out.write(ps.toString2().getBytes());
+		out.write(",\n".getBytes());
 		for(int i = 0; i < n; i++)
 		{
 			this.ps.advance();

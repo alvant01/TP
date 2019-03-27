@@ -56,20 +56,8 @@ public class Body{
 	}
 	void move(double t)
 	{
-		/*Vector v = this.v.scale(t);
-		Vector m = this.a.scale(0.5).scale(t*t);
-		
-		Vector c  = v.plus(m);
-		*/
-		Vector recorrido = this.v.scale(t).plus(this.a.scale(0.5).scale(t*t));
-		
-		//double d = recorrido.coordinate(0)+this.p.coordinate(0);
-		if((this.p.coordinate(0)> 0 && this.p.coordinate(0)+recorrido.coordinate(0) <0  ))
-			this.p = new Vector(2);
-		else if (this.p.coordinate(0)< 0 && recorrido.coordinate(0)+this.p.coordinate(0) > 0 )
-			this.p = new Vector(2);
-		else
-			this.p = this.p.plus(recorrido);
+		Vector ac  = this.a.scale(0.5).scale(t*t);
+		this.p = this.p.plus(this.v.scale(t)).plus(ac);
 		this.v = this.v.plus(this.a.scale(t));
 	}
 	public String toString()

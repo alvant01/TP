@@ -174,7 +174,7 @@ public class Main {
 	private static void parseOutFileOption(CommandLine line) throws ParseException {
 		_outFile = line.getOptionValue("o");
 		if (_outFile == null) {
-			throw new ParseException("An input file of bodies is required");
+			_outFile = "System.out";
 		}
 	}
 
