@@ -1,9 +1,6 @@
 package simulator.model;
 
 import java.util.List;
-import java.lang.Math;
-
-import simulator.misc.Vector;
 
 public class FallingToCenterGravity implements GravityLaws {
 

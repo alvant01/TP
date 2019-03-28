@@ -236,6 +236,8 @@ public class Main {
 		InputStream in =  new FileInputStream(_inFile);
 		OutputStream out  =  new FileOutputStream(_outFile);
 		
+		if(_outFile.equalsIgnoreCase("System.out"))
+			out = System.out;
 		/*Abrir el fichero dado en -i y -o, sacar los cuerpos de -i*/
 		
 		
@@ -247,6 +249,7 @@ public class Main {
 		//iniciar(run del controlador)
 		controlador.run(Integer.parseInt(_n), out);
 		
+		out.close();
 	}
 
 	private static void start(String[] args) throws Exception {

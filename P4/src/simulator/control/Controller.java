@@ -35,6 +35,7 @@ public class Controller {
 	}
 	public void run(int n, OutputStream out) throws IOException
 	{
+		//out = System.out;
 		out.write("{ \n".getBytes());
 		out.write("\"states\": [ \n".getBytes());
 		out.write(ps.toString2().getBytes());

@@ -1,6 +1,5 @@
 package simulator.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import simulator.misc.Vector;
@@ -46,7 +45,8 @@ public class NewtonUniversalGravitation implements GravityLaws {
 				
 				f = this.G * ((body.m * cuerpo2.m)/Math.pow(body.getPosition().distanceTo(cuerpo2.getPosition()), 2));
 				
-				this.fuerza = cuerpo2.getPosition().direction().scale(f);
+				Vector direction = cuerpo2.getPosition().minus(body.getPosition());
+				this.fuerza = direction.direction().scale(f);
 				
 				F = F.plus(this.fuerza);
 			}
