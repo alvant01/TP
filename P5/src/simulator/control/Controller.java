@@ -10,7 +10,9 @@ import org.json.JSONTokener;
 
 import simulator.factories.Factory;
 import simulator.model.Body;
+import simulator.model.GravityLaws;
 import simulator.model.PhysicsSimulator;
+import simulator.model.SimulatorObserver;
 
 public class Controller {
 
@@ -49,5 +51,36 @@ public class Controller {
 		out.write("] \n".getBytes());
 		out.write("} \n".getBytes());
 		out.close();
+	}
+	
+	
+	
+	
+	
+	//P5
+	public void reset()
+	{
+		this.ps.reset();
+	}
+	public void setDeltaTime(double dt)
+	{
+		this.ps.setDeltaTime(dt);
+	}
+	public void addObserver(SimulatorObserver o)
+	{
+		this.ps.addObserver(o);
+	}
+	public void run(int n)
+	{
+		for(int i  =0; i< n; i++)
+			this.ps.advance();
+	}
+	public Factory<GravityLaws> getGravityLawsFactory()
+	{
+		
+	}
+	public void setGravityLaws(JSONObject info)
+	{
+		this.ps.setGravityLaws(info));
 	}
 }
