@@ -11,7 +11,7 @@ public class PhysicsSimulator {
 	private double tiempoActual;
 	
 	
-	private SimulatorObserver listaObservadores;
+	private List<SimulatorObserver> listaObservadores;
 	
 	
 	//tiempoRealPorPaso es un numero de tipo double que representa el tiempo (en segundos)
@@ -26,7 +26,7 @@ public class PhysicsSimulator {
 		this.tiempoRealPorPaso = tiempoRealPorPaso;
 		this.leyesGravedad = leyesGravedad;
 		this.listBodies = new ArrayList<Body>();
-		this.listaObservadores = null;
+		this.listaObservadores = new ArrayList<SimulatorObserver>();
 		try
 		{
 			this.tiempoRealPorPaso = tiempoRealPorPaso;			
@@ -55,12 +55,6 @@ public class PhysicsSimulator {
 		
 		//aplica un paso a la simulacion
 		
-		/*
-		NewtonUniversalGravitation newtonUGravitation = null;
-		FallingToCenterGravity fallingTCenter = null;
-		NoGravity nGavity = null;
-		*/
-		
 		this.leyesGravedad.apply(this.listBodies);
 		
 		for (int i = 0; i < this.listBodies.size(); i++){
@@ -69,8 +63,8 @@ public class PhysicsSimulator {
 		
 		this.tiempoActual += this.tiempoRealPorPaso;
 		
-		
-		this.listaObservadores.onAdvance(listBodies, tiempoActual);
+		for(int i = 0; i < this.listaObservadores.size(); i++)
+			this.listaObservadores.get(i).onAdvance(listBodies, tiempoActual);
 	}
 	public void addBody(Body cuerpob){
 		
@@ -85,7 +79,9 @@ public class PhysicsSimulator {
 			{
 				this.listBodies.add(cuerpob);
 			}
-			this.listaObservadores.onBodyAdded(listBodies, cuerpob);
+			
+			for(int i = 0; i < this.listaObservadores.size(); i++)
+				this.listaObservadores.get(i).onBodyAdded(listBodies, cuerpob);
 		}
 		catch (IllegalArgumentException exceptions)
 		{
@@ -122,7 +118,8 @@ public class PhysicsSimulator {
 		
 		this.tiempoActual = 0.0;
 		
-		this.listaObservadores.onReset(listBodies, this.tiempoActual, this.tiempoRealPorPaso, this.leyesGravedad.toString());
+		for(int i = 0; i < this.listaObservadores.size(); i++)
+			this.listaObservadores.get(i).onReset(listBodies, this.tiempoActual, this.tiempoRealPorPaso, this.leyesGravedad.toString());
 	}
 	public void setDeltaTime(double dt)
 	{
@@ -131,7 +128,9 @@ public class PhysicsSimulator {
 			if(Double.isNaN(dt))
 				throw new IllegalArgumentException();
 			this.tiempoRealPorPaso = dt;
-			this.listaObservadores.onDeltaTimeChanged(this.tiempoRealPorPaso);
+			
+			for(int i = 0; i < this.listaObservadores.size(); i++)
+				this.listaObservadores.get(i).onDeltaTimeChanged(this.tiempoRealPorPaso);
 		}
 		catch(IllegalArgumentException ex)
 		{
@@ -145,7 +144,9 @@ public class PhysicsSimulator {
 			if(gravityLaws == null)
 				throw new IllegalArgumentException();
 			this.leyesGravedad = gravityLaws;
-			this.listaObservadores.onGravityLawChanged(gravityLaws.toString());
+			
+			for(int i = 0; i < this.listaObservadores.size(); i++)
+				this.listaObservadores.get(i).onGravityLawChanged(gravityLaws.toString());
 		}
 		catch(IllegalArgumentException ex)
 		{
@@ -155,10 +156,44 @@ public class PhysicsSimulator {
 	
 	public void addObserver(SimulatorObserver o)
 	{
-		this.listaObservadores = o;
+		this.listaObservadores.add(o);
 		
-		this.listaObservadores.onRegister(listBodies, tiempoActual, tiempoRealPorPaso, this.leyesGravedad.toString());
+		o.onRegister(listBodies, tiempoActual, tiempoRealPorPaso, this.leyesGravedad.toString());
+		//this.listaObservadores.onRegister(listBodies, tiempoActual, tiempoRealPorPaso, this.leyesGravedad.toString());
 	}
+
+	public List<Body> getListBodies() {
+		return listBodies;
+	}
+
+	public void setListBodies(List<Body> listBodies) {
+		this.listBodies = listBodies;
+	}
+
+	public double getTiempoRealPorPaso() {
+		return tiempoRealPorPaso;
+	}
+
+	public void setTiempoRealPorPaso(double tiempoRealPorPaso) {
+		this.tiempoRealPorPaso = tiempoRealPorPaso;
+	}
+
+	public GravityLaws getLeyesGravedad() {
+		return leyesGravedad;
+	}
+
+	public void setLeyesGravedad(GravityLaws leyesGravedad) {
+		this.leyesGravedad = leyesGravedad;
+	}
+
+	public double getTiempoActual() {
+		return tiempoActual;
+	}
+
+	public void setTiempoActual(double tiempoActual) {
+		this.tiempoActual = tiempoActual;
+	}
+
 }
 
 // 4 gatos

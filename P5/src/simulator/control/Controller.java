@@ -18,6 +18,7 @@ public class Controller {
 
 	private Factory<Body> factory;
 	private PhysicsSimulator ps;
+	private int pasos;
 	
 	public Controller(PhysicsSimulator ps, Factory<Body> factory) {
 		this.factory = factory;
@@ -77,10 +78,45 @@ public class Controller {
 	}
 	public Factory<GravityLaws> getGravityLawsFactory()
 	{
-		
+		return this.getGravityLawsFactory();
 	}
 	public void setGravityLaws(JSONObject info)
 	{
-		this.ps.setGravityLaws(info));
+		this.factory.createInstance(info);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Getters and Setters
+	
+	public Factory<Body> getFactory() {
+		return factory;
+	}
+
+	public void setFactory(Factory<Body> factory) {
+		this.factory = factory;
+	}
+
+	public PhysicsSimulator getPs() {
+		return ps;
+	}
+
+	public void setPs(PhysicsSimulator ps) {
+		this.ps = ps;
+	}
+
+	public int getPasos() {
+		return pasos;
+	}
+
+	public void setPasos(int pasos) {
+		this.pasos = pasos;
 	}
 }

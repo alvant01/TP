@@ -1,11 +1,15 @@
 package simulator.launcher;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.SwingUtilities;
 
 /*
  * Examples of command-line parameters:
@@ -39,6 +43,8 @@ import simulator.factories.NoGravityBuilder;
 import simulator.model.Body;
 import simulator.model.GravityLaws;
 import simulator.model.PhysicsSimulator;
+import simulator.model.SimulatorObserver;
+import simulator.view.MainWindow;
 
 public class Main {
 
@@ -53,6 +59,7 @@ public class Main {
 	private static String _outFile = null;
 	private static String _n  = null;
 	private static JSONObject _gravityLawsInfo = null;
+	private static String _bacht;
 
 	// factories
 	private static Factory<Body> _bodyFactory;
@@ -96,6 +103,7 @@ public class Main {
 			parseDeltaTimeOption(line);
 			parseGravityLawsOption(line);
 			parseStepOptions(line);
+			parseBatchOptions(line);
 
 			// if there are some remaining arguments, then something wrong is
 			// provided in the command line!
@@ -218,6 +226,22 @@ public class Main {
 			_n = "150";
 		}
 	}
+	
+	private static void parseBatchOptions(CommandLine line) {
+		String gl = line.getOptionValue("b");
+		
+		if(gl == null)
+			_bacht = "b";
+		else
+		{
+			if(gl.equals("gui"))
+				_bacht = "g";
+			else
+				_bacht = "b";
+		}
+			
+		
+	}
 
 	private static void startBatchMode() throws Exception {
 		// create and connect components, then start the simulator
@@ -248,11 +272,45 @@ public class Main {
 		controlador.run(Integer.parseInt(_n), out);
 		
 	}
+	private static void startGUIMode() throws FileNotFoundException, InvocationTargetException, InterruptedException {
+		
+		
+		//SimulatorObserver o = null;
+		//establecer leyes de la gravedad
+		GravityLaws gl =  _gravityLawsFactory.createInstance(_gravityLawsInfo);
+		//Instancia simulador y controlador
+		PhysicsSimulator simulador = new PhysicsSimulator(_dtime,gl);//Revisar faltan leyes
+		Controller controlador = new Controller(simulador, _bodyFactory);
+		
+		
+		InputStream in =  new FileInputStream(_inFile);
+		
+		
+		controlador.loadBodies(in);
+		
+		controlador.setPasos(Integer.parseInt(_n));
+		
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() 
+			{
+				new MainWindow(controlador);
+			}
+		});
+		
+	}
 
 	private static void start(String[] args) throws Exception {
 		parseArgs(args);
-		startBatchMode();
+		if(_bacht.equals("g"))
+			startBatchMode();
+		else
+			startGUIMode();
 	}
+	
+
+
+	
 
 	public static void main(String[] args) {
 		try {
