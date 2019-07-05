@@ -1,7 +1,6 @@
 package simulator.view;
 
 import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +12,22 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.json.JSONObject;
+
 import simulator.control.Controller;
 import simulator.model.Body;
 
 public class ControlPanel extends JPanel{
-// ...
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// ...
 	private Controller _ctrl;
 	private boolean _stopped;
 	JPanel panel;
 	
+	JSpinner delay;
 	
 	JSpinner pasos;
 	
@@ -44,14 +50,28 @@ public class ControlPanel extends JPanel{
 		pasos = new JSpinner();
 
 		
+		Long val = 1L;//set your own value, I used to check if it works
+		Long min = 0L;
+		Long max = 1000L;
+		Long step = 1L;
+
+		SpinnerNumberModel model = new SpinnerNumberModel(val, min, max, step);
+		delay = new JSpinner(model);
+		//delay = new JSpinner(new SpinnerNumberModel(value,0L,1000L,1L));
+		
+		dTime =  new JTextField();
+		
+		
 		pasos.setValue(_ctrl.getPasos());
 		//dTime.setText(Double.toString(_ctrl.getPs().getTiempoActual()));
+		
+		dTime.setText(Double.toString(_ctrl.getPs().getTiempoRealPorPaso()));
 		
 		file = new JButton();
 		file.setLocation(0, 0);
 		file.setSize(120, 30);
 		file.setIcon(new ImageIcon("resources/icons/open.png"));
-		
+		file.setToolTipText("Selecciona el fichero con los cuerpos");
 		file.addActionListener(new ActionListener()
 				{
 					@Override
@@ -65,7 +85,9 @@ public class ControlPanel extends JPanel{
 						   try 
 						   {
 							   sFichero = new FileInputStream(fichero);
+							   
 							   _ctrl.reset();
+							   _ctrl.loadBodies(sFichero);
 						   }
 						   catch (FileNotFoundException e) 
 						   {
@@ -82,15 +104,25 @@ public class ControlPanel extends JPanel{
 		gLaw.setLocation(5,5);
 		gLaw.setSize(120, 30);
 		gLaw.setIcon(new ImageIcon("resources/icons/physics.png"));
+		gLaw.setToolTipText("Selecciona las fisicas a aplicar");
 		gLaw.addActionListener(new ActionListener()
 		{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
-				
-				//_ctrl.getGravityLawsFactory().getInfo();
+				List<JSONObject> l = _ctrl.getGravityLawsFactory().getInfo();
+				// Con JCombobox
+				Object seleccion = JOptionPane.showInputDialog(
+				   new JPanel(),
+				   "Seleccione opcion",
+				   "Selector de opciones",
+				   JOptionPane.QUESTION_MESSAGE,
+				   null,  // null para icono defecto
+				   new JSONObject[] { l.get(0),l.get(1), l.get(2) }, 
+				   l.get(0));
+				if (seleccion != null)
+					_ctrl.setGravityLaws((JSONObject) seleccion);
 			}
 		});
 		this.add(gLaw);
@@ -99,12 +131,23 @@ public class ControlPanel extends JPanel{
 				
 		play = new JButton();
 		play.setIcon(new ImageIcon("resources/icons/run.png"));
+		play.setToolTipText("Inicia la simulación");
 		play.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				_stopped = false;
+				try
+				{
+					_ctrl.setDeltaTime(Double.parseDouble(dTime.getText()));
+				}
+				catch(NumberFormatException e)
+				{
+					JOptionPane.showMessageDialog(panel, "Incorrect delta-time.");
+					dTime.setText(Double.toString(_ctrl.getPs().getTiempoRealPorPaso()));
+					_ctrl.setDeltaTime(Double.parseDouble(dTime.getText()));
+				}
 				gLaw.setEnabled(false);
 				file.setEnabled(false);
 				run_sim((Integer)pasos.getValue());
@@ -114,6 +157,7 @@ public class ControlPanel extends JPanel{
 		
 		stop = new JButton();
 		stop.setIcon(new ImageIcon("resources/icons/stop.png"));
+		stop.setToolTipText("Para la simulación");
 		stop.addActionListener(new ActionListener()
 		{
 			@Override
@@ -122,30 +166,32 @@ public class ControlPanel extends JPanel{
 				_stopped = true;
 				gLaw.setEnabled(true);
 				file.setEnabled(true);
-				run_sim((Integer)pasos.getValue());
+				//run_sim((Integer)pasos.getValue());
 			}
 		});
 		this.add(stop);
 		
+		this.add(new JLabel("Pasos:"));
 		this.add(pasos);
-		
-		//this.add(dTime);
+		this.add(new JLabel("Delta-Time:"));
+		this.add(dTime);
 		
 		close = new JButton();
 		close.setIcon(new ImageIcon("resources/icons/exit.png"));
+		close.setToolTipText("Cierra la simulación");
 		close.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				JPanel salir = new JPanel(new FlowLayout());
-				if (JOptionPane.showConfirmDialog(salir, "Desea salir") == 0)
+				if (JOptionPane.showConfirmDialog(salir, "¿Desea salir?", "Salir", 
+		                JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0)
 					System.exit(0);
 					
 			}
 		});
 		this.add(close, BorderLayout.AFTER_LAST_LINE);
-		
 	}
 		// other private/protected methods
 		// ...

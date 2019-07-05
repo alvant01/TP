@@ -10,15 +10,21 @@ import simulator.model.Body;
 import simulator.model.SimulatorObserver;
 
 public class BodiesTableModel extends AbstractTableModel implements SimulatorObserver {
-// ...
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	// ...
 	private List<Body> _bodies;
 	
 	
 	private String[] nomColumnas = {"id", "Mass", "Position", "Velocity", "Acceleration"};
 	
-	private int numColum = 5;
+	//private int numColum = 5;
 	
-	Object[][] rowData;
+	//Object[][] rowData;
 	
 	
 	BodiesTableModel(Controller ctrl) 
@@ -27,57 +33,74 @@ public class BodiesTableModel extends AbstractTableModel implements SimulatorObs
 		
 		_bodies = ctrl.getPs().getListBodies();
 		
-		rowData = new Object[numColum][nomColumnas.length];
-		for (int i = 0; i < _bodies.size(); i++)
-		{
-			rowData[i][0] = _bodies.get(i).getId();
-			rowData[i][1] = _bodies.get(i).getMass();
-			rowData[i][2] = _bodies.get(i).getMass();
-			rowData[i][3] = _bodies.get(i).getVelocity();
-			rowData[i][4] = _bodies.get(i).getAcceleration();
-		}
-		
 		
 		ctrl.addObserver(this);
 	}
 	@Override
 	public int getRowCount() {
-		return numColum; 
+		return _bodies.size(); 
 	}
 	@Override
 	public int getColumnCount() {
-	 return _bodies.size();
+	 return nomColumnas.length;
 	}
 	@Override
 	public String getColumnName(int column) {
 		return nomColumnas[column];
 	}
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-			return rowData[rowIndex][columnIndex];
+	public Object getValueAt(int rowIndex, int columnIndex)
+	{
+		//System.out.println(rowIndex+" - "+columnIndex);
+		if (columnIndex==0)
+			return _bodies.get(rowIndex).getId();
+		else if (columnIndex==1)
+			return _bodies.get(rowIndex).getMass();
+		else if (columnIndex==2)
+			return _bodies.get(rowIndex).getPosition();
+		else if (columnIndex==3)
+			return _bodies.get(rowIndex).getVelocity();
+		else if (columnIndex==4)
+			return _bodies.get(rowIndex).getAcceleration();
+		else return 0;
 	}
+	
+	
+	
+	
+	
 	// SimulatorObserver methods
 	// ...
 	@Override
 	public void onRegister(List<Body> bodies, double time, double dt, String gLawsDesc) {
-		// TODO Auto-generated method stub
+		//_bodies = bodies;
+		fireTableStructureChanged();
 		
 	}
 	@Override
 	public void onReset(List<Body> bodies, double time, double dt, String gLawsDesc) {
-		_bodies = bodies;
+		//_bodies = bodies;
 		fireTableStructureChanged();
 		
 	}
 	@Override
 	public void onBodyAdded(List<Body> bodies, Body b) {
-		_bodies = bodies;
+		//_bodies = bodies;
 		fireTableStructureChanged();
 		
 	}
 	@Override
 	public void onAdvance(List<Body> bodies, double time) {
-		_bodies = bodies;
+		/*
+		if (bodies.equals(_bodies))
+		{
+			System.out.println("no cambia");
+		}*/
+		/*System.out.println(time);
+		System.out.println(bodies);
+		System.out.println(_bodies);*/
+
+		//_bodies = bodies;
 		fireTableStructureChanged();
 		
 	}

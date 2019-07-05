@@ -1,22 +1,21 @@
 package simulator.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 import simulator.control.Controller;
 import simulator.misc.Vector;
@@ -24,7 +23,11 @@ import simulator.model.Body;
 import simulator.model.SimulatorObserver;
 
 public class Viewer extends JComponent implements SimulatorObserver {
-// ...
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// ...
 	private int _centerX;
 	private int _centerY;
 	private double _scale;
@@ -41,10 +44,12 @@ public class Viewer extends JComponent implements SimulatorObserver {
 	{
 // TODO add border with title
 		
+		setLayout(new BorderLayout());
+		setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black, 2),"Bodies",TitledBorder.LEFT, TitledBorder.TOP));
 		
-		Border boder = BorderFactory.createTitledBorder("Viewer");
+		//Border boder = BorderFactory.createTitledBorder("Viewer");
 		//this.setBorder(BorderFactory.createLineBorder(Color.black));
-		this.setBorder(boder);
+		//this.setBorder(boder);
 		
 		_bodies = new ArrayList<>();
 		_scale = 1.0;
@@ -146,7 +151,11 @@ public class Viewer extends JComponent implements SimulatorObserver {
 		//TODO draw help if _showHelp is true
 		if(_showHelp)
 		{
-			
+			gr.setColor(Color.red);
+			String help = "h: toggle help +: zoom-in -: zoom-out =: fit";
+			String help2 = "Scaling ratio: " + _scale;
+			gr.drawString(help, this.getAlignmentX() +3, this.getAlignmentY() + 25);
+			gr.drawString(help2, this.getAlignmentX() +3, this.getAlignmentY() + 40);
 		}
 	}
 	//other private/protected methods	
@@ -191,6 +200,7 @@ public class Viewer extends JComponent implements SimulatorObserver {
 
 	@Override
 	public void onAdvance(List<Body> bodies, double time) {
+		
 		repaint();
 		
 	}

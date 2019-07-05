@@ -12,6 +12,10 @@ import simulator.model.Body;
 import simulator.model.SimulatorObserver;
 
 public class StatusBar extends JPanel implements SimulatorObserver {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// ...
 	private JLabel _currTime; // for current time
 	private JLabel _currLaws; // for gravity laws
